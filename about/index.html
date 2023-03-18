@@ -29,9 +29,9 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 6.3.0">
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="ZXN" type="application/atom+xml">
+
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
-<link rel="alternate" href="/atom.xml" title="ZXN" type="application/atom+xml">
 </head>
 
 
@@ -264,7 +264,9 @@
 
 
 <script>
-    $('.bg-cover').css('background-image', 'url(/medias/banner/0.jpg)');
+    // 每天切换 banner 图.  Switch banner image every day.
+    var bannerUrl = "/medias/banner/" + new Date().getDay() + '.jpg';
+    $('.bg-cover').css('background-image', 'url(' + bannerUrl + ')');
 </script>
 
 
@@ -774,20 +776,20 @@
         
         
         <div class="photo col s12 m6 l4" data-aos="fade-up">
-            <div class="img-item" data-src="/medias/featureimages/0.jpg">
-                <img src="/medias/featureimages/0.jpg" class="responsive-img">
+            <div class="img-item" data-src="/medias/album/0.jpeg">
+                <img src="/medias/album/0.jpeg" class="responsive-img">
             </div>
         </div>
         
         <div class="photo col s12 m6 l4" data-aos="fade-up">
-            <div class="img-item" data-src="/medias/featureimages/1.jpg">
-                <img src="/medias/featureimages/1.jpg" class="responsive-img">
+            <div class="img-item" data-src="/medias/album/1.jpeg">
+                <img src="/medias/album/1.jpeg" class="responsive-img">
             </div>
         </div>
         
         <div class="photo col s12 m6 l4" data-aos="fade-up">
-            <div class="img-item" data-src="/medias/featureimages/2.jpg">
-                <img src="/medias/featureimages/2.jpg" class="responsive-img">
+            <div class="img-item" data-src="/medias/album/2.jpeg">
+                <img src="/medias/album/2.jpeg" class="responsive-img">
             </div>
         </div>
         
