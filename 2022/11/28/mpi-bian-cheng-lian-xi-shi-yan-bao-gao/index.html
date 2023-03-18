@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="并行程序设计-第四讲.Pthread编程, ZXN">
+    <meta name="keywords" content="并行程序设计-实验5.MPI编程练习, ZXN">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>并行程序设计-第四讲.Pthread编程 | ZXN</title>
+    <title>并行程序设计-实验5.MPI编程练习 | ZXN</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -228,12 +228,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/%208.png')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/%201.png')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">并行程序设计-第四讲.Pthread编程</h1>
+                    <h1 class="description center-align post-title">并行程序设计-实验5.MPI编程练习</h1>
                 </div>
             </div>
         </div>
@@ -357,8 +357,8 @@
                                 <span class="chip bg-color">S5课上</span>
                             </a>
                         
-                            <a href="/tags/%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/">
-                                <span class="chip bg-color">知识总结</span>
+                            <a href="/tags/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/">
+                                <span class="chip bg-color">实验报告</span>
                             </a>
                         
                     </div>
@@ -382,7 +382,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-10-03
+                    2022-11-28
                 </div>
                 
 
@@ -391,7 +391,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    873
+                    3.5k
                 </div>
                 
 
@@ -411,179 +411,485 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="第四讲-多线程Pthread编程"><a href="#第四讲-多线程Pthread编程" class="headerlink" title="第四讲 多线程Pthread编程"></a>第四讲 多线程Pthread编程</h1><h2 id="共享内存系统和分布式内存模型回顾"><a href="#共享内存系统和分布式内存模型回顾" class="headerlink" title="共享内存系统和分布式内存模型回顾"></a>共享内存系统和分布式内存模型回顾</h2><h3 id="伪共享"><a href="#伪共享" class="headerlink" title="伪共享"></a>伪共享</h3><ol>
-<li><p>cache按照行读取</p>
+                <div class="cover" style="page-break-after:always;font-family:方正公文仿宋;width:100%;height:100%;border:none;margin: 0 auto;text-align:center;">
+    <div style="width:60%;margin: 0 auto;height:0;padding-bottom:20%;">
+        <br>
+        <img src="https://zyzstc-1303973796.cos.ap-beijing.myqcloud.com/uPic/%E5%8D%97%E5%BC%80%E5%A4%A7%E5%AD%A6logo.jpeg" alt="校名" style="width:80%;">
+    </div>
+    <br><br><br><br><br>
+    <div style="width:60%;margin: 0 auto;height:0;padding-bottom:30%;">
+        <img src="https://zyzstc-1303973796.cos.ap-beijing.myqcloud.com/uPic/%E5%8D%97%E5%BC%80%E5%A4%A7%E5%AD%A6%E6%A0%A1%E5%BE%BDlogo.jpg" alt="校徽" style="width:50%;">
+    </div>
+    <br><br><br><br><br><br><br><br>
+    <span style="font-family:华文黑体Bold;text-align:center;font-size:20pt;margin: 10pt auto;line-height:30pt;">《MPI 编程练习实验报告》</span>
+    <p style="text-align:center;font-size:14pt;margin: 0 auto">并行第五次实验作业 </p>
+    <br>
+    <br>
+    <table style="border:none;text-align:center;width:72%;font-family:仿宋;font-size:14px; margin: 0 auto;">
+    <tbody style="font-family:方正公文仿宋;font-size:12pt;">
+        <tr style="font-weight:normal;"> 
+            <td style="width:20%;text-align:right;">题　　目</td>
+            <td style="width:2%">：</td> 
+            <td style="width:40%;font-weight:normal;border-bottom: 1px solid;text-align:center;font-family:华文仿宋"> MPI 编程练习实验报告</td>     </tr>
+        <tr style="font-weight:normal;"> 
+            <td style="width:20%;text-align:right;">上课时间</td>
+            <td style="width:2%">：</td> 
+            <td style="width:40%;font-weight:normal;border-bottom: 1px solid;text-align:center;font-family:华文仿宋"> 周二晚上</td>     </tr>
+        <tr style="font-weight:normal;"> 
+            <td style="width:20%;text-align:right;">授课教师</td>
+            <td style="width:2%">：</td> 
+            <td style="width:40%;font-weight:normal;border-bottom: 1px solid;text-align:center;font-family:华文仿宋">孙永谦 </td>     </tr>
+        <tr style="font-weight:normal;"> 
+            <td style="width:20%;text-align:right;">姓　　名</td>
+            <td style="width:2%">：</td> 
+            <td style="width:40%;font-weight:normal;border-bottom: 1px solid;text-align:center;font-family:华文仿宋"> 张家冉</td>     </tr>
+        <tr style="font-weight:normal;"> 
+            <td style="width:20%;text-align:right;">学　　号</td>
+            <td style="width:2%">：</td> 
+            <td style="width:40%;font-weight:normal;border-bottom: 1px solid;text-align:center;font-family:华文仿宋">2012685 </td>     </tr>
+        <tr style="font-weight:normal;"> 
+            <td style="width:20%;text-align:right;">年　　级</td>
+            <td style="width:%">：</td> 
+            <td style="width:40%;font-weight:normal;border-bottom: 1px solid;text-align:center;font-family:华文仿宋"> 2020级本科生</td>     </tr>
+        <tr style="font-weight:normal;"> 
+            <td style="width:20%;text-align:right;">日　　期</td>
+            <td style="width:2%">：</td> 
+            <td style="width:40%;font-weight:normal;border-bottom: 1px solid;text-align:center;font-family:华文仿宋">2022/12/24</td>     </tr>
+    </tbody>              
+    </table>
+</div>
+
+
+<p>[TOC]</p>
+<h1 id="MPI-编程练习实验报告"><a href="#MPI-编程练习实验报告" class="headerlink" title="MPI 编程练习实验报告"></a>MPI 编程练习实验报告</h1><h2 id="实验内容"><a href="#实验内容" class="headerlink" title="实验内容"></a>实验内容</h2><ul>
+<li>实现第5章课件中的梯形积分法的MPI编程熟悉并掌握MPI编程方法，规模自行设定，可探讨不同规模对不同实现方式的影响。</li>
+<li>对于课件中“多个数组排序”的任务不均衡案例进行MPI编程实现，规模可自己设定、调整。</li>
+<li>附加：实现高斯消去法解线性方程组的MPI编程，与SSE（或AVX）编程结合，并与Pthread、OpenMP（结合SSE或AVX）版本对比，规模自己设定。</li>
+</ul>
+<h2 id="实验一：梯形积分"><a href="#实验一：梯形积分" class="headerlink" title="实验一：梯形积分"></a>实验一：梯形积分</h2><h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><p>本实验分别使用MPI、Pthread和OpenMP三种方法，实现了梯形积分法。并通过调整梯形积分法划分成小梯形的个数规模，来比较不同编程方式的异同。</p>
+<p>具体案例为：对于下图中给出的梯形积分法，实现并行编程。每个线程或进程计算a到b区间中的某一段的梯形面积，最后求取全局和得到结果。</p>
+<p>![image-20230102165554905](/Users/zhangxiaoni/Library/Application Support/typora-user-images/image-20230102165554905.png)</p>
+<h3 id="程序设计与实现"><a href="#程序设计与实现" class="headerlink" title="程序设计与实现"></a>程序设计与实现</h3><h4 id="MPI实现"><a href="#MPI实现" class="headerlink" title="MPI实现"></a>MPI实现</h4><p>实验共用到了3台主机的进程进行计算。每个进程根据自己的my_rank进程号得到自身的计算任务，完成局部和的计算后，（除0号进程外）使用MPI_Send将结果发送至0号进程；0号进程使用MPI_Recv阻塞式地接受其他进程传回的结果，并计算全局和。同时，0号进程还完成计时、输出结果的任务。具体的实现代码如下：</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;stdio.h&gt;
+#include &lt;algorithm&gt;
+#include&lt;cstdlib&gt;
+#include&lt;ctime&gt;
+#include&lt;mpi.h&gt;
+
+//待积分的f(x)
+double f(double x) {
+    return 1;
+}
+
+//计算局部和
+double Trap(double a, double b, int count, double h) {
+    double my_result, x;
+    int i;
+    my_result = (f(a) + f(b)) / 2.0;
+    //局部求和，避免过多通信
+    for (i = 1; i &lt; count; i++) {
+        x = a + i * h;
+        my_result += f(x);
+    }
+    my_result *= h;
+    return my_result;
+}
+
+//主函数
+int main()
+{
+    int my_rank, comm_sz, n = 1000;
+    double a = 0, b = 5000;
+    double h = (b - a) / n;
+    double global_result;
+    clock_t start, end;
+    double time;
+
+    MPI_Init(NULL, NULL);
+    MPI_Comm_rank(MPI_COMM_WORLD, &amp;my_rank);
+    MPI_Comm_size(MPI_COMM_WORLD, &amp;comm_sz);
+
+    //0号进程开始计时
+    if (my_rank == 0) {
+        start = clock();
+    }
+    int local_n = n / comm_sz;
+    int local_a = a + my_rank * local_n * h;
+    int local_b = local_a + local_n * h;
+    //将未除尽的任务数分配给最后一个进程
+    if (my_rank == comm_sz - 1) {
+        local_n = n - (comm_sz - 1) * local_n;
+        local_b = b;
+    }
+    //每个进程计算自身分配的任务的局部和
+    double local_result = Trap(local_a, local_b, local_n, h);
+    //其他进程将局部和发送给0号进程
+    if (my_rank != 0) {
+        MPI_Send(&amp;local_result, 1, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD);
+    }
+    //0号进程收集局部和并求全局和
+    else {
+        global_result = local_result;
+        for (int source = 1; source &lt; comm_sz; source++)
+        {
+            MPI_Recv(&amp;local_result, 1, MPI_DOUBLE, source, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+            global_result += local_result;
+        }
+        //完成计算，0号进程停止计时
+        end = clock();
+        time = (end - start) / CLOCKS_PER_SEC;
+    }
+    //0号进程打印出结果
+    if (my_rank == 0) {
+        printf("划分成小梯形的块数: %d\n", n);
+        printf("计算结果是: %.15e\n", global_result);
+        printf("总共耗时: %f\n\nms", time);
+    }
+
+    MPI_Finalize();
+    return 0;
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="Pthread实现"><a href="#Pthread实现" class="headerlink" title="Pthread实现"></a>Pthread实现</h4><p>对于每个线程，先求局部和最后全局求和，避免过多通信。同时注意给全局和加锁保证结果的正确性。代码实现如下：</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">void pthread_trap(double a,double b,int n,double*global_result_p,int thread_count){
+    pthread_param params[thread_count];
+    pthread_t threads[thread_count];
+    pthread_mutex_t amutex;
+    pthread_mutex_init(&amp;amutex,NULL);
+    for(int i=0;i&lt;thread_count;i++){
+        //为每个线程参数赋值
+        params[i].a=a;
+        params[i].b=b;
+        params[i].n=n;
+        params[i].global_result_p=global_result_p;
+        params[i].thread_count=thread_count;
+        params[i].my_rank=i;
+        params[i].amutex=&amp;amutex;
+        //创建线程
+        pthread_create(&amp;threads[i],NULL,pthread_trap,(void*)&amp;params[i]);
+    }
+    //销毁线程
+    for(int i=0;i&lt;thread_count;i++){
+        pthread_join(threads[i],NULL);
+    }
+    //销毁互斥量锁
+    pthread_mutex_destroy(&amp;amutex);
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>其中每个线程执行的函数如下：</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">void* pthread_trap(void* p){
+    //恢复获取参数
+    pthread_param* params=(pthread_param*) p;
+    double h,x,my_result;
+    double local_a,local_b;
+    int local_n;
+    int my_rank=params-&gt;my_rank;
+    int thread_count=params-&gt;thread_count;
+    h=(params-&gt;b-params-&gt;a)/params-&gt;n;
+    local_n=params-&gt;n/thread_count;
+    local_a=params-&gt;a+my_rank*local_n*h;
+    local_b=local_a+local_n*h;
+    my_result=(f(local_a)+f(local_b))/2.0;
+    //先局部求和，避免过多通信
+    for(int i=1;i&lt;=local_n-1;i++){
+        x=local_a+i*h;
+        my_result+=f(x);
+    }
+    my_result=my_result*h;
+    //使用互斥量 amutex 上锁保证全局求和正确性
+    pthread_mutex_lock(params-&gt;amutex);
+    *params-&gt;global_result_p+=my_result;
+    pthread_mutex_unlock(params-&gt;amutex);
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="OpenMP实现"><a href="#OpenMP实现" class="headerlink" title="OpenMP实现"></a>OpenMP实现</h4><p>利用OpenMP的相关方法实现多线程并行编程，对于每个线程，先求局部和最后全局求和，避免过多通信。同时注意给全局和加锁保证结果的正确性。代码实现如下：</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#pragma omp parallel num_threads(thread_count)
+trap(a,b,n,&amp;global_result);
+
+void trap(double a,double b,int n,double*global_result_p){
+    double h,x,my_result;
+    double local_a,local_b;
+    int local_n;
+    int my_rank=omp_get_thread_num();
+    int thread_count=omp_get_num_threads();
+    h=(b-a)/n;
+    local_n=n/thread_count;
+    local_a=a+my_rank*local_n*h;
+    local_b=local_a+local_n*h;
+    my_result=(f(local_a)+f(local_b))/2.0;
+    //先局部求和，避免过多通信
+    for(int i=1;i&lt;=local_n-1;i++){
+        x=local_a+i*h;
+        my_result+=f(x);
+    }
+    my_result=my_result*h;
+    //用临界区保证全局求和正确性
+    #pragma omp critical
+        *global_result_p+=my_result;
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="实验设计"><a href="#实验设计" class="headerlink" title="实验设计"></a>实验设计</h3><h4 id="不同任务规模下三种方法执行时间对比"><a href="#不同任务规模下三种方法执行时间对比" class="headerlink" title="不同任务规模下三种方法执行时间对比"></a>不同任务规模下三种方法执行时间对比</h4><p>待计算函数为 f(x) = 1；待计算区间为0到5000。将积分区域分别划分为100，1000，10000，100000个小梯形，比较3种方法在这些不同的任务规模下执行效率的差异。</p>
+<h4 id="计时方法"><a href="#计时方法" class="headerlink" title="计时方法"></a>计时方法</h4><ul>
+<li><p>MPI版本使用的计时方法如下：</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">start = clock();
+end = clock();
+time = (end - start) / CLOCKS_PER_SEC;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 </li>
-<li><p>当多个处理器访问同一行，即使访问的是不同的机器字，也会潜在竞争</p>
-</li>
-<li><p>会产生不必要的协同开销</p>
-<p><img src="https://tva1.sinaimg.cn/large/008vxvgGly1h7oggjpznoj30m20aiwf1.jpg" alt="image-20221031143000351"></p>
+<li><p>Pthread和OpenMP版本继续沿用之前实验中用到的计时方法</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">QueryPerformanceFrequency((LARGE_INTEGER *)&amp;freq);
+QueryPerformanceCounter((LARGE_INTEGER *)&amp;head);          QueryPerformanceCounter((LARGE_INTEGER *)&amp;tail);  <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></li>
+</ul>
+<h3 id="不同规模下3种方法的结果展示与对比"><a href="#不同规模下3种方法的结果展示与对比" class="headerlink" title="不同规模下3种方法的结果展示与对比"></a>不同规模下3种方法的结果展示与对比</h3><h4 id="程序输出结果"><a href="#程序输出结果" class="headerlink" title="程序输出结果"></a>程序输出结果</h4><p>待计算函数为 f(x) = 1；待计算区间为0到5000</p>
 <ol>
-<li>当数据很少的时候，Core1和Core0访问的是同一行，同一个缓存行里的不同变量在同时被修改</li>
-</ol>
+<li><p>将MPI的运行环境及程序部署到华为鲲鹏云服务器上，得到示例输出如下：</p>
+<p>![image-20230102211323833](/Users/zhangxiaoni/Library/Application Support/typora-user-images/image-20230102211323833.png)</p>
+</li>
+<li><p>编辑器为codeblocks，编译器为mingw64，得到Pthread版本和OpenMP版本的示例输出如下：</p>
+<p>![image-20230102193907704](/Users/zhangxiaoni/Library/Application Support/typora-user-images/image-20230102193907704.png)</p>
+<p>从上述截图中看出，三种实现方式均按照预期效果输出，程序正确。</p>
 </li>
 </ol>
-<h3 id="共享内存编程"><a href="#共享内存编程" class="headerlink" title="共享内存编程"></a>共享内存编程</h3><ol>
-<li>动态线程<ol>
-<li>主线程等待计算工作，fork新线程分配工作，工作线程完成任务后结束</li>
-<li>资源利用率高</li>
-</ol>
-</li>
-<li>主线程完成时fork出<strong>所有线程</strong><ol>
-<li>性能更优，但可能浪费系统资源</li>
-</ol>
-</li>
-</ol>
-<h3 id="并行程序设计的复杂性"><a href="#并行程序设计的复杂性" class="headerlink" title="并行程序设计的复杂性"></a>并行程序设计的复杂性</h3><h2 id="POSIX-Threads编程"><a href="#POSIX-Threads编程" class="headerlink" title="POSIX Threads编程"></a>POSIX Threads编程</h2><h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><p>线程库：</p>
-<ul>
-<li>Pthread是POSIX标准<ul>
-<li>相对底层</li>
-<li>可移植</li>
-</ul>
-</li>
-<li>OpenMP是新标准<ul>
-<li>高层编程，适用于共享内存架构上的科学计算</li>
-</ul>
-</li>
-</ul>
-<h4 id="POSIX-Thread"><a href="#POSIX-Thread" class="headerlink" title="POSIX Thread"></a>POSIX Thread</h4><p><img src="https://tva1.sinaimg.cn/large/008vxvgGly1h7oguexqwnj30zo0m8djv.jpg" alt="image-20221031144319854"></p>
-<h3 id="基础API"><a href="#基础API" class="headerlink" title="基础API"></a>基础API</h3><h4 id="创建线程"><a href="#创建线程" class="headerlink" title="创建线程"></a>创建线程</h4><pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">int</span> <span class="token function">pthread_create</span><span class="token punctuation">(</span><span class="token class-name">pthread_t</span><span class="token operator">*</span><span class="token punctuation">,</span><span class="token keyword">const</span> <span class="token class-name">pthread_attr_t</span><span class="token operator">*</span><span class="token punctuation">,</span><span class="token keyword">void</span><span class="token operator">*</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token operator">*</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token keyword">void</span><span class="token operator">*</span><span class="token punctuation">)</span>
-  
-  <span class="token comment">//pthread_t不透明，程序员不可操作</span>
-  
-<span class="token comment">//调用</span>
-errcode<span class="token operator">=</span><span class="token function">pthread_create</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>thread_id<span class="token punctuation">,</span><span class="token operator">&amp;</span>thread_attribute<span class="token punctuation">,</span><span class="token operator">&amp;</span>thread_fun<span class="token punctuation">,</span><span class="token operator">&amp;</span>fun_arg<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="结果分析"><a href="#结果分析" class="headerlink" title="结果分析"></a>结果分析</h4><p>按照上述的实验设计执行程序，得到经过分析处理后的图表如下：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>100</th>
+<th>1000</th>
+<th>10000</th>
+<th>100000</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>MPI</td>
+<td>4ms</td>
+<td>5ms</td>
+<td>11ms</td>
+<td>13ms</td>
+</tr>
+<tr>
+<td>Pthread</td>
+<td>13ms</td>
+<td>15ms</td>
+<td>16ms</td>
+<td>19ms</td>
+</tr>
+<tr>
+<td>OpenMP</td>
+<td>7ms</td>
+<td>9ms</td>
+<td>12ms</td>
+<td>14ms</td>
+</tr>
+</tbody></table>
+<p>![image-20230102211927911](/Users/zhangxiaoni/Library/Application Support/typora-user-images/image-20230102211927911.png)</p>
+<p>根据上述图表可以看出，几种实现方式的性能差异并不明显，可能是因为该计算任务本身复杂度较低，三种方式均能快速完成，故无法很好地展现出不同方法的性能差异。单从本实验的表现来看，MPI的执行效率相对来说更高一点，可能是因为多台主机多个进程多个CPU确实会更快一些。当然，这种性能上的优秀表现仅在平均值中体现（上述图表中的数据是多次实验取平均后得到的结果），在某些情况下，MPI方法的执行时间也会出现较长的现象，猜想可能是因为使用云服务器传输数据的过程耗时较长导致。</p>
+<h3 id="实验总结"><a href="#实验总结" class="headerlink" title="实验总结"></a>实验总结</h3><p>通过本实验，我熟悉并掌握MPI编程方法，在探讨不同规模对不同实现方式的影响，我了解到了多台主机共同完成同一计算任务的思想以及在本实验中的优秀表现。不过本实验中MPI、Pthread、OpenMP三种方法的性能差异并不是特别明显，这也是本实验可以继续改进优化的一个方向。</p>
+<h2 id="实验二：数组排序的任务分配不均衡案例复现"><a href="#实验二：数组排序的任务分配不均衡案例复现" class="headerlink" title="实验二：数组排序的任务分配不均衡案例复现"></a>实验二：数组排序的任务分配不均衡案例复现</h2><h3 id="问题描述-1"><a href="#问题描述-1" class="headerlink" title="问题描述"></a>问题描述</h3><p>对ARR_NUM个长度为ARR_LEN的一维数组进行排序，使用MPI编程，每个进程处理一部分数组排序的任务。若数组分布不均衡，如前二分之一的数组全部升序，后二分之一的数组全部逆序，则每个进程分得的任务负载可能也会不均衡。</p>
+<h3 id="程序设计与实现-1"><a href="#程序设计与实现-1" class="headerlink" title="程序设计与实现"></a>程序设计与实现</h3><p>实验共用到了3台主机的进程完成数组排序。根据进程号连续划分任务，每个进程完成排序之后，将自己执行任务的耗时传送给0号进程，最终0号进程接受各个进程完成排序任务的时间并输出。具体的实现代码如下：</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;iostream&gt;
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;time.h&gt;
+#include &lt;vector&gt;
+#include &lt;algorithm&gt;
+#include &lt;mpi.h&gt;
+using namespace std;
 
-<ul>
-<li>thread_id<ul>
-<li>指针：线程ID或句柄（用于停止线程）</li>
-</ul>
-</li>
-<li>thread_attribute:<ul>
-<li>各种属性，通常用空指针<strong>NULL</strong>表示标准默认属性值</li>
-</ul>
-</li>
-<li>thread_fun<ul>
-<li>新线程要运行的函数（参数和返回值类型都是void*）</li>
-</ul>
-</li>
-<li>fun_arg<ul>
-<li>传递给要运行的函数thread_fun的参数</li>
-</ul>
-</li>
-<li>errorocode<ul>
-<li>若创建失败，返回非零值</li>
-</ul>
-</li>
-</ul>
-<p>![image-20221031151330065](/Users/zhangxiaoni/Library/Application Support/typora-user-images/image-20221031151330065.png)</p>
-<h4 id="Pthread-“hello-world”程序"><a href="#Pthread-“hello-world”程序" class="headerlink" title="Pthread “hello world”程序"></a>Pthread “hello world”程序</h4><p>![image-20221031152746925](/Users/zhangxiaoni/Library/Application Support/typora-user-images/image-20221031152746925.png)</p>
-<pre class="line-numbers language-c#" data-language="c#"><code class="language-c#">#include&lt;stdio.h&gt;
-#include&lt;stdlib.h&gt;
-#include&lt;pthread.h&gt;
- 
-int thread_count;
+//数组数量
+const int ARR_NUM = 3000;
+//每个数组的长度
+const int ARR_LEN = 300;
+//进程数量/主机数量
+const int PROCESS_NUM = 3;
+//每个进程处理的数组数量
+const int seg = ARR_NUM / PROCESS_NUM;
+vector&lt;int&gt; arr[ARR_NUM];
 
-void* Hello(void* rank)
+// 初始化待排序数组，使得
+// 第一段：完全逆序
+// 第二段：1/2逆序，1/2升序
+// 第三段：1/4逆序，3/4升序
+// 第四段：完全升序
+void init(void) {
+    int ratio;
+    srand(unsigned(time(nullptr)));
+    for (int i = 0; i &lt; ARR_NUM; i++) {
+        arr[i].resize(ARR_LEN);
+        if (i &lt; seg)ratio = 0;
+        else if (i &lt; seg * 2)ratio = 32;
+        else ratio = 128;
+        if ((rand() &amp; 127) &lt; ratio) {
+            for (int j = 0; j &lt; ARR_LEN; j++) {
+                arr[i][j] = ARR_LEN - j;
+            }
+        }
+        else {
+            for (int j = 0; j &lt; ARR_LEN; j++) {
+                arr[i][j] = j;
+            }
+        }
+    }
+}
 
-int main(int argc,char* argv[]){
-  long thread;
-  pthread_t* thread_handles;
-  
-  thread_count=strto(argv[1],NULL,10);
-  
-  thread_handles=(pthread_t*)malloc(thread_count*sizeof(pthread_t*));
-  
-  for(thread=0;thread&lt;thread_count;thread++)
- pthread_create(&amp;thread_handles[thread],NULL,Hello,(void*)thread);
-  
-  printf("Hello from the main thread\n");
-  
-  for(thread=0;thread&lt;thread_count;thread++);
-  pthread_join(thread_handles[thread],NULL);
-  
-  free(thread_handles);
-  return 0;
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+//主函数
+int main() {
+    int my_rank, comm_sz;
+    clock_t start, end;
+    double time;
+    //初始化数组
+    init();
 
-<h4 id="Pthread其他基础API"><a href="#Pthread其他基础API" class="headerlink" title="Pthread其他基础API"></a>Pthread其他基础API</h4><ul>
-<li><p>取消、结束线程</p>
-<ul>
-<li><p>void pthread_exit(void *value_ptr)</p>
-<ul>
-<li>显式取消线程</li>
-<li>通过value_ptr返回结果给调用者</li>
+    MPI_Init(NULL, NULL);
+    MPI_Comm_rank(MPI_COMM_WORLD, &amp;my_rank);
+    MPI_Comm_size(MPI_COMM_WORLD, &amp;comm_sz);
+    //根据进程号分配任务
+    int startTask = my_rank * seg;
+    int endTask = startTask + seg;
+    //排序
+    start = clock();
+    for (int i = startTask; i &lt; endTask; i++) {
+        sort(arr[i].begin(), arr[i].end());
+    }
+    end = clock();
+    time = (end - start);
+    //其他进程将本进程的运行时间发送给0号进程
+    if (my_rank != 0) {
+        MPI_Send(&amp;time, 1, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD);
+    }
+    //0号进程打印各个进程的运行时间
+    else if (my_rank == 0) {
+        printf("各进程运行时间如下:\n");
+        printf("0号进程: %fms\n", time);
+        for (int source = 1; source &lt; comm_sz; source++) {
+            MPI_Recv(&amp;time, 1, MPI_DOUBLE, source, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+            printf("%d号进程: %fms\n", source, time);
+        }
+    }
+    MPI_Finalize();
+    return 0;
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="实验设计-1"><a href="#实验设计-1" class="headerlink" title="实验设计"></a>实验设计</h3><ul>
+<li>使用init函数生成分布不均的数组；</li>
+<li>使用与实验一（梯形积分法）中相同的计时方法。</li>
+<li>改变数组规模，分别处理500，1000，1500，2000，2500，3000个长度为300的数组，比较在不同规模下各个进程的时间差异，从而理解任务负载不均衡对效率的影响。</li>
 </ul>
-</li>
-<li><p>int pthread_cnacel(pthread_t thread)	</p>
-<ul>
-<li><p>取消线程thread执行</p>
-</li>
-<li><p><img src="https://zxn-1313885264.cos.ap-beijing.myqcloud.com/images_typora/image-20221107141515838.png" alt="image-20221107141515838"></p>
-<p><img src="https://zxn-1313885264.cos.ap-beijing.myqcloud.com/images_typora/image-20221107141538026.png" alt="image-20221107141538026"></p>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="同步"><a href="#同步" class="headerlink" title="同步"></a>同步</h3><ul>
-<li><p>例子 估算pai</p>
-<ul>
-<li><p><img src="https://zxn-1313885264.cos.ap-beijing.myqcloud.com/images_typora/image-20221107142015679.png" alt="image-20221107142015679"></p>
-</li>
-<li><p>多线程版本</p>
-<p><img src="https://zxn-1313885264.cos.ap-beijing.myqcloud.com/images_typora/image-20221107142246876.png" alt="image-20221107142246876"></p>
-<p>问题：每个线程都要把数加到<strong>sum</strong>上面，会存在竞争，结果是错误的</p>
-</li>
-</ul>
-</li>
-</ul>
-<h4 id="概念回顾"><a href="#概念回顾" class="headerlink" title="概念回顾"></a>概念回顾</h4><ul>
-<li><p>原子性</p>
-<ul>
-<li>一组操作要么全部执行要么全不执行，则称其是原子性的</li>
-</ul>
-</li>
-<li><p>临界区</p>
-<ul>
-<li>共享资源的代码段，一次只能允许一个线程执行该代码</li>
-</ul>
-</li>
-<li><p>竞争条件</p>
-<ul>
-<li>多个线程/进程尝试更新同一个共享资源时，结果可能是无法预测的，则存在竞争</li>
-<li>如果存在竞争则创建临界区</li>
-</ul>
-</li>
-<li><p>数据依赖</p>
-<ul>
-<li>两个<strong>内存</strong>的序。为了保证结果正确性，必须保持这个序</li>
-</ul>
-</li>
-<li><p>同步</p>
-<ul>
-<li>时间上强制使各执行进程/线程在某一点必须互相等待，确保各进程/线程的正常顺序和对共享可写数据的正确访问。</li>
-</ul>
-</li>
-</ul>
-<h4 id="忙等待"><a href="#忙等待" class="headerlink" title="忙等待"></a>忙等待</h4><p><img src="https://zxn-1313885264.cos.ap-beijing.myqcloud.com/images_typora/image-20221107143703393.png" alt="image-20221107143703393"></p>
-<ul>
-<li>临界区的这段代码保证了各个进程是按照序号进行相加</li>
-<li>这个等待消耗cpu资源</li>
-</ul>
-<h4 id="显式同步：互斥量（锁）"><a href="#显式同步：互斥量（锁）" class="headerlink" title="显式同步：互斥量（锁）"></a>显式同步：互斥量（锁）</h4><p><img src="https://zxn-1313885264.cos.ap-beijing.myqcloud.com/images_typora/image-20221107144116394.png" alt="image-20221107144116394"></p>
-<p><img src="https://zxn-1313885264.cos.ap-beijing.myqcloud.com/images_typora/image-20221107144218073.png" alt="image-20221107144218073"></p>
-<ul>
-<li>这个版本线程不一定按照从小到大的顺序来，使用互斥量的效率更高，先执行完的不需要等待<ul>
-<li>操作系统选择顺序，谁先执行完谁先来</li>
-<li>被锁上的处于阻塞态，不占用cpu资源</li>
-</ul>
-</li>
-<li>锁只能保证一段时间内只有线程运行</li>
-</ul>
-<h5 id="死锁"><a href="#死锁" class="headerlink" title="死锁"></a>死锁</h5><p><img src="https://zxn-1313885264.cos.ap-beijing.myqcloud.com/images_typora/image-20221107150037798.png" alt="image-20221107150037798"></p>
-<h4 id="使用信号量同步"><a href="#使用信号量同步" class="headerlink" title="使用信号量同步"></a>使用信号量同步</h4><h4 id="使用barrier同步"><a href="#使用barrier同步" class="headerlink" title="使用barrier同步"></a>使用barrier同步</h4><p><img src="https://zxn-1313885264.cos.ap-beijing.myqcloud.com/images_typora/image-20221107151930138.png" alt="image-20221107151930138"></p>
+<h3 id="结果展示与对比分析"><a href="#结果展示与对比分析" class="headerlink" title="结果展示与对比分析"></a>结果展示与对比分析</h3><h4 id="程序输出结果-1"><a href="#程序输出结果-1" class="headerlink" title="程序输出结果"></a>程序输出结果</h4><p>将MPI的运行环境及程序部署到华为鲲鹏云服务器上，得到示例输出如下：</p>
+<p>注：本实验给每台主机分配了1个进程（在config文件中设置），总共有3个进程共同执行排序任务，故执行命令时为“3”</p>
+<p>![截屏2023-01-02 21.32.52](/Users/zhangxiaoni/Desktop/截屏2023-01-02 21.32.52.png)</p>
+<h4 id="图表结果分析"><a href="#图表结果分析" class="headerlink" title="图表结果分析"></a>图表结果分析</h4><p>经过分析处理后得到的图表结果展示如下：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>500</th>
+<th>1000</th>
+<th>1500</th>
+<th>2000</th>
+<th>2500</th>
+<th>3000</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0号进程</td>
+<td>5240ms</td>
+<td>10564ms</td>
+<td>15789ms</td>
+<td>21170ms</td>
+<td>26619ms</td>
+<td>31875ms</td>
+</tr>
+<tr>
+<td>1号进程</td>
+<td>5095ms</td>
+<td>10224ms</td>
+<td>15539ms</td>
+<td>20340ms</td>
+<td>25586ms</td>
+<td>30774ms</td>
+</tr>
+<tr>
+<td>2号进程</td>
+<td>4712ms</td>
+<td>9346ms</td>
+<td>13974ms</td>
+<td>18574ms</td>
+<td>23425ms</td>
+<td>28067ms</td>
+</tr>
+</tbody></table>
+<p> ![image-20230102214239527](/Users/zhangxiaoni/Library/Application Support/typora-user-images/image-20230102214239527.png)</p>
+<p>从上述图表中，我们大致可以看出，由于数据分布不均衡，各个进程的执行时间存在差异，具体表现为：0号、1号、2号进程的执行效率依次增大，这与他们各自的任务负载是保持一致的。在实际情况中，这些负载任务复杂度较高、执行时间较长的进程，会拖慢任务解决的整体时长，这是我们不希望看到的。</p>
+<h3 id="实验总结-1"><a href="#实验总结-1" class="headerlink" title="实验总结"></a>实验总结</h3><p>​	通过本实验，我了解到数据分布均衡对于多进程、多线程程序的重要性。如果任务分布不均，将会出现执行效率较低的进程拖慢任务解决的整体效率的情况。因此，并行编程时控制任务规模、控制任务分配的粗细粒度、控制进程或线程的数量，使得程序在数据分布不均衡的情况下也能有较为优秀的表现就显得很重要。当然，也可以在程序执行任务之前，对数据进行处理，达到各个进程分配的数据分布都较为均衡的效果。</p>
+<h2 id="附加实验：高斯消去法解线性方程组"><a href="#附加实验：高斯消去法解线性方程组" class="headerlink" title="附加实验：高斯消去法解线性方程组"></a>附加实验：高斯消去法解线性方程组</h2><h3 id="问题描述-2"><a href="#问题描述-2" class="headerlink" title="问题描述"></a>问题描述</h3><p>对于给定的线性方程组Ax=b，使用MPI编程，完成对于线性方程组的高斯消元。</p>
+<h3 id="程序设计与实现-2"><a href="#程序设计与实现-2" class="headerlink" title="程序设计与实现"></a>程序设计与实现</h3><p>每个进程完成部分行的消元计算任务，然后使用barrier功能，使得所有进程均完成第k行的消元后再计算下一行的消元。程序实现的具体代码如下：</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;stdio.h&gt;
+#include&lt;iostream&gt;
+#include &lt;algorithm&gt;
+#include&lt;cstdlib&gt;
+#include&lt;ctime&gt;
+#include&lt;mpi.h&gt;
+using namespace std;
+
+const int n = 900;
+const int NUM_PROC = 3;
+float a[n][n], b[n], c[n];
+
+void init() {
+    for (int i = 0; i &lt; n; i++) {
+        for (int j = 0; j &lt; n; j++) {
+            a[i][j] = rand() % (1000 - 1) + 1;
+        }
+        b[i] = rand() % (1000 - 1) + 1;
+    }
+}
+
+int main() {
+    int my_rank, comm_sz, left, right;
+    int source;
+    clock_t start, finish;
+    double sec;
+    init();
+
+    MPI_Init(NULL, NULL);
+    MPI_Comm_rank(MPI_COMM_WORLD, &amp;my_rank);
+    MPI_Comm_size(MPI_COMM_WORLD, &amp;comm_sz);
+
+    start = clock();
+    for (int k = 0; k &lt; n - 1; k++) {
+        int seg = (n - (k + 1)) / NUM_PROC;
+        left = my_rank * seg;
+        right = (my_rank + 1) * seg;
+        for (int i = left; i &lt; right; i++) {
+            c[i] = a[i][k] / a[k][k];
+        }
+        for (int i = left; i &lt; right; i++) {
+            for (int j = 0; j &lt; n; j++) {
+                a[i][j] = a[i][j] - c[i] * a[k][j];
+            }
+            b[i] = b[i] - c[i] * b[k];
+        }
+        MPI_Barrier(MPI_COMM_WORLD);
+    }
+    finish = clock();
+    sec = finish - start;
+
+    if (my_rank != 0) {
+        MPI_Send(&amp;sec, 1, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD);
+    }
+    else {
+        printf("0号进程: %f\n", sec);
+        for (source = 1; source &lt; comm_sz; source++) {
+            MPI_Recv(&amp;sec, 1, MPI_DOUBLE, source, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+            printf("%d号进程: %f\n", source, sec);
+        }
+    }
+    MPI_Finalize();
+    return 0;
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="实验总结-2"><a href="#实验总结-2" class="headerlink" title="实验总结"></a>实验总结</h3><p>该部分尝试对高斯消元法进行了的MPI的编程实现，其中也遇到了很多困难，比如数据依赖等问题。经过反复尝试，我实现了高斯消元MPI的解法，使得我对于MPI编程中需要注意的内存共享的问题有了更深刻的理解。</p>
 
                 
             </div>
@@ -610,7 +916,7 @@ int main(int argc,char* argv[]){
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://zxnstc.github.io/2022/10/03/di-si-jiang-duo-xian-cheng-pthread-bian-cheng/">http://zxnstc.github.io/2022/10/03/di-si-jiang-duo-xian-cheng-pthread-bian-cheng/</a>
+                    <a href="http://zxnstc.github.io/2022/11/28/mpi-bian-cheng-lian-xi-shi-yan-bao-gao/">http://zxnstc.github.io/2022/11/28/mpi-bian-cheng-lian-xi-shi-yan-bao-gao/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -656,8 +962,8 @@ int main(int argc,char* argv[]){
                                     <span class="chip bg-color">S5课上</span>
                                 </a>
                             
-                                <a href="/tags/%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/">
-                                    <span class="chip bg-color">知识总结</span>
+                                <a href="/tags/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/">
+                                    <span class="chip bg-color">实验报告</span>
                                 </a>
                             
                         </div>
@@ -827,29 +1133,30 @@ int main(int argc,char* argv[]){
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2022/10/18/di-wu-jiang-openmp/">
+                <a href="/2022/11/28/mpi-bian-cheng-lian-xi-shi-yan-bao-gao/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/%206.png" class="responsive-img" alt="并行程序设计-第五讲.openmp编程">
+                        <img src="/medias/featureimages/%201.png" class="responsive-img" alt="并行程序设计-实验5.MPI编程练习">
                         
-                        <span class="card-title">并行程序设计-第五讲.openmp编程</span>
+                        <span class="card-title">并行程序设计-实验5.MPI编程练习</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            并行 第五讲 笔记
+                            并行 MPI编程实验报告
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-10-18
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-11-28
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -862,6 +1169,7 @@ int main(int argc,char* argv[]){
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -873,8 +1181,8 @@ int main(int argc,char* argv[]){
                         <span class="chip bg-color">S5课上</span>
                     </a>
                     
-                    <a href="/tags/%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/">
-                        <span class="chip bg-color">知识总结</span>
+                    <a href="/tags/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/">
+                        <span class="chip bg-color">实验报告</span>
                     </a>
                     
                 </div>
@@ -888,24 +1196,24 @@ int main(int argc,char* argv[]){
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/09/25/di-san-jiang.simd-bian-cheng/">
+                <a href="/2022/11/13/di-liu-jiang-mpi-bian-cheng/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/%204.png" class="responsive-img" alt="并行程序设计-第三讲.SIMD编程">
+                        <img src="/medias/featureimages/%200.png" class="responsive-img" alt="并行程序设计-第六讲.MPI编程">
                         
-                        <span class="card-title">并行程序设计-第三讲.SIMD编程</span>
+                        <span class="card-title">并行程序设计-第六讲.MPI编程</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            并行 第三讲 笔记
+                            并行 第五讲 笔记
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-09-25
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-11-13
                             </span>
                         <span class="publish-author">
                             

@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="并行程序设计-第四讲.Pthread编程, ZXN">
+    <meta name="keywords" content="并行程序设计-实验2.SSE编程练习, ZXN">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>并行程序设计-第四讲.Pthread编程 | ZXN</title>
+    <title>并行程序设计-实验2.SSE编程练习 | ZXN</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -228,12 +228,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/%208.png')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/%200.png')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">并行程序设计-第四讲.Pthread编程</h1>
+                    <h1 class="description center-align post-title">并行程序设计-实验2.SSE编程练习</h1>
                 </div>
             </div>
         </div>
@@ -357,8 +357,8 @@
                                 <span class="chip bg-color">S5课上</span>
                             </a>
                         
-                            <a href="/tags/%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/">
-                                <span class="chip bg-color">知识总结</span>
+                            <a href="/tags/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/">
+                                <span class="chip bg-color">实验报告</span>
                             </a>
                         
                     </div>
@@ -382,7 +382,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-10-03
+                    2022-09-13
                 </div>
                 
 
@@ -391,7 +391,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    873
+                    3k
                 </div>
                 
 
@@ -411,179 +411,280 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="第四讲-多线程Pthread编程"><a href="#第四讲-多线程Pthread编程" class="headerlink" title="第四讲 多线程Pthread编程"></a>第四讲 多线程Pthread编程</h1><h2 id="共享内存系统和分布式内存模型回顾"><a href="#共享内存系统和分布式内存模型回顾" class="headerlink" title="共享内存系统和分布式内存模型回顾"></a>共享内存系统和分布式内存模型回顾</h2><h3 id="伪共享"><a href="#伪共享" class="headerlink" title="伪共享"></a>伪共享</h3><ol>
-<li><p>cache按照行读取</p>
-</li>
-<li><p>当多个处理器访问同一行，即使访问的是不同的机器字，也会潜在竞争</p>
-</li>
-<li><p>会产生不必要的协同开销</p>
-<p><img src="https://tva1.sinaimg.cn/large/008vxvgGly1h7oggjpznoj30m20aiwf1.jpg" alt="image-20221031143000351"></p>
-<ol>
-<li>当数据很少的时候，Core1和Core0访问的是同一行，同一个缓存行里的不同变量在同时被修改</li>
-</ol>
-</li>
-</ol>
-<h3 id="共享内存编程"><a href="#共享内存编程" class="headerlink" title="共享内存编程"></a>共享内存编程</h3><ol>
-<li>动态线程<ol>
-<li>主线程等待计算工作，fork新线程分配工作，工作线程完成任务后结束</li>
-<li>资源利用率高</li>
-</ol>
-</li>
-<li>主线程完成时fork出<strong>所有线程</strong><ol>
-<li>性能更优，但可能浪费系统资源</li>
-</ol>
-</li>
-</ol>
-<h3 id="并行程序设计的复杂性"><a href="#并行程序设计的复杂性" class="headerlink" title="并行程序设计的复杂性"></a>并行程序设计的复杂性</h3><h2 id="POSIX-Threads编程"><a href="#POSIX-Threads编程" class="headerlink" title="POSIX Threads编程"></a>POSIX Threads编程</h2><h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><p>线程库：</p>
-<ul>
-<li>Pthread是POSIX标准<ul>
-<li>相对底层</li>
-<li>可移植</li>
-</ul>
-</li>
-<li>OpenMP是新标准<ul>
-<li>高层编程，适用于共享内存架构上的科学计算</li>
-</ul>
-</li>
-</ul>
-<h4 id="POSIX-Thread"><a href="#POSIX-Thread" class="headerlink" title="POSIX Thread"></a>POSIX Thread</h4><p><img src="https://tva1.sinaimg.cn/large/008vxvgGly1h7oguexqwnj30zo0m8djv.jpg" alt="image-20221031144319854"></p>
-<h3 id="基础API"><a href="#基础API" class="headerlink" title="基础API"></a>基础API</h3><h4 id="创建线程"><a href="#创建线程" class="headerlink" title="创建线程"></a>创建线程</h4><pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">int</span> <span class="token function">pthread_create</span><span class="token punctuation">(</span><span class="token class-name">pthread_t</span><span class="token operator">*</span><span class="token punctuation">,</span><span class="token keyword">const</span> <span class="token class-name">pthread_attr_t</span><span class="token operator">*</span><span class="token punctuation">,</span><span class="token keyword">void</span><span class="token operator">*</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token keyword">void</span><span class="token operator">*</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token keyword">void</span><span class="token operator">*</span><span class="token punctuation">)</span>
-  
-  <span class="token comment">//pthread_t不透明，程序员不可操作</span>
-  
-<span class="token comment">//调用</span>
-errcode<span class="token operator">=</span><span class="token function">pthread_create</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>thread_id<span class="token punctuation">,</span><span class="token operator">&amp;</span>thread_attribute<span class="token punctuation">,</span><span class="token operator">&amp;</span>thread_fun<span class="token punctuation">,</span><span class="token operator">&amp;</span>fun_arg<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+                <h1 id="SSE编程练习"><a href="#SSE编程练习" class="headerlink" title="SSE编程练习"></a>SSE编程练习</h1><h2 id="矩阵乘法的优化"><a href="#矩阵乘法的优化" class="headerlink" title="矩阵乘法的优化"></a>矩阵乘法的优化</h2><h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><p>一个n行n列的矩阵a与一个n行n列的矩阵b的乘积，是一个n行n列的矩阵c。本实验分别使用了串行算法、Cache 优化、SSE 编程和分片策略四种算法实现了矩阵乘法，并就各算法的执行性能进行比较与分析。</p>
+<h3 id="算法设计实现与复杂性分析"><a href="#算法设计实现与复杂性分析" class="headerlink" title="算法设计实现与复杂性分析"></a>算法设计实现与复杂性分析</h3><h4 id="串行算法"><a href="#串行算法" class="headerlink" title="串行算法"></a>串行算法</h4><p>​	依据矩阵乘法规则，矩阵a的每一行与对应b的每一列分别相乘后求和，设计三层循环嵌套，按矩阵a的行主序处理。</p>
+<p>​	具体代码如下：</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">void mul(float a[maxN][maxN], float b[maxN][maxN]){
+    for (int i = 0; i &lt; n; ++i) {
+        for (int j = 0; j &lt; n; ++j) {
+            c[i][j] = 0.0;
+            for (int k = 0; k &lt; n; ++k) {
+                c[i][j] += a[i][k] * b[k][j];
+            }
+        }
+    }
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<ul>
-<li>thread_id<ul>
-<li>指针：线程ID或句柄（用于停止线程）</li>
-</ul>
-</li>
-<li>thread_attribute:<ul>
-<li>各种属性，通常用空指针<strong>NULL</strong>表示标准默认属性值</li>
-</ul>
-</li>
-<li>thread_fun<ul>
-<li>新线程要运行的函数（参数和返回值类型都是void*）</li>
-</ul>
-</li>
-<li>fun_arg<ul>
-<li>传递给要运行的函数thread_fun的参数</li>
-</ul>
-</li>
-<li>errorocode<ul>
-<li>若创建失败，返回非零值</li>
-</ul>
-</li>
-</ul>
-<p>![image-20221031151330065](/Users/zhangxiaoni/Library/Application Support/typora-user-images/image-20221031151330065.png)</p>
-<h4 id="Pthread-“hello-world”程序"><a href="#Pthread-“hello-world”程序" class="headerlink" title="Pthread “hello world”程序"></a>Pthread “hello world”程序</h4><p>![image-20221031152746925](/Users/zhangxiaoni/Library/Application Support/typora-user-images/image-20221031152746925.png)</p>
-<pre class="line-numbers language-c#" data-language="c#"><code class="language-c#">#include&lt;stdio.h&gt;
-#include&lt;stdlib.h&gt;
-#include&lt;pthread.h&gt;
- 
-int thread_count;
+<p>​	通过代码可以看出，串行算法的设计中有3个for循环，一个for循环是O(n)，所以串行算法的复杂度为O(n *n *n)=O(n^3)</p>
+<h4 id="cache优化"><a href="#cache优化" class="headerlink" title="cache优化"></a>cache优化</h4><p>​	从上面串行算法的代码中可以看出，b [k] [j]在读取内存中的数据时是不连续的。在最底层的循环中，随着k不断加一，b[k] [j]不断地在内存中跳跃。这会引起cache命中率低，循环程序不断的把内存转移到缓存中，引起效率降低。</p>
+<p>​	cache优化的思路便是通过将b矩阵转置，以行主序的方式来访问b矩阵，这样保证了b矩阵空间访问的局部性，效率得到提高。</p>
+<p>​	具体代码如下：</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">void trans_mul(float a[maxN][maxN], float b[maxN][maxN]){
+    //转置
+    for (int i = 0; i &lt; n; ++i)
+        for (int j = 0; j &lt; i; ++j){
+            swap(b[i][j], b[j][i]);
+        }
 
-void* Hello(void* rank)
+    for (int i = 0; i &lt; n; ++i) {
+        for (int j = 0; j &lt; n; ++j) {
+            c[i][j] = 0.0;
+            for (int k = 0; k &lt; n; ++k) {
+                c[i][j] += a[i][k] * b[j][k];
+            }
+        }
+    }
 
-int main(int argc,char* argv[]){
-  long thread;
-  pthread_t* thread_handles;
-  
-  thread_count=strto(argv[1],NULL,10);
-  
-  thread_handles=(pthread_t*)malloc(thread_count*sizeof(pthread_t*));
-  
-  for(thread=0;thread&lt;thread_count;thread++)
- pthread_create(&amp;thread_handles[thread],NULL,Hello,(void*)thread);
-  
-  printf("Hello from the main thread\n");
-  
-  for(thread=0;thread&lt;thread_count;thread++);
-  pthread_join(thread_handles[thread],NULL);
-  
-  free(thread_handles);
-  return 0;
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    //转置
+    for (int i = 0; i &lt; n; ++i)
+        for (int j = 0; j &lt; i; ++j) {
+            swap(b[i][j], b[j][i]);
+        }
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h4 id="Pthread其他基础API"><a href="#Pthread其他基础API" class="headerlink" title="Pthread其他基础API"></a>Pthread其他基础API</h4><ul>
-<li><p>取消、结束线程</p>
-<ul>
-<li><p>void pthread_exit(void *value_ptr)</p>
-<ul>
-<li>显式取消线程</li>
-<li>通过value_ptr返回结果给调用者</li>
-</ul>
-</li>
-<li><p>int pthread_cnacel(pthread_t thread)	</p>
-<ul>
-<li><p>取消线程thread执行</p>
-</li>
-<li><p><img src="https://zxn-1313885264.cos.ap-beijing.myqcloud.com/images_typora/image-20221107141515838.png" alt="image-20221107141515838"></p>
-<p><img src="https://zxn-1313885264.cos.ap-beijing.myqcloud.com/images_typora/image-20221107141538026.png" alt="image-20221107141538026"></p>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="同步"><a href="#同步" class="headerlink" title="同步"></a>同步</h3><ul>
-<li><p>例子 估算pai</p>
-<ul>
-<li><p><img src="https://zxn-1313885264.cos.ap-beijing.myqcloud.com/images_typora/image-20221107142015679.png" alt="image-20221107142015679"></p>
-</li>
-<li><p>多线程版本</p>
-<p><img src="https://zxn-1313885264.cos.ap-beijing.myqcloud.com/images_typora/image-20221107142246876.png" alt="image-20221107142246876"></p>
-<p>问题：每个线程都要把数加到<strong>sum</strong>上面，会存在竞争，结果是错误的</p>
-</li>
-</ul>
-</li>
-</ul>
-<h4 id="概念回顾"><a href="#概念回顾" class="headerlink" title="概念回顾"></a>概念回顾</h4><ul>
-<li><p>原子性</p>
-<ul>
-<li>一组操作要么全部执行要么全不执行，则称其是原子性的</li>
-</ul>
-</li>
-<li><p>临界区</p>
-<ul>
-<li>共享资源的代码段，一次只能允许一个线程执行该代码</li>
-</ul>
-</li>
-<li><p>竞争条件</p>
-<ul>
-<li>多个线程/进程尝试更新同一个共享资源时，结果可能是无法预测的，则存在竞争</li>
-<li>如果存在竞争则创建临界区</li>
-</ul>
-</li>
-<li><p>数据依赖</p>
-<ul>
-<li>两个<strong>内存</strong>的序。为了保证结果正确性，必须保持这个序</li>
-</ul>
-</li>
-<li><p>同步</p>
-<ul>
-<li>时间上强制使各执行进程/线程在某一点必须互相等待，确保各进程/线程的正常顺序和对共享可写数据的正确访问。</li>
-</ul>
-</li>
-</ul>
-<h4 id="忙等待"><a href="#忙等待" class="headerlink" title="忙等待"></a>忙等待</h4><p><img src="https://zxn-1313885264.cos.ap-beijing.myqcloud.com/images_typora/image-20221107143703393.png" alt="image-20221107143703393"></p>
-<ul>
-<li>临界区的这段代码保证了各个进程是按照序号进行相加</li>
-<li>这个等待消耗cpu资源</li>
-</ul>
-<h4 id="显式同步：互斥量（锁）"><a href="#显式同步：互斥量（锁）" class="headerlink" title="显式同步：互斥量（锁）"></a>显式同步：互斥量（锁）</h4><p><img src="https://zxn-1313885264.cos.ap-beijing.myqcloud.com/images_typora/image-20221107144116394.png" alt="image-20221107144116394"></p>
-<p><img src="https://zxn-1313885264.cos.ap-beijing.myqcloud.com/images_typora/image-20221107144218073.png" alt="image-20221107144218073"></p>
-<ul>
-<li>这个版本线程不一定按照从小到大的顺序来，使用互斥量的效率更高，先执行完的不需要等待<ul>
-<li>操作系统选择顺序，谁先执行完谁先来</li>
-<li>被锁上的处于阻塞态，不占用cpu资源</li>
-</ul>
-</li>
-<li>锁只能保证一段时间内只有线程运行</li>
-</ul>
-<h5 id="死锁"><a href="#死锁" class="headerlink" title="死锁"></a>死锁</h5><p><img src="https://zxn-1313885264.cos.ap-beijing.myqcloud.com/images_typora/image-20221107150037798.png" alt="image-20221107150037798"></p>
-<h4 id="使用信号量同步"><a href="#使用信号量同步" class="headerlink" title="使用信号量同步"></a>使用信号量同步</h4><h4 id="使用barrier同步"><a href="#使用barrier同步" class="headerlink" title="使用barrier同步"></a>使用barrier同步</h4><p><img src="https://zxn-1313885264.cos.ap-beijing.myqcloud.com/images_typora/image-20221107151930138.png" alt="image-20221107151930138"></p>
+<p>​	通过代码可以看出，此算法的设计中有3个for循环，一个for循环是O(n)，所以cache优化算法的复杂度为O(n *n *n)=O(n^3)</p>
+<h4 id="SSE版本"><a href="#SSE版本" class="headerlink" title="SSE版本"></a>SSE版本</h4><p>​	矩阵乘法向量化，在cache优化的基础上，利用intrisic 中的函数，以4为步长，每次处理四个对应数据，求和后存入sum，两次相邻求和，最终sum为4维向量，均为同一个数。</p>
+<p>​	具体代码如下：</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">void sse_mul(float a[maxN][maxN], float b[maxN][maxN]){
+    __m128 t1, t2, sum;
+    for (int i = 0; i &lt; n; ++i)
+        for (int j = 0; j &lt; i; ++j) {
+            swap(b[i][j], b[j][i]);
+        }
+
+    for (int i = 0; i &lt; n; ++i){
+        for (int j = 0; j &lt; n; ++j){
+            c[i][j] = 0.0;
+            sum = _mm_setzero_ps();
+            for (int k = n - 4; k &gt;= 0; k -= 4){
+                t1 = _mm_loadu_ps(a[i] + k);
+                t2 = _mm_loadu_ps(b[j] + k);
+                t1 = _mm_mul_ps(t1, t2);
+                sum = _mm_add_ps(sum, t1);
+            }
+            sum = _mm_hadd_ps(sum, sum);
+            sum = _mm_hadd_ps(sum, sum);
+            _mm_store_ss(c[i] + j, sum);
+            //不能被4整除部分的处理
+            for (int k = (n % 4) - 1; k &gt;= 0; --k){
+                c[i][j] += a[i][k] * b[j][k];
+            }
+        }
+    }
+
+    for (int i = 0; i &lt; n; ++i)
+        for (int j = 0; j &lt; i; ++j) {
+            swap(b[i][j], b[j][i]);
+        }
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>​	此算法一次处理四个数据，算法时间复杂度为O((n^3)/4)</p>
+<h4 id="分片策略"><a href="#分片策略" class="headerlink" title="分片策略"></a>分片策略</h4><p>​	将矩阵a和b分割成子矩阵，子矩阵分别计算，合并后结果与原结果相同。根据这一原理，将矩阵划分为T个矩阵块，n维矩阵元素进入Cache中的次数为n/T，即在SSE版本未分片的基础上减少循环次数.</p>
+<p>​	具体代码如下：</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">void sse_tile(float a[maxN][maxN], float b[maxN][maxN]){
+    __m128 t1, t2, sum;
+    float t;
+    for (int i = 0; i &lt; n; ++i)
+        for (int j = 0; j &lt; i; ++j) {
+            swap(b[i][j], b[j][i]);
+        }
+
+    for (int r = 0; r &lt; n / T; ++r)
+        for (int q = 0; q &lt; n / T; ++q){
+            for (int i = 0; i &lt; T; ++i)
+                for (int j = 0; j &lt; T; ++j){
+                    c[r * T + i][q * T + j] = 0.0;
+                }
+            for (int p = 0; p &lt; n / T; ++p){
+                for (int i = 0; i &lt; T; ++i)
+                    for (int j = 0; j &lt; T; ++j){
+                        sum = _mm_setzero_ps();
+                        for (int k = 0; k &lt; T; k += 4){
+                            t1 = _mm_loadu_ps(a[r * T + i] + p * T + k);
+                            t2 = _mm_loadu_ps(b[q * T + j] + p * T + k);
+                            t1 = _mm_mul_ps(t1, t2);
+                            sum = _mm_add_ps(sum, t1);
+                        }
+                        sum = _mm_hadd_ps(sum, sum);
+                        sum = _mm_hadd_ps(sum, sum);
+                        _mm_store_ss(&amp;t, sum);
+                        c[r * T + i][q * T + j] += t;
+                    }
+            }
+        }
+
+    for (int i = 0; i &lt; n; ++i)
+        for (int j = 0; j &lt; i; ++j) {
+            swap(b[i][j], b[j][i]);
+        }
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>​	算法的时间复杂度仍然为O(n^3)，但因为充分利用了高速缓存，故计算性能也会有较显著的提升。</p>
+<h3 id="细节设计"><a href="#细节设计" class="headerlink" title="细节设计"></a>细节设计</h3><h4 id="计时方法"><a href="#计时方法" class="headerlink" title="计时方法"></a>计时方法</h4><p>​	计时方面，我使用了课件中给出的Windows下精准计时方法，即QueryPerformance系列API。</p>
+<p>​	以串行算法的计时为例，具体代码如下：</p>
+<p><img src="https://zxn-1313885264.cos.ap-beijing.myqcloud.com/images_typora/img_v2_2dc2a1b8-4191-4cbe-8c15-681dc3bea3ag.jpg" alt="img_v2_2dc2a1b8-4191-4cbe-8c15-681dc3bea3ag"></p>
+<h4 id="计时精度"><a href="#计时精度" class="headerlink" title="计时精度"></a>计时精度</h4><p>​	本实验随机生成了30个矩阵，将计算过程重复了30次，足以匹配计算计时精度，再计算平均时间。</p>
+<p>​	以串行算法为例，具体代码如下：</p>
+<p><img src="https://zxn-1313885264.cos.ap-beijing.myqcloud.com/images_typora/img_v2_2dc2a1b8-4191-4cbe-8c15-681dc3bea3ag.jpg" alt="img_v2_2dc2a1b8-4191-4cbe-8c15-681dc3bea3ag"></p>
+<h4 id="实验数据设计"><a href="#实验数据设计" class="headerlink" title="实验数据设计"></a>实验数据设计</h4><p>​	本实验测试了不同规模的矩阵，由小至大，分别测试了规模为0、10、20、30……100的矩阵，随机生成矩阵元素值。</p>
+<p>​	随机生成矩阵的过程为：</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">// 随机生成矩阵
+void init(Matrix* dataset) {
+    srand(static_cast &lt;unsigned&gt; (time(0)));
+    for (int i = 0; i &lt; 30; i++) {
+        for (int j = 0; j &lt; n; j++) {
+            for (int k = 0; k &lt; n; k++) {
+                dataset[i].a[j][k] = static_cast &lt;float&gt; (rand()) / (static_cast &lt;float&gt;(RAND_MAX / 1000));
+                dataset[i].b[j][k] = static_cast &lt;float&gt; (rand()) / (static_cast &lt;float&gt;(RAND_MAX / 1000));
+            }
+        }
+    }
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="实验方法"><a href="#实验方法" class="headerlink" title="实验方法"></a>实验方法</h4><p>​	为了降低误差，本实验重复了两次取平均值。</p>
+<p><img src="https://zxn-1313885264.cos.ap-beijing.myqcloud.com/images_typora/img_v2_83868f60-ccae-47cf-9adb-b636e66fbdeg.jpg" alt="img_v2_83868f60-ccae-47cf-9adb-b636e66fbdeg"></p>
+<h3 id="实验及结果分析"><a href="#实验及结果分析" class="headerlink" title="实验及结果分析"></a>实验及结果分析</h3><p><img src="https://zxn-1313885264.cos.ap-beijing.myqcloud.com/images_typora/img_v2_b199d9e4-5be3-4569-86ac-7940008ed5bg.jpg" alt="img_v2_b199d9e4-5be3-4569-86ac-7940008ed5bg"></p>
+<p>​	从图中可以看出，算法运行所需要的时间：串行算法&gt;cache优化算法&gt;sse优化&gt;分片策略。</p>
+<p>​	当矩阵规模较小时串行算法和cache优化算法的性能相差不大，但随着规模的增大，cache优化算法要优于串行算法。</p>
+<p>​	可见，与串行算法相比，cache优化算法、sse版本以及分片策略提升了算法的效率，缩短了运行时间。</p>
+<h2 id="高斯消元法SSE并行化"><a href="#高斯消元法SSE并行化" class="headerlink" title="高斯消元法SSE并行化"></a>高斯消元法SSE并行化</h2><h3 id="问题描述-1"><a href="#问题描述-1" class="headerlink" title="问题描述"></a>问题描述</h3><p>​	高斯消元法，是线性代数中的一个算法，可用来求解线性方程组。 高斯消元法的原理是：若用初等行变换将增广矩阵化为行阶梯矩阵 ，则AX = B与CX = D是同解方程组。所以我们可以用初等行变换把增广矩阵转换为行阶梯阵，然后回代求出方程的解。</p>
+<p>​	本实验分别使用了串行算法、SSE 编程分别实现了高斯消元法和回代求解的过程，并就各算法的执行性能进行比较与分析。</p>
+<h3 id="算法设计实现与复杂性分析-1"><a href="#算法设计实现与复杂性分析-1" class="headerlink" title="算法设计实现与复杂性分析"></a>算法设计实现与复杂性分析</h3><h4 id="串行算法消元"><a href="#串行算法消元" class="headerlink" title="串行算法消元"></a>串行算法消元</h4><p>​	按行处理，以主对角线元素为标准，主对角线右侧的值除以该行主对角线上的值，最后将对角线赋值为1。每一行处理完毕，下一行依次减去上行的值，此时值需要通过当前行的第一个不为0的元素进行还原。将对角线左侧的值均赋值为0。</p>
+<p>​	具体代码如下：</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">void serialGauss(Matrix* dataset) {
+    for (int count = 0; count &lt; 50; count++) {
+        for (int i = 0; i &lt; n; i++) {
+            for (int j = i + 1; j &lt; n; j++) {
+                float temp = dataset[count].a[j][i] / dataset[count].a[i][i];
+                for (int k = i; k &lt; n; k++) {
+                    dataset[count].a[j][k] = dataset[count].a[j][k] - temp * dataset[count].a[i][k];
+                }
+            }
+        }
+    }
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>​	通过代码可以看出，此算法的设计中有3个for循环，一个for循环是O(n)，所以串行算法消元的复杂度为O(n *n *n)=O(n^3)</p>
+<h4 id="sse消元"><a href="#sse消元" class="headerlink" title="sse消元"></a>sse消元</h4><p>​	以4为处理单位，仍旧按行处理，每一行的数据可一次处理4个。</p>
+<p>​	具体代码如下：</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">void sseGauss(Matrix* dataset) {
+    for (int count = 0; count &lt; 50; count++) {
+        __m128 t1, t2, t3, t4;
+        for (int k = 0; k &lt; n; k++) {
+            float tmp[4] = { dataset[count].a[k][k], dataset[count].a[k][k], dataset[count].a[k][k], dataset[count].a[k][k] };
+            t1 = _mm_loadu_ps(tmp);
+            for (int j = n - 4; j &gt;= k; j -= 4) {
+                t2 = _mm_loadu_ps(dataset[count].a[k] + j);
+                t3 = _mm_div_ps(t2, t1);
+                _mm_storeu_ps(dataset[count].atemp[k] + j, t3);
+            }
+            if (k % 4 != (n % 4)) {
+                for (int j = k; j % 4 != (n % 4); j++) {
+                    dataset[count].atemp[k][j] = dataset[count].a[k][j] / tmp[0];
+                }
+            }
+            for (int j = (n % 4) - 1; j &gt;= 0; j--) {
+                dataset[count].atemp[k][j] = dataset[count].a[k][j] / tmp[0];
+            }
+            for (int i = k + 1; i &lt; n; i++) {
+                float tmp[4] = { dataset[count].a[i][k], dataset[count].a[i][k], dataset[count].a[i][k], dataset[count].a[i][k] };
+                t1 = _mm_loadu_ps(tmp);
+                for (int j = n - 4; j &gt; k; j -= 4) {
+                    t2 = _mm_loadu_ps(dataset[count].a[i] + j);
+                    t3 = _mm_loadu_ps(dataset[count].atemp[k] + j);
+                    t4 = _mm_sub_ps(t2, _mm_mul_ps(t1, t3));
+                    _mm_storeu_ps(dataset[count].a[i] + j, t4);
+                }
+                for (int j = k + 1; j % 4 != (n % 4); j++) {
+                    dataset[count].a[i][j] = dataset[count].a[i][j] - dataset[count].a[i][k] * dataset[count].atemp[k][j];
+                }
+                dataset[count].a[i][k] = 0;
+            }
+        }
+    }
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>​	循环每次跳跃4个元素，算法时间复杂度为O((n^3)/4)</p>
+<h4 id="串行实现回代"><a href="#串行实现回代" class="headerlink" title="串行实现回代"></a>串行实现回代</h4><p>​	将得到的上三角矩阵，从第 n 行开始，倒序回代到前面的每一行，即可求解 Xn 到 X1 的值。	</p>
+<p>​	具体代码如下：</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">    for (int count = 0; count &lt; 50; count++) {
+        for (int i = n - 1; i &gt;= 0; i--) {
+            float sum = 0;
+            for (int j = n - 1; j &gt; i; j--) {
+                sum += dataset[count].a[i][j] * dataset[count].x[j];
+            }
+            dataset[count].x[i] = (dataset[count].b[i] - sum) / dataset[count].a[i][i];
+        }
+    }
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>​	算法的时间复杂度为 O(n) = n^2 </p>
+<h4 id="sse实现回代"><a href="#sse实现回代" class="headerlink" title="sse实现回代"></a>sse实现回代</h4><p>​	和串行实现回代相比，向量化计算可以同时处理四个元素。</p>
+<p>​	具体代码为：</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">void sseBack(Matrix* dataset) {
+    __m128 t1, t2, sumSSE;
+    float sum;
+    for (int count = 0; count &lt; 50; count++) {
+        for (int i = n - 1; i &gt;= 0; i--) {
+            if ((n - 1 - i) == 4)break;
+            float sum = 0;
+            for (int j = n - 1; j &gt; i; j--) {
+                sum += dataset[count].a[i][j] * dataset[count].x[j];
+            }
+            dataset[count].x[i] = (dataset[count].b[i] - sum) / dataset[count].a[i][i];
+        }
+        for (int i = n - 5; i &gt;= 0; i--) {
+            sumSSE = _mm_setzero_ps();
+            sum = 0;
+            int forSerial = (n - i - 1) % 4;
+            for (int j = i + forSerial + 1; j &lt;= n - 4; j += 4) {
+                t1 = _mm_loadu_ps(dataset[count].a[i] + j);
+                t2 = _mm_loadu_ps(dataset[count].x + j);
+                t1 = _mm_mul_ps(t1, t2);
+                sumSSE = _mm_add_ps(sumSSE, t1);
+            }
+            sumSSE = _mm_hadd_ps(sumSSE, sumSSE);
+            sumSSE = _mm_hadd_ps(sumSSE, sumSSE);
+            _mm_store_ss(&amp;sum, sumSSE);
+
+            for (int j = i + 1; j &lt;= i + forSerial; j++) {
+                sum += dataset[count].a[i][j] * dataset[count].x[j];
+            }
+
+            dataset[count].x[i] = (dataset[count].b[i] - sum) / dataset[count].a[i][i];
+        }
+    }
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>​	算法时间复杂度 O(n) = ((n^2) / 4)</p>
+<h3 id="细节设计-1"><a href="#细节设计-1" class="headerlink" title="细节设计"></a>细节设计</h3><h4 id="计时方法-1"><a href="#计时方法-1" class="headerlink" title="计时方法"></a>计时方法</h4><p>​	计时方面，我使用了课件中给出的Windows下精准计时方法，即QueryPerformance系列API。</p>
+<p>​	以串行消元算法的计时为例，具体代码如下：</p>
+<p><img src="https://zxn-1313885264.cos.ap-beijing.myqcloud.com/images_typora/img_v2_bfdf75f4-6f26-4787-b294-c4a1cda649ag.jpg" alt="img_v2_bfdf75f4-6f26-4787-b294-c4a1cda649ag"></p>
+<h4 id="计时精度-1"><a href="#计时精度-1" class="headerlink" title="计时精度"></a>计时精度</h4><p>​	本实验随机生成了50个矩阵，将计算过程重复了50次，足以匹配计算计时精度，再计算平均时间。</p>
+<p>​	以串行算法为例，具体代码如下：</p>
+<p><img src="https://zxn-1313885264.cos.ap-beijing.myqcloud.com/images_typora/img_v2_bfdf75f4-6f26-4787-b294-c4a1cda649ag.jpg" alt="img_v2_bfdf75f4-6f26-4787-b294-c4a1cda649ag"></p>
+<h4 id="实验数据设计-1"><a href="#实验数据设计-1" class="headerlink" title="实验数据设计"></a>实验数据设计</h4><p>​	本实验测试了不同规模的矩阵，由小至大，分别测试了规模为0、50、100、150……400的矩阵，随机生成矩阵元素值。</p>
+<p>​	随机生成矩阵的过程为：</p>
+<p><img src="https://zxn-1313885264.cos.ap-beijing.myqcloud.com/images_typora/img_v2_e3f8c442-f0a3-4071-904d-21613cffdb8g.jpg" alt="img_v2_e3f8c442-f0a3-4071-904d-21613cffdb8g"></p>
+<h4 id="实验方法-1"><a href="#实验方法-1" class="headerlink" title="实验方法"></a>实验方法</h4><p>为了降低误差，本实验重复了两次取平均值。</p>
+<p><img src="https://zxn-1313885264.cos.ap-beijing.myqcloud.com/images_typora/img_v2_79adafc4-a4a9-4e25-aaec-9dcb5816256g.jpg" alt="img_v2_79adafc4-a4a9-4e25-aaec-9dcb5816256g"></p>
+<h3 id="实验及结果分析-1"><a href="#实验及结果分析-1" class="headerlink" title="实验及结果分析"></a>实验及结果分析</h3><p><img src="https://zxn-1313885264.cos.ap-beijing.myqcloud.com/images_typora/img_v2_081775d8-9d8d-4f52-a840-6b6f7b18085g.jpg" alt="img_v2_081775d8-9d8d-4f52-a840-6b6f7b18085g"></p>
+<p><img src="https://zxn-1313885264.cos.ap-beijing.myqcloud.com/images_typora/img_v2_4559f7ab-1b62-4521-b9a7-a7a77f98123g.jpg" alt="img_v2_4559f7ab-1b62-4521-b9a7-a7a77f98123g"></p>
+<p>​	由图可知，SSE 算法的消元总体来说是运行效率是高于串行算法消元的;串行回代的效率也高于sse回代。</p>
+<p>​	同时，通过 Excel 中趋势线的计算，可以得出消元算法的时间复杂度符合O(n^3)，验证了前面对时间复杂度的分析。同时也可以得出回代过程的时间复杂度为 O(n^2)</p>
+<h3 id="不同算法策略对性能的影响"><a href="#不同算法策略对性能的影响" class="headerlink" title="不同算法策略对性能的影响"></a>不同算法策略对性能的影响</h3><h4 id="相同算法对于不同问题规模的性能提升是否有影响，影响情况如何"><a href="#相同算法对于不同问题规模的性能提升是否有影响，影响情况如何" class="headerlink" title="相同算法对于不同问题规模的性能提升是否有影响，影响情况如何"></a>相同算法对于不同问题规模的性能提升是否有影响，影响情况如何</h4><p>​	从2.4实验结果的图表中可以看出，在问题规模较小时，串行消元和sse消元运行时间相差不大，sse消元法对于性能的提升不明显；但是当问题的规模逐渐变大sse算法明显要优于串行算法，对性能的提升更大。</p>
+<h4 id="回代过程可否向量化，有的话性能提升情况如何"><a href="#回代过程可否向量化，有的话性能提升情况如何" class="headerlink" title="回代过程可否向量化，有的话性能提升情况如何"></a>回代过程可否向量化，有的话性能提升情况如何</h4><p>​	回代过程可以向量化，根据下图可以看出回代过程采用向量化明显提升了运行效率，和串行回代相比缩短了运行时间。随着规模的增大，性能提升更显著。</p>
+<p><img src="https://zxn-1313885264.cos.ap-beijing.myqcloud.com/images_typora/img_v2_4559f7ab-1b62-4521-b9a7-a7a77f98123g.jpg" alt="img_v2_4559f7ab-1b62-4521-b9a7-a7a77f98123g"></p>
 
                 
             </div>
@@ -610,7 +711,7 @@ int main(int argc,char* argv[]){
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://zxnstc.github.io/2022/10/03/di-si-jiang-duo-xian-cheng-pthread-bian-cheng/">http://zxnstc.github.io/2022/10/03/di-si-jiang-duo-xian-cheng-pthread-bian-cheng/</a>
+                    <a href="http://zxnstc.github.io/2022/09/13/sse-bian-cheng-lian-xi/">http://zxnstc.github.io/2022/09/13/sse-bian-cheng-lian-xi/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -656,8 +757,8 @@ int main(int argc,char* argv[]){
                                     <span class="chip bg-color">S5课上</span>
                                 </a>
                             
-                                <a href="/tags/%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/">
-                                    <span class="chip bg-color">知识总结</span>
+                                <a href="/tags/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/">
+                                    <span class="chip bg-color">实验报告</span>
                                 </a>
                             
                         </div>
@@ -831,24 +932,24 @@ int main(int argc,char* argv[]){
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2022/10/18/di-wu-jiang-openmp/">
+                <a href="/2022/09/13/di-er-jiang-bing-xing-ying-jian-he-bing-xing-ruan-jian/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/%206.png" class="responsive-img" alt="并行程序设计-第五讲.openmp编程">
+                        <img src="/medias/featureimages/%2011.png" class="responsive-img" alt="并行程序设计-第二讲.并行硬件与并行软件">
                         
-                        <span class="card-title">并行程序设计-第五讲.openmp编程</span>
+                        <span class="card-title">并行程序设计-第二讲.并行硬件与并行软件</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            并行 第五讲 笔记
+                            并行 第二讲 笔记
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-10-18
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-09-13
                         </span>
                         <span class="publish-author">
                             
@@ -888,31 +989,31 @@ int main(int argc,char* argv[]){
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/09/25/di-san-jiang.simd-bian-cheng/">
+                <a href="/2021/09/07/hello-world/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/%204.png" class="responsive-img" alt="并行程序设计-第三讲.SIMD编程">
+                        <img src="/medias/featureimages/%205.png" class="responsive-img" alt="blog 说明">
                         
-                        <span class="card-title">并行程序设计-第三讲.SIMD编程</span>
+                        <span class="card-title">blog 说明</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            并行 第三讲 笔记
+                            💡这是我的博客的使用说明
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-09-25
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-09-07
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E5%B9%B6%E8%A1%8C%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/" class="post-category">
-                                    并行程序设计
+                            <a href="/categories/blog%E8%AF%B4%E6%98%8E/" class="post-category">
+                                    blog说明
                                 </a>
                             
                             
@@ -922,16 +1023,16 @@ int main(int argc,char* argv[]){
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E5%B9%B6%E8%A1%8C%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/">
-                        <span class="chip bg-color">并行程序设计</span>
+                    <a href="/tags/blog-%E8%AF%B4%E6%98%8E/">
+                        <span class="chip bg-color">blog 说明</span>
                     </a>
                     
-                    <a href="/tags/S5%E8%AF%BE%E4%B8%8A/">
-                        <span class="chip bg-color">S5课上</span>
+                    <a href="/tags/S6%E8%AF%BE%E4%B8%8A/">
+                        <span class="chip bg-color">S6课上</span>
                     </a>
                     
-                    <a href="/tags/%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/">
-                        <span class="chip bg-color">知识总结</span>
+                    <a href="/tags/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/">
+                        <span class="chip bg-color">工具使用</span>
                     </a>
                     
                 </div>
