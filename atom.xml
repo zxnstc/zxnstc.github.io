@@ -6,7 +6,7 @@
   <link href="http://zxnstc.github.io/atom.xml" rel="self"/>
   
   <link href="http://zxnstc.github.io/"/>
-  <updated>2023-03-18T13:40:49.399Z</updated>
+  <updated>2023-03-18T13:54:45.783Z</updated>
   <id>http://zxnstc.github.io/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>test again</title>
+    <link href="http://zxnstc.github.io/2023/03/18/test-again/"/>
+    <id>http://zxnstc.github.io/2023/03/18/test-again/</id>
+    <published>2023-03-18T13:54:09.000Z</published>
+    <updated>2023-03-18T13:54:45.783Z</updated>
+    
+    <content type="html"><![CDATA[<p>继续测试图片</p><p><img src="https://zxn-1313885264.cos.ap-beijing.myqcloud.com/images_typora//20230318215431_uXq0kP_image-20230318215431316.png" alt="image-20230318215431316"></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;继续测试图片&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://zxn-1313885264.cos.ap-beijing.myqcloud.com/images_typora//20230318215431_uXq0kP_image-20230318215431316.p</summary>
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>test</title>
