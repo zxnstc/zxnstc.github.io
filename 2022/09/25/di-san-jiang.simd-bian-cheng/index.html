@@ -1,0 +1,1554 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="并行程序设计-第三讲.SIMD编程, ZXN">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>并行程序设计-第三讲.SIMD编程 | ZXN</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 6.3.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="ZXN" type="application/atom+xml">
+</head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">ZXN</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">ZXN</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/%204.png')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">并行程序设计-第三讲.SIMD编程</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E5%B9%B6%E8%A1%8C%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/">
+                                <span class="chip bg-color">并行程序设计</span>
+                            </a>
+                        
+                            <a href="/tags/S5%E8%AF%BE%E4%B8%8A/">
+                                <span class="chip bg-color">S5课上</span>
+                            </a>
+                        
+                            <a href="/tags/%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/">
+                                <span class="chip bg-color">知识总结</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E5%B9%B6%E8%A1%8C%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/" class="post-category">
+                                并行程序设计
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2022-09-25
+                </div>
+                
+
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    1.9k
+                </div>
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="SIMD编程"><a href="#SIMD编程" class="headerlink" title="SIMD编程"></a>SIMD编程</h1><h2 id="SIMD概念"><a href="#SIMD概念" class="headerlink" title="SIMD概念"></a>SIMD概念</h2><img src="https://zxn-1313885264.cos.ap-beijing.myqcloud.com/images_typora/202210241415541.png" alt="image-20221024141506247" style="zoom:33%;">
+
+<p>SPMD单个程序在不同数据流上执行</p>
+<p>本讲主要介绍单核向量编程</p>
+<h3 id="SIMD编程概述"><a href="#SIMD编程概述" class="headerlink" title="SIMD编程概述"></a>SIMD编程概述</h3><ul>
+<li><p>向量计算机</p>
+</li>
+<li><p>早期的SIMD超级计算机：银河</p>
+</li>
+<li><p>当前的SIMD架构</p>
+<ul>
+<li>多媒体扩展：SSE、AVX</li>
+<li>图形和游戏处理器：CUDA</li>
+<li>协处理器：Xeon Phi</li>
+</ul>
+</li>
+<li><p>没有占压倒优势的SIMD编程模型</p>
+<ul>
+<li>向量计算机都是科学家用来编程 </li>
+<li>多媒体扩展指令集多是系统程序员在用</li>
+<li>GPU多是游戏开发者、大数据分析人员使用</li>
+</ul>
+</li>
+<li><p>标量和SIMD（多媒体扩展架构）差别</p>
+<ul>
+<li><img src="https://zxn-1313885264.cos.ap-beijing.myqcloud.com/images_typora/202210241428129.png" alt="image-20221024142859008" style="zoom:25%;"></li>
+</ul>
+</li>
+<li><p>多媒体扩展架构的核心</p>
+<ul>
+<li><p>SIMD并行</p>
+</li>
+<li><p>可变大小的数据域</p>
+</li>
+<li><p>向量长度=寄存器宽度➗类型大小</p>
+</li>
+<li><p><img src="https://zxn-1313885264.cos.ap-beijing.myqcloud.com/images_typora/202210241436940.png" alt="image-20221024143637806"></p>
+<p>这里有128位寄存器，存储数据的大小由数据类型决定，比如如果存储长整型（32字节）的话，只能支持4个数同时计算</p>
+</li>
+</ul>
+</li>
+<li><p>适合应用SIMD的特点</p>
+<ul>
+<li><strong>规律</strong>的数据访问模式<ul>
+<li>数据项在内存中<strong>连续存储</strong></li>
+</ul>
+</li>
+<li><strong>短数据</strong>类型：8、16、32位</li>
+<li><strong>流式</strong>数据处理，一系列处理阶段<ul>
+<li>时间局域性，<strong>数据流重用</strong></li>
+</ul>
+</li>
+<li>很多情况下可用来提升计算效率<ul>
+<li>很多常量</li>
+<li>循环迭代短</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>为什么采用SIMD</p>
+<ul>
+<li>更大的并发度</li>
+<li>设计简单、重复功能单元即可</li>
+<li>更小的芯片设计</li>
+<li>缺点：代码很底层繁琐</li>
+</ul>
+</li>
+<li><p>多媒体扩展编程</p>
+<ul>
+<li><p>语言/指令集扩展</p>
+<ul>
+<li><p>程序接口类似函数调用</p>
+</li>
+<li><p>C/C++：内置函数、 intrinsics</p>
+</li>
+<li><p>大多数编译器支持多媒体扩展</p>
+<p>➢gcc：-march=corei7, -faltivec </p>
+<p>SSE2: dst= _mm_add_ps(src1, src2); </p>
+<p>AltiVec: dst= vec_add(src1, src2); </p>
+<p>Neon： dst = vaddq_f32(src1, src2) </p>
+<p>➢无统一标准</p>
+</li>
+<li><p>很多编译器支持自动编译</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="SIMD并行（不是很重要，了解即可）"><a href="#SIMD并行（不是很重要，了解即可）" class="headerlink" title="SIMD并行（不是很重要，了解即可）"></a>SIMD并行（不是很重要，了解即可）</h2><h3 id="几个例子"><a href="#几个例子" class="headerlink" title="几个例子"></a>几个例子</h3><ul>
+<li><img src="https://zxn-1313885264.cos.ap-beijing.myqcloud.com/images_typora/202210241454764.png" alt="image-20221024145431584" style="zoom:25%;">
+
+<p>把重复的算术运算变成向量运算</p>
+</li>
+<li><img src="https://zxn-1313885264.cos.ap-beijing.myqcloud.com/images_typora/202210241502598.png" alt="image-20221024150231461" style="zoom:25%;">
+
+<p>存取数据的次数降低，效率提升</p>
+</li>
+<li><p>可向量化的循环</p>
+<img src="https://zxn-1313885264.cos.ap-beijing.myqcloud.com/images_typora/202210241503733.png" alt="image-20221024150338675" style="zoom:33%;">
+
+<img src="https://zxn-1313885264.cos.ap-beijing.myqcloud.com/images_typora/202210241504259.png" alt="image-20221024150422081" style="zoom:33%;">
+
+
+</li>
+<li><p>可部分向量化的循环（有数据依赖）</p>
+<img src="https://zxn-1313885264.cos.ap-beijing.myqcloud.com/images_typora/202210241506128.png" alt="image-20221024150628063" style="zoom:25%;">
+
+<img src="https://zxn-1313885264.cos.ap-beijing.myqcloud.com/images_typora/202210241506150.png" alt="image-20221024150649061" style="zoom:25%;"></li>
+</ul>
+<h3 id="SIMD编程的额外开销"><a href="#SIMD编程的额外开销" class="headerlink" title="SIMD编程的额外开销"></a>SIMD编程的额外开销</h3><h4 id="打包-x2F-解包数据的开销：重排数据使之连续"><a href="#打包-x2F-解包数据的开销：重排数据使之连续" class="headerlink" title="打包/解包数据的开销：重排数据使之连续"></a>打包/解包数据的开销：重排数据使之连续</h4><ul>
+<li><img src="https://zxn-1313885264.cos.ap-beijing.myqcloud.com/images_typora/202210241514360.png" alt="image-20221024151459299" style="zoom:33%;"></li>
+<li>打包源运算对象——拷贝到连续内存区域<ul>
+<li><img src="https://zxn-1313885264.cos.ap-beijing.myqcloud.com/images_typora/202210241515632.png" alt="image-20221024151536575" style="zoom:33%;"></li>
+</ul>
+</li>
+<li>解包目的运算对象——拷贝回内存<ul>
+<li><img src="https://zxn-1313885264.cos.ap-beijing.myqcloud.com/images_typora/202210241516236.png" alt="image-20221024151628154"></li>
+</ul>
+</li>
+</ul>
+<h4 id="对齐：调整数据访问，使之对齐"><a href="#对齐：调整数据访问，使之对齐" class="headerlink" title="对齐：调整数据访问，使之对齐"></a>对齐：调整数据访问，使之对齐</h4><ul>
+<li><p>对齐的内存访问 </p>
+<ul>
+<li>地址总是向量长度的倍数（例如16字节）</li>
+<li><img src="https://zxn-1313885264.cos.ap-beijing.myqcloud.com/images_typora/202210241523674.png" alt="image-20221024152331590" style="zoom: 33%;"></li>
+</ul>
+</li>
+<li><p>未对齐的内存访问</p>
+<ul>
+<li><p>地址不是16字节的整数倍</p>
+</li>
+<li><p>静态对齐：对未对齐的读操作，做两次相邻的对齐读操作，然后进行合并</p>
+</li>
+<li><p>有未对齐相应操作函数，仍会产生<strong>多次内存操作</strong></p>
+</li>
+<li><p>底层硬件的操作：<img src="https://zxn-1313885264.cos.ap-beijing.myqcloud.com/images_typora/202210241525183.png" alt="image-20221024152556088"></p>
+</li>
+<li><p><strong>静态</strong>调整循环</p>
+<img src="https://zxn-1313885264.cos.ap-beijing.myqcloud.com/images_typora/202210241532617.png" alt="image-20221024153232518" style="zoom:25%;">
+</li>
+<li><p>动态对齐：</p>
+<p>不知道从几开始，虽然有额外的对齐开销，但是结果一定是正确的</p>
+<p><img src="https://zxn-1313885264.cos.ap-beijing.myqcloud.com/images_typora/202210241533834.png" alt="image-20221024153357734"></p>
+</li>
+</ul>
+</li>
+<li><p>小结</p>
+<ul>
+<li><p>最坏情况需要计算地址，动态对齐</p>
+</li>
+<li><p>编译器/程序员可分析确认对齐</p>
+<ul>
+<li>一般而言数据是从<strong>起始地址处对齐</strong>的</li>
+<li>如果在一个循环中顺序访问数据，<strong>起始位置固定</strong>，则对齐特性是不变的</li>
+</ul>
+</li>
+<li><p>可调整算法，先串行处理到对齐边界， 然后进行SIMD计算 </p>
+</li>
+<li><p>有时对齐开销会完全抵消SIMD的并行收 益</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="控制流可能要求执行所有路径"><a href="#控制流可能要求执行所有路径" class="headerlink" title="控制流可能要求执行所有路径"></a>控制流可能要求执行所有路径</h4><ul>
+<li><p><img src="https://zxn-1313885264.cos.ap-beijing.myqcloud.com/images_typora/202210251621039.png" alt="image-20221025162120878"></p>
+</li>
+<li><p>底层实现</p>
+<img src="https://zxn-1313885264.cos.ap-beijing.myqcloud.com/images_typora/202210251622289.png" alt="image-20221025162249109" style="zoom:33%;">
+</li>
+<li><p>能否改进</p>
+<ul>
+<li>假定所有控制流路径执行频率都不同</li>
+<li>应该针对频率最高的路径优化代码</li>
+<li>其他路经按默认方式执行</li>
+<li><img src="https://zxn-1313885264.cos.ap-beijing.myqcloud.com/images_typora/202210251624368.png" alt="image-20221025162455276" style="zoom:33%;"></li>
+</ul>
+</li>
+<li><p>控制流开销小结</p>
+<img src="https://zxn-1313885264.cos.ap-beijing.myqcloud.com/images_typora/202210251626006.png" alt="image-20221025162609859" style="zoom: 25%;"></li>
+</ul>
+<h3 id="SIMD编程复杂性"><a href="#SIMD编程复杂性" class="headerlink" title="SIMD编程复杂性"></a>SIMD编程复杂性</h3><img src="https://zxn-1313885264.cos.ap-beijing.myqcloud.com/images_typora/202210251627096.png" alt="image-20221025162755998" style="zoom:25%;">
+
+<h2 id="SSE-x2F-AVX编程"><a href="#SSE-x2F-AVX编程" class="headerlink" title="SSE/AVX编程"></a>SSE/AVX编程</h2><h3 id="X86架构"><a href="#X86架构" class="headerlink" title="X86架构"></a>X86架构</h3><h4 id="发展历史"><a href="#发展历史" class="headerlink" title="发展历史"></a>发展历史</h4><ul>
+<li><p>X86：Intel开发的一种微处理器体系结构 </p>
+</li>
+<li><p>出现：1978年Intel 8086 CPU中 </p>
+<ul>
+<li>但是一般来说<strong>X86指的是X86_32bit，32位系统</strong></li>
+<li>64位就是指X86_64bit。简写为X64</li>
+</ul>
+</li>
+<li><p>发展：</p>
+<ul>
+<li><p>❑ 1971-1992年数字编号：80X86系列</p>
+</li>
+<li><p>❑ 1993-2005年奔腾系列：Pentium</p>
+</li>
+<li><p>❑ 2005酷睿系列：Core</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="基本框架"><a href="#基本框架" class="headerlink" title="基本框架"></a>基本框架</h4><img src="https://zxn-1313885264.cos.ap-beijing.myqcloud.com/images_typora/202210251635439.png" alt="image-20221025163551311" style="zoom: 50%;">
+
+<ul>
+<li>基本的执行模式 </li>
+<li>数据类型 </li>
+<li>指令集合（只讲这个） <ul>
+<li>❑ 通用指令（传送，算术，逻辑，控制等） </li>
+<li>❑ X87 FPU指令（传送，算术，比较，控制等 ） </li>
+<li>❑ MMX指令（传送，转化，打包，比较等）</li>
+<li>❑ SSE指令（增加寄存器，SIMD浮点数运算）</li>
+<li>❑ SSE2指令（整数指令，64-bit SIMD浮点运 算）</li>
+</ul>
+</li>
+<li>寄存器</li>
+</ul>
+<h4 id="x86架构SIMD支持"><a href="#x86架构SIMD支持" class="headerlink" title="x86架构SIMD支持"></a>x86架构SIMD支持</h4><img src="https://zxn-1313885264.cos.ap-beijing.myqcloud.com/images_typora/202210251641729.png" alt="image-20221025164145509" style="zoom: 50%;">
+
+<h3 id="SSE指令集"><a href="#SSE指令集" class="headerlink" title="SSE指令集"></a>SSE指令集</h3><h4 id="是什么"><a href="#是什么" class="headerlink" title="是什么"></a>是什么</h4><img src="https://zxn-1313885264.cos.ap-beijing.myqcloud.com/images_typora/202210251645135.png" alt="image-20221025164554037" style="zoom: 25%;">
+
+<h4 id="发展历史-1"><a href="#发展历史-1" class="headerlink" title="发展历史"></a>发展历史</h4><ul>
+<li><p>SSE是MMX的超集</p>
+</li>
+<li><p>MMX</p>
+<ul>
+<li>❑ 1996年Intel在奔腾处理器集成MMX指令， 为应对音频、图片、视频等多媒体应用的密 集的计算需求 </li>
+<li>❑ <strong>64-bit</strong>的MMX寄存器（8个，复用了浮点寄存器的尾部，与x87<strong>共用</strong>寄存器，缺少浮点指令） </li>
+<li>❑ 支持在打包的字，字节，双字整数上的 SIMD操作</li>
+</ul>
+</li>
+<li><p>SSE128bit寄存器与MMX寄存器的区别</p>
+<ul>
+<li><img src="https://zxn-1313885264.cos.ap-beijing.myqcloud.com/images_typora/202210251650337.png" alt="image-20221025165011232"></li>
+<li><strong>AVX 256位</strong></li>
+</ul>
+</li>
+</ul>
+<h3 id="AVX指令集"><a href="#AVX指令集" class="headerlink" title="AVX指令集"></a>AVX指令集</h3><img src="https://zxn-1313885264.cos.ap-beijing.myqcloud.com/images_typora/202210251651766.png" alt="image-20221025165156622" style="zoom: 25%;">
+
+<h3 id="SSE编程"><a href="#SSE编程" class="headerlink" title="SSE编程"></a>SSE编程</h3><img src="https://zxn-1313885264.cos.ap-beijing.myqcloud.com/images_typora/202210251653652.png" alt="image-20221025165341462" style="zoom:33%;">
+
+<h4 id="SSE指令"><a href="#SSE指令" class="headerlink" title="SSE指令"></a>SSE指令</h4><h5 id="数据移动指令"><a href="#数据移动指令" class="headerlink" title="数据移动指令"></a>数据移动指令</h5><p>将数据移入/出向量寄存器</p>
+<img src="https://zxn-1313885264.cos.ap-beijing.myqcloud.com/images_typora/202210251658603.png" alt="image-20221025165835481" style="zoom:33%;">
+
+<h5 id="算术指令"><a href="#算术指令" class="headerlink" title="算术指令"></a>算术指令</h5><p>多个数据（2 doubles、4 floats等） 上的算术运算</p>
+<ul>
+<li>❑ PD：两个双精度，PS：四个单精度，SS：标量 </li>
+<li>❑ ADD、SUB、MUL、DIV、SQRT、MAX、MIN、RCP等 <ul>
+<li>➢ADDPS：四个单精度加法；ADDSS：标量加法</li>
+</ul>
+</li>
+</ul>
+<h5 id="逻辑指令"><a href="#逻辑指令" class="headerlink" title="逻辑指令"></a>逻辑指令</h5><p>多个数据上的逻辑运算</p>
+<ul>
+<li>❑ AND、OR、XOR、ANDN等 <ul>
+<li>➢ANDPS – 运算对象位与 </li>
+<li>➢ANDNPS – 运算对象位与非</li>
+</ul>
+</li>
+</ul>
+<h5 id="比较指令"><a href="#比较指令" class="headerlink" title="比较指令"></a>比较指令</h5><p>多个数据上的比较运算</p>
+<p>❑ CMPPS、CMPSS：比较运算对象，每个比较结果影 响SIMD寄存器中32位——全1或全0</p>
+<h5 id="洗牌指令"><a href="#洗牌指令" class="headerlink" title="洗牌指令"></a>洗牌指令</h5><p>在SIMD寄存器内移动数据</p>
+<ul>
+<li>❑ SHUFPS：从一个运算对象洗牌数据保存到另一个运 算对象 </li>
+<li>❑ UNPCKHPS：解包高位数据到一个SIMD寄存器 <ul>
+<li><img src="https://zxn-1313885264.cos.ap-beijing.myqcloud.com/images_typora/202210251701303.png" alt="image-20221025170117239" style="zoom:33%;"></li>
+</ul>
+</li>
+<li>❑ UNPCKLPS</li>
+</ul>
+<h5 id="其他指令"><a href="#其他指令" class="headerlink" title="其他指令"></a>其他指令</h5><ul>
+<li>❑ 类型转换：CVTPS2PI mm,xmm/mem64 </li>
+<li>❑ 缓存控制<ul>
+<li>➢MOVNTPS将浮点数据从一个SIMD寄存器保存到内存，绕 过缓存</li>
+</ul>
+</li>
+<li>❑ 状态管理：LDMXCSR读取MXCSR状态寄存器</li>
+</ul>
+<h4 id="SSE-C-x2F-C-编程"><a href="#SSE-C-x2F-C-编程" class="headerlink" title="SSE C/C++编程"></a>SSE C/C++编程</h4><ul>
+<li><p>SSE指令对应C/C++ intrinsic </p>
+<ul>
+<li>❑ intrinsic：编译器能识别的函数，直接映射 为一个或多个汇编语言指令。Intrinsic函数 本质上比调用函数更高效 </li>
+<li>❑ Intrinsics为处理器专有扩展特性提供了一个 C/C++编程接口 </li>
+<li>❑ 主流编译器都支持，如GCC</li>
+</ul>
+</li>
+<li><p>使用SSE intrinsics所需的头文件（<strong>向前兼容</strong>） </p>
+<ul>
+<li><img src="https://zxn-1313885264.cos.ap-beijing.myqcloud.com/images_typora/202210251706442.png" alt="image-20221025170622370" style="zoom: 50%;"></li>
+<li>向前兼容：比如我想要使用SSE3，其中就包含了SSE和SSE2</li>
+</ul>
+</li>
+<li><p>编译选项： -march=corei7</p>
+</li>
+<li><p>AMD CPU对MMX/SSE/SSE2支持较好，SSE4支持较差</p>
+</li>
+</ul>
+<h4 id="矩阵乘法"><a href="#矩阵乘法" class="headerlink" title="矩阵乘法"></a>矩阵乘法</h4><h5 id="串行版本"><a href="#串行版本" class="headerlink" title="串行版本"></a>串行版本</h5><pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">void</span> <span class="token function">mul</span><span class="token punctuation">(</span><span class="token keyword">int</span> n<span class="token punctuation">,</span><span class="token keyword">float</span> a<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">[</span>maxN<span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token keyword">float</span> b<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">[</span>maxN<span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token keyword">float</span> c<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">[</span>maxN<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span>n<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> j<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>j<span class="token operator">&lt;</span>n<span class="token punctuation">;</span>j<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+      c<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token operator">=</span><span class="token number">0.0</span><span class="token punctuation">;</span>
+      <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> k<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>k<span class="token operator">&lt;</span>n<span class="token punctuation">;</span>k<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        c<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token operator">=</span>a<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token operator">*</span>b<span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h5 id="cache优化"><a href="#cache优化" class="headerlink" title="cache优化"></a>cache优化</h5><p>把ab两个矩阵都变成行主序  </p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">void</span> <span class="token function">trans_mul</span><span class="token punctuation">(</span><span class="token keyword">int</span> n<span class="token punctuation">,</span><span class="token keyword">float</span> a<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">[</span>maxN<span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token keyword">float</span> b<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">[</span>maxN<span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token keyword">float</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">[</span>maxN<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+  <span class="token comment">//转置</span>
+  <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span>n<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> j<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>j<span class="token operator">&lt;</span>n<span class="token punctuation">;</span>j<span class="token operator">++</span><span class="token punctuation">)</span>
+      <span class="token function">swap</span><span class="token punctuation">(</span>b<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">,</span>b<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span>
+      
+	<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span>n<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> j<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>j<span class="token operator">&lt;</span>n<span class="token punctuation">;</span>j<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+      c<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token operator">=</span><span class="token number">0.0</span><span class="token punctuation">;</span>
+      <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> k<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>k<span class="token operator">&lt;</span>n<span class="token punctuation">;</span>k<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        c<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token operator">=</span>a<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token operator">*</span>b<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token comment">//⚠️是b[j][k],不是b[k][j]</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+  
+  <span class="token comment">//转置</span>
+  <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span>n<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> j<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>j<span class="token operator">&lt;</span>n<span class="token punctuation">;</span>j<span class="token operator">++</span><span class="token punctuation">)</span>
+      <span class="token function">swap</span><span class="token punctuation">(</span>b<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">,</span>b<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h5 id="SSE版本🌟"><a href="#SSE版本🌟" class="headerlink" title="SSE版本🌟"></a>SSE版本🌟</h5><p>不懂</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">void</span> <span class="token function">sse_mul</span><span class="token punctuation">(</span><span class="token keyword">int</span> n<span class="token punctuation">,</span><span class="token keyword">float</span> a<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">[</span>maxN<span class="token punctuation">]</span><span class="token punctuation">,</span>b<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">[</span>maxN<span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token keyword">float</span> c<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">[</span>maxN<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+  __m128t1<span class="token punctuation">,</span>t2<span class="token punctuation">,</span>sum<span class="token punctuation">;</span>
+  <span class="token comment">//转置</span>
+  <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span>n<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> j<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>j<span class="token operator">&lt;</span>n<span class="token punctuation">;</span>j<span class="token operator">++</span><span class="token punctuation">)</span>
+      <span class="token function">swap</span><span class="token punctuation">(</span>b<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">,</span>b<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      
+  <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span>n<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> j<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>j<span class="token operator">&lt;</span>n<span class="token punctuation">;</span>j<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+      c<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+      sum<span class="token operator">=</span><span class="token function">_mm_setzero_ps</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> k<span class="token operator">=</span>n<span class="token operator">-</span><span class="token number">4</span><span class="token punctuation">;</span>k<span class="token operator">&gt;=</span><span class="token number">0</span><span class="token punctuation">;</span>k<span class="token operator">-=</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        t1<span class="token operator">=</span><span class="token function">_mm_loadu_ps</span><span class="token punctuation">(</span>a<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">+</span>k<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        t2<span class="token operator">=</span><span class="token function">_mm_loadu_ps</span><span class="token punctuation">(</span>b<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token operator">+</span>k<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        t1<span class="token operator">=</span><span class="token function">_mm_mul_ps</span><span class="token punctuation">(</span>t1<span class="token punctuation">,</span>t2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        sum<span class="token operator">=</span><span class="token function">_mm_add_ps</span><span class="token punctuation">(</span>sum<span class="token punctuation">,</span>t1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+      sum<span class="token operator">=</span><span class="token function">_mm_hadd_ps</span><span class="token punctuation">(</span>sum<span class="token punctuation">,</span>sum<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      sum<span class="token operator">=</span><span class="token function">_mm_hadd_ps</span><span class="token punctuation">(</span>sum<span class="token punctuation">,</span>sum<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token function">_mm_store_ss</span><span class="token punctuation">(</span>c<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">+</span>j<span class="token punctuation">,</span>sum<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token comment">//如果还有不能被4整除的部分</span>
+      <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> k<span class="token operator">=</span><span class="token punctuation">(</span>n<span class="token operator">%</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>k<span class="token operator">&gt;=</span><span class="token number">0</span><span class="token punctuation">;</span>k<span class="token operator">--</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        c<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token operator">+=</span>a<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token operator">*</span>b<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>    
+    <span class="token comment">//转置</span>
+  <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span>n<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> j<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>j<span class="token operator">&lt;</span>n<span class="token punctuation">;</span>j<span class="token operator">++</span><span class="token punctuation">)</span>
+      <span class="token function">swap</span><span class="token punctuation">(</span>b<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">,</span>b<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h5 id="分片策略"><a href="#分片策略" class="headerlink" title="分片策略"></a>分片策略</h5><p>啥玩意啊</p>
+<p>看不懂</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p><img src="https://zxn-1313885264.cos.ap-beijing.myqcloud.com/images_typora/image-20221101214350768.png" alt="image-20221101214350768"></p>
+<p><img src="https://zxn-1313885264.cos.ap-beijing.myqcloud.com/images_typora/image-20221101214331724.png" alt="image-20221101214331724"></p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">zxn</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://zxnstc.github.io/2022/09/25/di-san-jiang.simd-bian-cheng/">http://zxnstc.github.io/2022/09/25/di-san-jiang.simd-bian-cheng/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">zxn</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/%E5%B9%B6%E8%A1%8C%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/">
+                                    <span class="chip bg-color">并行程序设计</span>
+                                </a>
+                            
+                                <a href="/tags/S5%E8%AF%BE%E4%B8%8A/">
+                                    <span class="chip bg-color">S5课上</span>
+                                </a>
+                            
+                                <a href="/tags/%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/">
+                                    <span class="chip bg-color">知识总结</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.png" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2022/10/03/di-si-jiang-duo-xian-cheng-pthread-bian-cheng/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/%208.png" class="responsive-img" alt="并行程序设计-第四讲.Pthread编程">
+                        
+                        <span class="card-title">并行程序设计-第四讲.Pthread编程</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            并行 第四讲 笔记
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-10-03
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%B9%B6%E8%A1%8C%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/" class="post-category">
+                                    并行程序设计
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E5%B9%B6%E8%A1%8C%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/">
+                        <span class="chip bg-color">并行程序设计</span>
+                    </a>
+                    
+                    <a href="/tags/S5%E8%AF%BE%E4%B8%8A/">
+                        <span class="chip bg-color">S5课上</span>
+                    </a>
+                    
+                    <a href="/tags/%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/">
+                        <span class="chip bg-color">知识总结</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2022/09/13/di-er-jiang-bing-xing-ying-jian-he-bing-xing-ruan-jian/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/%2011.png" class="responsive-img" alt="并行程序设计-第二讲.并行硬件与并行软件">
+                        
+                        <span class="card-title">并行程序设计-第二讲.并行硬件与并行软件</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            并行 第二讲 笔记
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-09-13
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%B9%B6%E8%A1%8C%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/" class="post-category">
+                                    并行程序设计
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E5%B9%B6%E8%A1%8C%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/">
+                        <span class="chip bg-color">并行程序设计</span>
+                    </a>
+                    
+                    <a href="/tags/S5%E8%AF%BE%E4%B8%8A/">
+                        <span class="chip bg-color">S5课上</span>
+                    </a>
+                    
+                    <a href="/tags/%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/">
+                        <span class="chip bg-color">知识总结</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2021-2023</span>
+            
+            <span id="year">2021</span>
+            <a href="/about" target="_blank">zxn</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">8.3k</span>&nbsp;字
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/zxnstc" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:xiaoni2001@163.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+	
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
