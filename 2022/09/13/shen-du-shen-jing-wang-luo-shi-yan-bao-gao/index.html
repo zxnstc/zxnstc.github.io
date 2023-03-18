@@ -1,0 +1,2070 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="人工智能导论-深度学习实验, ZXN">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>人工智能导论-深度学习实验 | ZXN</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="ZXN" type="application/atom+xml">
+
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">ZXN</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">ZXN</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/%208.png')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">人工智能导论-深度学习实验</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/S5%E8%AF%BE%E4%B8%8A/">
+                                <span class="chip bg-color">S5课上</span>
+                            </a>
+                        
+                            <a href="/tags/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/">
+                                <span class="chip bg-color">实验报告</span>
+                            </a>
+                        
+                            <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AF%BC%E8%AE%BA/">
+                                <span class="chip bg-color">人工智能导论</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AF%BC%E8%AE%BA/" class="post-category">
+                                人工智能导论
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2022-09-13
+                </div>
+                
+
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    5.2k
+                </div>
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <div class="cover" style="page-break-after:always;font-family:方正公文仿宋;width:100%;height:100%;border:none;margin: 0 auto;text-align:center;">
+    <div style="width:60%;margin: 0 auto;height:0;padding-bottom:20%;">
+        <br>
+        <img src="https://zyzstc-1303973796.cos.ap-beijing.myqcloud.com/uPic/%E5%8D%97%E5%BC%80%E5%A4%A7%E5%AD%A6logo.jpeg" alt="校名" style="width:80%;">
+    </div>
+    <br><br><br><br><br>
+    <div style="width:60%;margin: 0 auto;height:0;padding-bottom:30%;">
+        <img src="https://zyzstc-1303973796.cos.ap-beijing.myqcloud.com/uPic/%E5%8D%97%E5%BC%80%E5%A4%A7%E5%AD%A6%E6%A0%A1%E5%BE%BDlogo.jpg" alt="校徽" style="width:50%;">
+    </div>
+    <br><br><br><br><br><br><br><br>
+    <span style="font-family:华文黑体Bold;text-align:center;font-size:20pt;margin: 10pt auto;line-height:30pt;">《课程实验-深度学习》</span>
+    <p style="text-align:center;font-size:14pt;margin: 0 auto">人工智能导论第二次作业 </p>
+    <br>
+    <br>
+    <table style="border:none;text-align:center;width:72%;font-family:仿宋;font-size:14px; margin: 0 auto;">
+    <tbody style="font-family:方正公文仿宋;font-size:12pt;">
+        <tr style="font-weight:normal;"> 
+            <td style="width:20%;text-align:right;">题　　目</td>
+            <td style="width:2%">：</td> 
+            <td style="width:40%;font-weight:normal;border-bottom: 1px solid;text-align:center;font-family:华文仿宋"> 课程实验-深度学习</td>     </tr>
+        <tr style="font-weight:normal;"> 
+            <td style="width:20%;text-align:right;">上课时间</td>
+            <td style="width:2%">：</td> 
+            <td style="width:40%;font-weight:normal;border-bottom: 1px solid;text-align:center;font-family:华文仿宋"> 周三下午</td>     </tr>
+        <tr style="font-weight:normal;"> 
+            <td style="width:20%;text-align:right;">授课教师</td>
+            <td style="width:2%">：</td> 
+            <td style="width:40%;font-weight:normal;border-bottom: 1px solid;text-align:center;font-family:华文仿宋">张玉志 </td>     </tr>
+        <tr style="font-weight:normal;"> 
+            <td style="width:20%;text-align:right;">姓　　名</td>
+            <td style="width:2%">：</td> 
+            <td style="width:40%;font-weight:normal;border-bottom: 1px solid;text-align:center;font-family:华文仿宋"> 张家冉</td>     </tr>
+        <tr style="font-weight:normal;"> 
+            <td style="width:20%;text-align:right;">学　　号</td>
+            <td style="width:2%">：</td> 
+            <td style="width:40%;font-weight:normal;border-bottom: 1px solid;text-align:center;font-family:华文仿宋">2012685 </td>     </tr>
+        <tr style="font-weight:normal;"> 
+            <td style="width:20%;text-align:right;">年　　级</td>
+            <td style="width:%">：</td> 
+            <td style="width:40%;font-weight:normal;border-bottom: 1px solid;text-align:center;font-family:华文仿宋"> 2020级本科生</td>     </tr>
+        <tr style="font-weight:normal;"> 
+            <td style="width:20%;text-align:right;">日　　期</td>
+            <td style="width:2%">：</td> 
+            <td style="width:40%;font-weight:normal;border-bottom: 1px solid;text-align:center;font-family:华文仿宋">2023/1/14</td>     </tr>
+    </tbody>              
+    </table>
+</div>
+
+<p>[TOC]</p>
+<h1 id="深度神经网络实验报告"><a href="#深度神经网络实验报告" class="headerlink" title="深度神经网络实验报告"></a>深度神经网络实验报告</h1><h2 id="实验目的"><a href="#实验目的" class="headerlink" title="实验目的"></a>实验目的</h2><ul>
+<li>分别使用全连接网络，卷积神经网络，循环神经网络去预测数据（图像分类） CIFAR-10 数据集</li>
+<li>使用几个机器学习算法（自选）作为比较。 对预测结果进行分析。<ul>
+<li>SVM算法</li>
+<li>KNN算法</li>
+</ul>
+</li>
+</ul>
+<h2 id="CIFAR-10数据集介绍"><a href="#CIFAR-10数据集介绍" class="headerlink" title="CIFAR-10数据集介绍"></a>CIFAR-10数据集介绍</h2><h3 id="数据集内容"><a href="#数据集内容" class="headerlink" title="数据集内容"></a>数据集内容</h3><p>​	CIFAR10数据集共有60000个样本，每个样本都是一张32*32像素的RGB图像（彩色图像），每个RGB图像又必定分为3个通道（R通道、G通道、B通道）。这60000个样本被分成了50000个训练样本和10000个测试样本。<br>CIFAR10数据集是用来监督学习训练的，那么每个样本就一定都配备了一个标签值（用来区分这个样本是什么），不同类别的物体用不同的标签值，CIFAR10中有10类物体，标签值分别按照0~9来区分,他们分别是飞机（ airplane ）、汽车（ automobile ）、鸟（ bird ）、猫（ cat ）、鹿（ deer ）、狗（ dog ）、青蛙（ frog ）、马（ horse ）、船（ ship ）和卡车（ truck ）。</p>
+<p>​	CIFAR10数据集的内容，如下图所示：</p>
+<table>
+<thead>
+<tr>
+<th>物体种类</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th>图片</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>airplane</td>
+<td><img src="https://www.cs.toronto.edu/~kriz/cifar-10-sample/airplane1.png" alt="img"></td>
+<td><img src="https://www.cs.toronto.edu/~kriz/cifar-10-sample/airplane2.png" alt="img"></td>
+<td><img src="https://www.cs.toronto.edu/~kriz/cifar-10-sample/airplane3.png" alt="img"></td>
+<td><img src="https://www.cs.toronto.edu/~kriz/cifar-10-sample/airplane4.png" alt="img"></td>
+<td><img src="https://www.cs.toronto.edu/~kriz/cifar-10-sample/airplane5.png" alt="img"></td>
+<td><img src="https://www.cs.toronto.edu/~kriz/cifar-10-sample/airplane6.png" alt="img"></td>
+<td><img src="https://www.cs.toronto.edu/~kriz/cifar-10-sample/airplane7.png" alt="img"></td>
+<td><img src="https://www.cs.toronto.edu/~kriz/cifar-10-sample/airplane8.png" alt="img"></td>
+<td><img src="https://www.cs.toronto.edu/~kriz/cifar-10-sample/airplane9.png" alt="img"></td>
+<td><img src="https://www.cs.toronto.edu/~kriz/cifar-10-sample/airplane10.png" alt="img"></td>
+</tr>
+<tr>
+<td>automobile</td>
+<td><img src="https://www.cs.toronto.edu/~kriz/cifar-10-sample/automobile1.png" alt="img"></td>
+<td><img src="https://www.cs.toronto.edu/~kriz/cifar-10-sample/automobile2.png" alt="img"></td>
+<td><img src="https://www.cs.toronto.edu/~kriz/cifar-10-sample/automobile3.png" alt="img"></td>
+<td><img src="https://www.cs.toronto.edu/~kriz/cifar-10-sample/automobile4.png" alt="img"></td>
+<td><img src="https://www.cs.toronto.edu/~kriz/cifar-10-sample/automobile5.png" alt="img"></td>
+<td><img src="https://www.cs.toronto.edu/~kriz/cifar-10-sample/automobile6.png" alt="img"></td>
+<td><img src="https://www.cs.toronto.edu/~kriz/cifar-10-sample/automobile7.png" alt="img"></td>
+<td><img src="https://www.cs.toronto.edu/~kriz/cifar-10-sample/automobile8.png" alt="img"></td>
+<td><img src="https://www.cs.toronto.edu/~kriz/cifar-10-sample/automobile9.png" alt="img"></td>
+<td><img src="https://www.cs.toronto.edu/~kriz/cifar-10-sample/automobile10.png" alt="img"></td>
+</tr>
+<tr>
+<td>bird</td>
+<td><img src="https://www.cs.toronto.edu/~kriz/cifar-10-sample/bird1.png" alt="img"></td>
+<td><img src="https://www.cs.toronto.edu/~kriz/cifar-10-sample/bird2.png" alt="img"></td>
+<td><img src="https://www.cs.toronto.edu/~kriz/cifar-10-sample/bird3.png" alt="img"></td>
+<td><img src="https://www.cs.toronto.edu/~kriz/cifar-10-sample/bird4.png" alt="img"></td>
+<td><img src="https://www.cs.toronto.edu/~kriz/cifar-10-sample/bird5.png" alt="img"></td>
+<td><img src="https://www.cs.toronto.edu/~kriz/cifar-10-sample/bird6.png" alt="img"></td>
+<td><img src="https://www.cs.toronto.edu/~kriz/cifar-10-sample/bird7.png" alt="img"></td>
+<td><img src="https://www.cs.toronto.edu/~kriz/cifar-10-sample/bird8.png" alt="img"></td>
+<td><img src="https://www.cs.toronto.edu/~kriz/cifar-10-sample/bird9.png" alt="img"></td>
+<td><img src="https://www.cs.toronto.edu/~kriz/cifar-10-sample/bird10.png" alt="img"></td>
+</tr>
+<tr>
+<td>cat</td>
+<td><img src="https://www.cs.toronto.edu/~kriz/cifar-10-sample/cat1.png" alt="img"></td>
+<td><img src="https://www.cs.toronto.edu/~kriz/cifar-10-sample/cat2.png" alt="img"></td>
+<td><img src="https://www.cs.toronto.edu/~kriz/cifar-10-sample/cat3.png" alt="img"></td>
+<td><img src="https://www.cs.toronto.edu/~kriz/cifar-10-sample/cat4.png" alt="img"></td>
+<td><img src="https://www.cs.toronto.edu/~kriz/cifar-10-sample/cat5.png" alt="img"></td>
+<td><img src="https://www.cs.toronto.edu/~kriz/cifar-10-sample/cat6.png" alt="img"></td>
+<td><img src="https://www.cs.toronto.edu/~kriz/cifar-10-sample/cat7.png" alt="img"></td>
+<td><img src="https://www.cs.toronto.edu/~kriz/cifar-10-sample/cat8.png" alt="img"></td>
+<td><img src="https://www.cs.toronto.edu/~kriz/cifar-10-sample/cat9.png" alt="img"></td>
+<td><img src="https://www.cs.toronto.edu/~kriz/cifar-10-sample/cat10.png" alt="img"></td>
+</tr>
+<tr>
+<td>deer</td>
+<td><img src="https://www.cs.toronto.edu/~kriz/cifar-10-sample/deer1.png" alt="img"></td>
+<td><img src="https://www.cs.toronto.edu/~kriz/cifar-10-sample/deer2.png" alt="img"></td>
+<td><img src="https://www.cs.toronto.edu/~kriz/cifar-10-sample/deer3.png" alt="img"></td>
+<td><img src="https://www.cs.toronto.edu/~kriz/cifar-10-sample/deer4.png" alt="img"></td>
+<td><img src="https://www.cs.toronto.edu/~kriz/cifar-10-sample/deer5.png" alt="img"></td>
+<td><img src="https://www.cs.toronto.edu/~kriz/cifar-10-sample/deer6.png" alt="img"></td>
+<td><img src="https://www.cs.toronto.edu/~kriz/cifar-10-sample/deer7.png" alt="img"></td>
+<td><img src="https://www.cs.toronto.edu/~kriz/cifar-10-sample/deer8.png" alt="img"></td>
+<td><img src="https://www.cs.toronto.edu/~kriz/cifar-10-sample/deer9.png" alt="img"></td>
+<td><img src="https://www.cs.toronto.edu/~kriz/cifar-10-sample/deer10.png" alt="img"></td>
+</tr>
+<tr>
+<td>dog</td>
+<td><img src="https://www.cs.toronto.edu/~kriz/cifar-10-sample/dog1.png" alt="img"></td>
+<td><img src="https://www.cs.toronto.edu/~kriz/cifar-10-sample/dog2.png" alt="img"></td>
+<td><img src="https://www.cs.toronto.edu/~kriz/cifar-10-sample/dog3.png" alt="img"></td>
+<td><img src="https://www.cs.toronto.edu/~kriz/cifar-10-sample/dog4.png" alt="img"></td>
+<td><img src="https://www.cs.toronto.edu/~kriz/cifar-10-sample/dog5.png" alt="img"></td>
+<td><img src="https://www.cs.toronto.edu/~kriz/cifar-10-sample/dog6.png" alt="img"></td>
+<td><img src="https://www.cs.toronto.edu/~kriz/cifar-10-sample/dog7.png" alt="img"></td>
+<td><img src="https://www.cs.toronto.edu/~kriz/cifar-10-sample/dog8.png" alt="img"></td>
+<td><img src="https://www.cs.toronto.edu/~kriz/cifar-10-sample/dog9.png" alt="img"></td>
+<td><img src="https://www.cs.toronto.edu/~kriz/cifar-10-sample/dog10.png" alt="img"></td>
+</tr>
+<tr>
+<td>frog</td>
+<td><img src="https://www.cs.toronto.edu/~kriz/cifar-10-sample/frog1.png" alt="img"></td>
+<td><img src="https://www.cs.toronto.edu/~kriz/cifar-10-sample/frog2.png" alt="img"></td>
+<td><img src="https://www.cs.toronto.edu/~kriz/cifar-10-sample/frog3.png" alt="img"></td>
+<td><img src="https://www.cs.toronto.edu/~kriz/cifar-10-sample/frog4.png" alt="img"></td>
+<td><img src="https://www.cs.toronto.edu/~kriz/cifar-10-sample/frog5.png" alt="img"></td>
+<td><img src="https://www.cs.toronto.edu/~kriz/cifar-10-sample/frog6.png" alt="img"></td>
+<td><img src="https://www.cs.toronto.edu/~kriz/cifar-10-sample/frog7.png" alt="img"></td>
+<td><img src="https://www.cs.toronto.edu/~kriz/cifar-10-sample/frog8.png" alt="img"></td>
+<td><img src="https://www.cs.toronto.edu/~kriz/cifar-10-sample/frog9.png" alt="img"></td>
+<td><img src="https://www.cs.toronto.edu/~kriz/cifar-10-sample/frog10.png" alt="img"></td>
+</tr>
+<tr>
+<td>horse</td>
+<td><img src="https://www.cs.toronto.edu/~kriz/cifar-10-sample/horse1.png" alt="img"></td>
+<td><img src="https://www.cs.toronto.edu/~kriz/cifar-10-sample/horse2.png" alt="img"></td>
+<td><img src="https://www.cs.toronto.edu/~kriz/cifar-10-sample/horse3.png" alt="img"></td>
+<td><img src="https://www.cs.toronto.edu/~kriz/cifar-10-sample/horse4.png" alt="img"></td>
+<td><img src="https://www.cs.toronto.edu/~kriz/cifar-10-sample/horse5.png" alt="img"></td>
+<td><img src="https://www.cs.toronto.edu/~kriz/cifar-10-sample/horse6.png" alt="img"></td>
+<td><img src="https://www.cs.toronto.edu/~kriz/cifar-10-sample/horse7.png" alt="img"></td>
+<td><img src="https://www.cs.toronto.edu/~kriz/cifar-10-sample/horse8.png" alt="img"></td>
+<td><img src="https://www.cs.toronto.edu/~kriz/cifar-10-sample/horse9.png" alt="img"></td>
+<td><img src="https://www.cs.toronto.edu/~kriz/cifar-10-sample/horse10.png" alt="img"></td>
+</tr>
+<tr>
+<td>ship</td>
+<td><img src="https://www.cs.toronto.edu/~kriz/cifar-10-sample/ship1.png" alt="img"></td>
+<td><img src="https://www.cs.toronto.edu/~kriz/cifar-10-sample/ship2.png" alt="img"></td>
+<td><img src="https://www.cs.toronto.edu/~kriz/cifar-10-sample/ship3.png" alt="img"></td>
+<td><img src="https://www.cs.toronto.edu/~kriz/cifar-10-sample/ship4.png" alt="img"></td>
+<td><img src="https://www.cs.toronto.edu/~kriz/cifar-10-sample/ship5.png" alt="img"></td>
+<td><img src="https://www.cs.toronto.edu/~kriz/cifar-10-sample/ship6.png" alt="img"></td>
+<td><img src="https://www.cs.toronto.edu/~kriz/cifar-10-sample/ship7.png" alt="img"></td>
+<td><img src="https://www.cs.toronto.edu/~kriz/cifar-10-sample/ship8.png" alt="img"></td>
+<td><img src="https://www.cs.toronto.edu/~kriz/cifar-10-sample/ship9.png" alt="img"></td>
+<td><img src="https://www.cs.toronto.edu/~kriz/cifar-10-sample/ship10.png" alt="img"></td>
+</tr>
+<tr>
+<td>truck</td>
+<td><img src="https://www.cs.toronto.edu/~kriz/cifar-10-sample/truck1.png" alt="img"></td>
+<td><img src="https://www.cs.toronto.edu/~kriz/cifar-10-sample/truck2.png" alt="img"></td>
+<td><img src="https://www.cs.toronto.edu/~kriz/cifar-10-sample/truck3.png" alt="img"></td>
+<td><img src="https://www.cs.toronto.edu/~kriz/cifar-10-sample/truck4.png" alt="img"></td>
+<td><img src="https://www.cs.toronto.edu/~kriz/cifar-10-sample/truck5.png" alt="img"></td>
+<td><img src="https://www.cs.toronto.edu/~kriz/cifar-10-sample/truck6.png" alt="img"></td>
+<td><img src="https://www.cs.toronto.edu/~kriz/cifar-10-sample/truck7.png" alt="img"></td>
+<td><img src="https://www.cs.toronto.edu/~kriz/cifar-10-sample/truck8.png" alt="img"></td>
+<td><img src="https://www.cs.toronto.edu/~kriz/cifar-10-sample/truck9.png" alt="img"></td>
+<td><img src="https://www.cs.toronto.edu/~kriz/cifar-10-sample/truck10.png" alt="img"></td>
+</tr>
+</tbody></table>
+<h3 id="数据集的结构组成"><a href="#数据集的结构组成" class="headerlink" title="数据集的结构组成"></a>数据集的结构组成</h3><p>​	CIFAR10数据集结构组成可分为这四个部分：</p>
+<ul>
+<li>·train_x:(50000, 32, 32, 3)——训练样本</li>
+<li>·train_y:(50000, 1)——训练样本标签</li>
+<li>·test_x:(10000, 32, 32, 3)——测试样本</li>
+<li>·test_y:(10000, 1)——测试样本标签</li>
+</ul>
+<h3 id="数据集的下载方式"><a href="#数据集的下载方式" class="headerlink" title="数据集的下载方式"></a>数据集的下载方式</h3><p>​	在Keras中已经内置了多种公共数据集，其中就包含CIFAR-10数据集，如图所示。</p>
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>名称</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>boston_housing</td>
+<td>波士顿房价数据集</td>
+</tr>
+<tr>
+<td>2</td>
+<td>CIFAR10</td>
+<td>10种类别的图片集</td>
+</tr>
+<tr>
+<td>3</td>
+<td>CIFAR100</td>
+<td>100种类别的图片集</td>
+</tr>
+<tr>
+<td>4</td>
+<td>MNIST</td>
+<td>手写数字图片集</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Fashion-MNIST</td>
+<td>10种时尚类别的图片集</td>
+</tr>
+<tr>
+<td>6</td>
+<td>IMDB</td>
+<td>电影点评数据集</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Reuters</td>
+<td>路透社新闻数据集</td>
+</tr>
+</tbody></table>
+<p>​	所以可以直接调用 tf.keras.datasets.cifar10，直接下载数据集。</p>
+<p>​	使用方法如下：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> keras<span class="token punctuation">.</span>datasets <span class="token keyword">import</span> cifar10
+ 
+<span class="token punctuation">(</span>x_train<span class="token punctuation">,</span> y_train<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>x_test<span class="token punctuation">,</span> y_test<span class="token punctuation">)</span> <span class="token operator">=</span> cifar10<span class="token punctuation">.</span>load_data<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<ul>
+<li>返回：<ul>
+<li>2元组：<ul>
+<li>x_train，x_test：具有形状（num_samples ，3，32，32）的RGB图像数据的uint8数组。</li>
+<li>y_train，y_test：uint8具有形状（num_samples，）的类别标签数组（范围0-9中的整数）。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="深度神经网络的说明"><a href="#深度神经网络的说明" class="headerlink" title="深度神经网络的说明"></a>深度神经网络的说明</h2><h3 id="全连接网络"><a href="#全连接网络" class="headerlink" title="全连接网络"></a>全连接网络</h3><h4 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h4><p>​	全连接神经网络(DNN)是最朴素的神经网络，它的网络参数最多，计算量最大。</p>
+<p>​	DNN的结构不固定，一般神经网络包括<strong>输入层</strong>、<strong>隐藏层</strong>和<strong>输出层</strong>，一个DNN结构只有一个输入层，一个输出层，输入层和输出层之间的都是隐藏层。每一层神经网络有若干神经元(下图中蓝色圆圈)，层与层之间神经元相互连接，层内神经元互不连接，而且下一层神经元连接上一层所有的神经元。</p>
+<p><img src="https://img2018.cnblogs.com/blog/1433301/201907/1433301-20190705201830865-1883632909.png" alt="img"></p>
+<p>​	<strong>优点</strong>：由于DNN几乎可以拟合任何函数，所以DNN的非线性拟合能力非常强。往往深而窄的网络要更节约资源。</p>
+<p>​	<strong>缺点：</strong>DNN不太容易训练，需要大量的数据，很多技巧才能训练好一个深层网络。</p>
+<h4 id="模型说明"><a href="#模型说明" class="headerlink" title="模型说明"></a>模型说明</h4><p>​	创建模型的代码如下：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment">#构建模型</span>
+layers <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+layers<span class="token punctuation">.</span>append<span class="token punctuation">(</span>tf<span class="token punctuation">.</span>keras<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>Flatten<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">for</span> nodes <span class="token keyword">in</span> nodes_per_layer<span class="token punctuation">:</span>
+ layers<span class="token punctuation">.</span>append<span class="token punctuation">(</span>keras<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>Dense<span class="token punctuation">(</span>nodes<span class="token punctuation">,</span> activation<span class="token operator">=</span>tf<span class="token punctuation">.</span>nn<span class="token punctuation">.</span>relu<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment"># 使用 l2 正则化 kernel_regularizer=tf.keras.regularizers.l2(l=0.0001)</span>
+ layers<span class="token punctuation">.</span>append<span class="token punctuation">(</span>keras<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>Dropout<span class="token punctuation">(</span>dropout_rate<span class="token punctuation">)</span><span class="token punctuation">)</span>
+layers<span class="token punctuation">.</span>append<span class="token punctuation">(</span>keras<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>Softmax<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+model <span class="token operator">=</span> keras<span class="token punctuation">.</span>Sequential<span class="token punctuation">(</span>layers<span class="token punctuation">)</span>
+
+<span class="token comment">#编译模型</span>
+model<span class="token punctuation">.</span><span class="token builtin">compile</span><span class="token punctuation">(</span>optimizer<span class="token operator">=</span>tf<span class="token punctuation">.</span>train<span class="token punctuation">.</span>AdamOptimizer<span class="token punctuation">(</span><span class="token number">0.001</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+              loss<span class="token operator">=</span><span class="token string">'sparse_categorical_crossentropy'</span><span class="token punctuation">,</span>
+              metrics<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">'accuracy'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>​	我创建了一个 Keras中的Sequential 模型，包含了多个网络层：</p>
+<ul>
+<li><p>模型的第一层是一个 Flatten 层，它将输入的多维数组展平为一维数组，以便于后面的全连接层使用。</p>
+</li>
+<li><p>模型包含了四个 Dense 层。Dense 层就是全连接层，每个节点都与上一层的所有节点连接。第一个 Dense 层有 512 个节点，使用 relu 作为激活函数。第二个 Dense 层有 256 个节点，也使用 relu 作为激活函数。第三个 Dense 层有 128 个节点，也使用 relu 作为激活函数。第四个 Dense 层有 64 个节点，也使用 relu 作为激活函数。在每两层中间插入一个dropout层，这样一来，第一层的输出将对第二层实现Dropout正则化，后续层与此类似。</p>
+</li>
+<li><p>模型的最后一层是一个 Softmax层，有 10 个节点。Softmax函数将多个标量映射为一个概率分布，其输出的每一个值范围在(0,1)。这在分类问题中很常用，因为概率值可以表示模型的置信度。</p>
+</li>
+</ul>
+<p>​	配置训练方法时，训练时用的优化器、损失函数和准确率评测标准如下：</p>
+<ul>
+<li><strong>optimizer 优化器</strong>：选用Adam，学习率lr设置为0.001</li>
+<li><strong>loss 损失函数</strong>：选用稀疏的分类交叉熵 sparse_categorical_crossentropy</li>
+<li><strong>metrics</strong> <strong>评价函数</strong>：选用准确率accuracy</li>
+</ul>
+<h4 id="训练模型"><a href="#训练模型" class="headerlink" title="训练模型"></a>训练模型</h4><p>​	起初我训练模型时没有数据增强，代码如下：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">overfitting_hist <span class="token operator">=</span> model<span class="token punctuation">.</span>fit<span class="token punctuation">(</span>x_train<span class="token punctuation">,</span> y_train<span class="token punctuation">,</span> epochs<span class="token operator">=</span><span class="token number">10</span><span class="token punctuation">,</span> batch_size<span class="token operator">=</span><span class="token number">64</span><span class="token punctuation">,</span> validation_data<span class="token operator">=</span><span class="token punctuation">(</span>x_test<span class="token punctuation">,</span> y_test<span class="token punctuation">)</span><span class="token punctuation">,</span>
+                             use_multiprocessing<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+<span class="token comment">#绘制训练和测试准确率</span>
+plt<span class="token punctuation">.</span>plot<span class="token punctuation">(</span>overfitting_hist<span class="token punctuation">.</span>history<span class="token punctuation">[</span><span class="token string">'acc'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>plot<span class="token punctuation">(</span>overfitting_hist<span class="token punctuation">.</span>history<span class="token punctuation">[</span><span class="token string">'val_acc'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>title<span class="token punctuation">(</span><span class="token string">'model accuracy'</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>ylabel<span class="token punctuation">(</span><span class="token string">'accuracy'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<img src="/Users/zhangxiaoni/Library/Application Support/typora-user-images/image-20230114184455601.png" alt="image-20230114184455601" style="zoom:33%;">
+
+<p>​	此时，训练精度远高于测试精度（高达35%），此外，测试精度要么是静态的，要么是下降的，这意味着模型严重过度拟合。训练速度很快，使模型达到 50% 左右，但是它之后开始过度拟合，所以我切换到对生成数据进行训练，这些数据速度较慢，但不太可能导致过度拟合。</p>
+<p>​	因此，我切换到增强数据，在 50000 个样本上进行训练，在 10000 个样本上进行验证，代码如下；</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">augmented <span class="token operator">=</span> datagen<span class="token punctuation">.</span>flow<span class="token punctuation">(</span>x_train<span class="token punctuation">,</span> y_train<span class="token punctuation">,</span> batch_size<span class="token operator">=</span><span class="token number">512</span><span class="token punctuation">,</span>shuffle<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+hist <span class="token operator">=</span> model<span class="token punctuation">.</span>fit_generator<span class="token punctuation">(</span>augmented<span class="token punctuation">,</span> epochs<span class="token operator">=</span><span class="token number">10</span><span class="token punctuation">,</span>validation_data<span class="token operator">=</span><span class="token punctuation">(</span>x_test<span class="token punctuation">,</span>y_test<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token comment">#绘制精度曲线</span>
+plt<span class="token punctuation">.</span>plot<span class="token punctuation">(</span>hist<span class="token punctuation">.</span>history<span class="token punctuation">[</span><span class="token string">'acc'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>plot<span class="token punctuation">(</span>hist<span class="token punctuation">.</span>history<span class="token punctuation">[</span><span class="token string">'val_acc'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>title<span class="token punctuation">(</span><span class="token string">'model accuracy'</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>ylabel<span class="token punctuation">(</span><span class="token string">'accuracy'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>​	结果如图：</p>
+<img src="/Users/zhangxiaoni/Library/Application Support/typora-user-images/image-20230114172148881.png" alt="image-20230114172148881" style="zoom: 33%;">
+
+<p>​	绘制出的测试和训练集的准确率图像如下：</p>
+<img src="/Users/zhangxiaoni/Library/Containers/com.bytedance.macos.feishu/Data/Library/Application Support/LarkShell/sdk_storage/407120424b82e9e84d5a9fe5984b53e7/resources/images/img_v2_a4ac7ee4-f1da-47fa-b870-c0efba09a04g.jpg" alt="img_v2_a4ac7ee4-f1da-47fa-b870-c0efba09a04g" style="zoom: 33%;">
+
+<p>​	从上图可以看出；一开始，测试精度优于训练精度，但在第一个时期之后，训练精度仅比测试精度高出 4%，这意味着模型不会过度拟合。</p>
+<h4 id="模型评估"><a href="#模型评估" class="headerlink" title="模型评估"></a>模型评估</h4><p>​	模型在测试集上的准确率如下：</p>
+<p>![image-20230114172401122](/Users/zhangxiaoni/Library/Application Support/typora-user-images/image-20230114172401122.png)</p>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>​	一方面使用未增强的数据集进行训练会导致过度拟合；另一方面立即使用增强的数据集会导致欠拟合。因此，我想出的最好的方法是先使用未增强的数据进行训练，直到导致过度拟合，然后切换到增强数据。该模型在增强数据上进行训练的难度较小，因为它已经了解了类的许多主要特征，然后数据增强使学习变得更加困难，但不易过度拟合。</p>
+<h4 id="完整代码"><a href="#完整代码" class="headerlink" title="完整代码"></a>完整代码</h4><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> tensorflow <span class="token keyword">as</span> tf
+<span class="token keyword">from</span> tensorflow <span class="token keyword">import</span> keras
+<span class="token keyword">import</span> numpy <span class="token keyword">as</span> np
+<span class="token keyword">import</span> matplotlib<span class="token punctuation">.</span>pyplot <span class="token keyword">as</span> plt
+<span class="token keyword">import</span> os
+
+<span class="token comment">#超参数</span>
+epochs <span class="token operator">=</span> <span class="token number">30</span>
+nodes_per_layer <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1024</span><span class="token punctuation">,</span><span class="token number">512</span><span class="token punctuation">,</span><span class="token number">256</span><span class="token punctuation">,</span><span class="token number">128</span><span class="token punctuation">,</span><span class="token number">64</span><span class="token punctuation">]</span>
+layers <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+batch_size <span class="token operator">=</span> <span class="token number">64</span>
+dropout_rate <span class="token operator">=</span> <span class="token number">0.3</span>
+num_classes <span class="token operator">=</span> <span class="token number">10</span>
+
+
+<span class="token comment">#===========================</span>
+<span class="token comment">#一.加载和标准化数据</span>
+<span class="token comment">#===========================</span>
+
+<span class="token comment">#加载数据</span>
+<span class="token punctuation">(</span>x_train<span class="token punctuation">,</span> y_train<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>x_test<span class="token punctuation">,</span> y_test<span class="token punctuation">)</span> <span class="token operator">=</span> keras<span class="token punctuation">.</span>datasets<span class="token punctuation">.</span>cifar10<span class="token punctuation">.</span>load_data<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token comment">#标准化图像</span>
+x_train <span class="token operator">=</span> tf<span class="token punctuation">.</span>map_fn<span class="token punctuation">(</span><span class="token keyword">lambda</span> image<span class="token punctuation">:</span> tf<span class="token punctuation">.</span>image<span class="token punctuation">.</span>per_image_standardization<span class="token punctuation">(</span>image<span class="token punctuation">)</span><span class="token punctuation">,</span> x_train<span class="token punctuation">,</span> dtype<span class="token operator">=</span>tf<span class="token punctuation">.</span>float32<span class="token punctuation">)</span>
+x_train <span class="token operator">=</span> tf<span class="token punctuation">.</span>Session<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>run<span class="token punctuation">(</span>x_train<span class="token punctuation">)</span>
+x_test <span class="token operator">=</span> tf<span class="token punctuation">.</span>map_fn<span class="token punctuation">(</span><span class="token keyword">lambda</span> image<span class="token punctuation">:</span> tf<span class="token punctuation">.</span>image<span class="token punctuation">.</span>per_image_standardization<span class="token punctuation">(</span>image<span class="token punctuation">)</span><span class="token punctuation">,</span> x_test<span class="token punctuation">,</span> dtype<span class="token operator">=</span>tf<span class="token punctuation">.</span>float32<span class="token punctuation">)</span>
+x_test <span class="token operator">=</span> tf<span class="token punctuation">.</span>Session<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>run<span class="token punctuation">(</span>x_test<span class="token punctuation">)</span>
+
+
+<span class="token comment">#===========================</span>
+<span class="token comment">#二.构建、编译模型</span>
+<span class="token comment">#===========================</span>
+
+<span class="token comment">#我没有使用 l2 正则化，因为它使使用生成的数据的学习速度变慢并且不会减少过度拟合</span>
+layers <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+layers<span class="token punctuation">.</span>append<span class="token punctuation">(</span>tf<span class="token punctuation">.</span>keras<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>Flatten<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">for</span> nodes <span class="token keyword">in</span> nodes_per_layer<span class="token punctuation">:</span>
+ layers<span class="token punctuation">.</span>append<span class="token punctuation">(</span>keras<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>Dense<span class="token punctuation">(</span>nodes<span class="token punctuation">,</span> activation<span class="token operator">=</span>tf<span class="token punctuation">.</span>nn<span class="token punctuation">.</span>relu<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment"># 使用 l2 正则化 kernel_regularizer=tf.keras.regularizers.l2(l=0.0001)</span>
+ layers<span class="token punctuation">.</span>append<span class="token punctuation">(</span>keras<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>Dropout<span class="token punctuation">(</span>dropout_rate<span class="token punctuation">)</span><span class="token punctuation">)</span>
+layers<span class="token punctuation">.</span>append<span class="token punctuation">(</span>keras<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>Softmax<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+model <span class="token operator">=</span> keras<span class="token punctuation">.</span>Sequential<span class="token punctuation">(</span>layers<span class="token punctuation">)</span>
+
+<span class="token comment">#编译模型</span>
+model<span class="token punctuation">.</span><span class="token builtin">compile</span><span class="token punctuation">(</span>optimizer<span class="token operator">=</span>tf<span class="token punctuation">.</span>train<span class="token punctuation">.</span>AdamOptimizer<span class="token punctuation">(</span><span class="token number">0.001</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+              loss<span class="token operator">=</span><span class="token string">'sparse_categorical_crossentropy'</span><span class="token punctuation">,</span>
+              metrics<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">'accuracy'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+
+
+<span class="token comment">#===========================</span>
+<span class="token comment">#三.训练模型</span>
+<span class="token comment">#===========================</span>
+
+<span class="token comment">#1. 没有使用数据增强</span>
+<span class="token comment">#这种训练速度很快，使模型达到 50% 左右，但是它之后开始过度拟合，所以我切换到对生成数据进行训练，这些数据速度较慢，但不太可能导致过度拟合</span>
+overfitting_hist <span class="token operator">=</span> model<span class="token punctuation">.</span>fit<span class="token punctuation">(</span>x_train<span class="token punctuation">,</span> y_train<span class="token punctuation">,</span> epochs<span class="token operator">=</span><span class="token number">10</span><span class="token punctuation">,</span> batch_size<span class="token operator">=</span><span class="token number">64</span><span class="token punctuation">,</span> validation_data<span class="token operator">=</span><span class="token punctuation">(</span>x_test<span class="token punctuation">,</span> y_test<span class="token punctuation">)</span><span class="token punctuation">,</span>
+                             use_multiprocessing<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+<span class="token comment">#绘制训练和测试准确率</span>
+plt<span class="token punctuation">.</span>plot<span class="token punctuation">(</span>overfitting_hist<span class="token punctuation">.</span>history<span class="token punctuation">[</span><span class="token string">'acc'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>plot<span class="token punctuation">(</span>overfitting_hist<span class="token punctuation">.</span>history<span class="token punctuation">[</span><span class="token string">'val_acc'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>title<span class="token punctuation">(</span><span class="token string">'model accuracy'</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>ylabel<span class="token punctuation">(</span><span class="token string">'accuracy'</span><span class="token punctuation">)</span>
+
+<span class="token comment">#数据生成</span>
+<span class="token comment">#定义数据生成器以生成更多样化的数据</span>
+datagen <span class="token operator">=</span> keras<span class="token punctuation">.</span>preprocessing<span class="token punctuation">.</span>image<span class="token punctuation">.</span>ImageDataGenerator<span class="token punctuation">(</span>
+    featurewise_center<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">,</span>
+    featurewise_std_normalization<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">,</span>
+    samplewise_center<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">,</span>
+    samplewise_std_normalization<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">,</span>
+    rotation_range<span class="token operator">=</span><span class="token number">7</span><span class="token punctuation">,</span>
+    zoom_range<span class="token operator">=</span><span class="token number">0.07</span><span class="token punctuation">,</span>
+    width_shift_range<span class="token operator">=</span><span class="token number">0.15</span><span class="token punctuation">,</span>
+    height_shift_range<span class="token operator">=</span><span class="token number">0.15</span><span class="token punctuation">,</span>
+    shear_range<span class="token operator">=</span><span class="token number">0.01</span><span class="token punctuation">,</span>
+    horizontal_flip<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+<span class="token comment">#初始化数据生成所需的变量</span>
+datagen<span class="token punctuation">.</span>fit<span class="token punctuation">(</span>x_train<span class="token punctuation">)</span>
+
+<span class="token comment">#2. 使用数据增强</span>
+<span class="token comment">#使用生成的数据训练模型以避免过度拟合</span>
+augmented <span class="token operator">=</span> datagen<span class="token punctuation">.</span>flow<span class="token punctuation">(</span>x_train<span class="token punctuation">,</span> y_train<span class="token punctuation">,</span> batch_size<span class="token operator">=</span><span class="token number">512</span><span class="token punctuation">,</span>shuffle<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+hist <span class="token operator">=</span> model<span class="token punctuation">.</span>fit_generator<span class="token punctuation">(</span>augmented<span class="token punctuation">,</span> epochs<span class="token operator">=</span><span class="token number">10</span><span class="token punctuation">,</span>validation_data<span class="token operator">=</span><span class="token punctuation">(</span>x_test<span class="token punctuation">,</span>y_test<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token comment">#绘制精度曲线</span>
+plt<span class="token punctuation">.</span>plot<span class="token punctuation">(</span>hist<span class="token punctuation">.</span>history<span class="token punctuation">[</span><span class="token string">'acc'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>plot<span class="token punctuation">(</span>hist<span class="token punctuation">.</span>history<span class="token punctuation">[</span><span class="token string">'val_acc'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>title<span class="token punctuation">(</span><span class="token string">'model accuracy'</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>ylabel<span class="token punctuation">(</span><span class="token string">'accuracy'</span><span class="token punctuation">)</span>
+
+
+<span class="token comment">#===========================</span>
+<span class="token comment">#四.评估模型</span>
+<span class="token comment">#===========================</span>
+test_loss<span class="token punctuation">,</span> test_acc <span class="token operator">=</span> model<span class="token punctuation">.</span>evaluate<span class="token punctuation">(</span>x_test<span class="token punctuation">,</span> y_test<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'Test accuracy:'</span><span class="token punctuation">,</span> test_acc<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h3 id="卷积神经网络"><a href="#卷积神经网络" class="headerlink" title="卷积神经网络"></a>卷积神经网络</h3><h4 id="简介-1"><a href="#简介-1" class="headerlink" title="简介"></a>简介</h4><p>如果用全连接神经网络处理大尺寸图像具有三个明显的缺点：</p>
+<ul>
+<li>将图像展开为向量会丢失空间信息；</li>
+<li>参数过多效率低下，训练困难；</li>
+<li>大量的参数也很快会导致网络过拟合。</li>
+</ul>
+<p>而使用卷积神经网络可以很好地解决上面的三个问题。</p>
+<p>一个卷积神经网络主要由以下 5 层组成：</p>
+<ul>
+<li>数据输入层/ Input layer</li>
+<li>卷积计算层/ CONV layer</li>
+<li>ReLU 激励层 / ReLU layer</li>
+<li>池化层 / Pooling layer</li>
+<li>全连接层 / FC layer</li>
+</ul>
+<h4 id="模型说明-1"><a href="#模型说明-1" class="headerlink" title="模型说明"></a>模型说明</h4><p>​	创建模型的代码如下：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">model <span class="token operator">=</span> tf<span class="token punctuation">.</span>keras<span class="token punctuation">.</span>models<span class="token punctuation">.</span>Sequential<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token comment">#卷积层 32个3*3的卷积核 激活函数relu输入形状32*32*3</span>
+model<span class="token punctuation">.</span>add<span class="token punctuation">(</span>tf<span class="token punctuation">.</span>keras<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>Conv2D<span class="token punctuation">(</span><span class="token number">32</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">,</span> activation<span class="token operator">=</span><span class="token string">"relu"</span><span class="token punctuation">,</span> input_shape<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">32</span><span class="token punctuation">,</span> <span class="token number">32</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token comment">#池化层 2*2</span>
+model<span class="token punctuation">.</span>add<span class="token punctuation">(</span>tf<span class="token punctuation">.</span>keras<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>MaxPooling2D<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token comment">#卷积层 64个3*3的卷积核 激活函数relu</span>
+model<span class="token punctuation">.</span>add<span class="token punctuation">(</span>tf<span class="token punctuation">.</span>keras<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>Conv2D<span class="token punctuation">(</span><span class="token number">64</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">,</span> activation<span class="token operator">=</span><span class="token string">"relu"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token comment">#池化层 2*2</span>
+model<span class="token punctuation">.</span>add<span class="token punctuation">(</span>tf<span class="token punctuation">.</span>keras<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>MaxPooling2D<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token comment">#卷积层 64个3*3的卷积核 激活函数relu</span>
+model<span class="token punctuation">.</span>add<span class="token punctuation">(</span>tf<span class="token punctuation">.</span>keras<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>Conv2D<span class="token punctuation">(</span><span class="token number">64</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">,</span> activation<span class="token operator">=</span><span class="token string">"relu"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+<span class="token comment">#展平</span>
+model<span class="token punctuation">.</span>add<span class="token punctuation">(</span>tf<span class="token punctuation">.</span>keras<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>Flatten<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token comment">#全连接层 64个神经元 激活函数relu</span>
+model<span class="token punctuation">.</span>add<span class="token punctuation">(</span>tf<span class="token punctuation">.</span>keras<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>Dense<span class="token punctuation">(</span><span class="token number">64</span><span class="token punctuation">,</span> activation<span class="token operator">=</span><span class="token string">"relu"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token comment">#全连接层 10个神经元 激活函数softmax</span>
+model<span class="token punctuation">.</span>add<span class="token punctuation">(</span>tf<span class="token punctuation">.</span>keras<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>Dense<span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span> activation<span class="token operator">=</span><span class="token string">"softmax"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>​	我创建了一个 Keras中的Sequential 模型，包含了多个网络层：</p>
+<ul>
+<li>模型的第一部分包含了三个卷积层，分别包含32个3 * 3、 64 个 3 * 3 、64 个 3 * 3的卷积核，和两个2*2的池化层</li>
+<li>模型包含了一个Flatten层，将前一层的输出展平为一维张量。</li>
+<li>模型的最后包含了两个全连接层，一个全连接层有64个神经元，激活函数为relu；另一个全连接层有10个单元，激活函数为softmax。</li>
+</ul>
+<h4 id="训练模型-1"><a href="#训练模型-1" class="headerlink" title="训练模型"></a>训练模型</h4><p>​	将epochs设置为40，在 50000 个样本上进行训练，在 10000 个样本上进行验证，代码如下：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">history <span class="token operator">=</span> model<span class="token punctuation">.</span>fit<span class="token punctuation">(</span>train_images<span class="token punctuation">,</span> train_labels<span class="token punctuation">,</span> epochs<span class="token operator">=</span><span class="token number">40</span><span class="token punctuation">,</span>
+                    validation_data<span class="token operator">=</span><span class="token punctuation">(</span>test_images<span class="token punctuation">,</span> test_labels<span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<img src="/Users/zhangxiaoni/Library/Containers/com.bytedance.macos.feishu/Data/Library/Application Support/LarkShell/sdk_storage/407120424b82e9e84d5a9fe5984b53e7/resources/images/img_v2_15fd61a7-6d0f-450f-8139-1f3aed0baa1g.jpg" alt="img_v2_15fd61a7-6d0f-450f-8139-1f3aed0baa1g" style="zoom:33%;">
+
+<img src="/Users/zhangxiaoni/Library/Containers/com.bytedance.macos.feishu/Data/Library/Application Support/LarkShell/sdk_storage/407120424b82e9e84d5a9fe5984b53e7/resources/images/img_v2_bed4c8ec-8e37-4ffd-8839-abcb5183df1g.jpg" alt="img_v2_bed4c8ec-8e37-4ffd-8839-abcb5183df1g" style="zoom:33%;">
+
+<h4 id="模型评估-1"><a href="#模型评估-1" class="headerlink" title="模型评估"></a>模型评估</h4><p>​	模型在测试集上的准确率如下：</p>
+<p>![img_v2_f2bb69a8-ea6b-4cb8-b976-53e6907612ag](/Users/zhangxiaoni/Library/Containers/com.bytedance.macos.feishu/Data/Library/Application Support/LarkShell/sdk_storage/407120424b82e9e84d5a9fe5984b53e7/resources/images/img_v2_f2bb69a8-ea6b-4cb8-b976-53e6907612ag.jpg)</p>
+<h4 id="完整代码-1"><a href="#完整代码-1" class="headerlink" title="完整代码"></a>完整代码</h4><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> tensorflow <span class="token keyword">as</span> tf
+<span class="token keyword">import</span> matplotlib<span class="token punctuation">.</span>pyplot <span class="token keyword">as</span> plt
+
+
+<span class="token comment">#===========================</span>
+<span class="token comment">#一.加载和标准化数据</span>
+<span class="token comment">#===========================</span>
+<span class="token punctuation">(</span>train_images<span class="token punctuation">,</span> train_labels<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>test_images<span class="token punctuation">,</span> test_labels<span class="token punctuation">)</span> <span class="token operator">=</span> tf<span class="token punctuation">.</span>keras<span class="token punctuation">.</span>datasets<span class="token punctuation">.</span>cifar10<span class="token punctuation">.</span>load_data<span class="token punctuation">(</span><span class="token punctuation">)</span>
+train_images<span class="token punctuation">,</span> test_images <span class="token operator">=</span> train_images <span class="token operator">/</span> <span class="token number">255.0</span><span class="token punctuation">,</span> test_images <span class="token operator">/</span> <span class="token number">255.0</span>
+
+
+<span class="token comment">#===========================</span>
+<span class="token comment">#二.构建、编译模型</span>
+<span class="token comment">#===========================</span>
+model <span class="token operator">=</span> tf<span class="token punctuation">.</span>keras<span class="token punctuation">.</span>models<span class="token punctuation">.</span>Sequential<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token comment">#卷积层 32个3*3的卷积核 激活函数relu输入形状32*32*3</span>
+model<span class="token punctuation">.</span>add<span class="token punctuation">(</span>tf<span class="token punctuation">.</span>keras<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>Conv2D<span class="token punctuation">(</span><span class="token number">32</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">,</span> activation<span class="token operator">=</span><span class="token string">"relu"</span><span class="token punctuation">,</span> input_shape<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">32</span><span class="token punctuation">,</span> <span class="token number">32</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token comment">#池化层 2*2</span>
+model<span class="token punctuation">.</span>add<span class="token punctuation">(</span>tf<span class="token punctuation">.</span>keras<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>MaxPooling2D<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token comment">#卷积层 64个3*3的卷积核 激活函数relu</span>
+model<span class="token punctuation">.</span>add<span class="token punctuation">(</span>tf<span class="token punctuation">.</span>keras<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>Conv2D<span class="token punctuation">(</span><span class="token number">64</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">,</span> activation<span class="token operator">=</span><span class="token string">"relu"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token comment">#池化层 2*2</span>
+model<span class="token punctuation">.</span>add<span class="token punctuation">(</span>tf<span class="token punctuation">.</span>keras<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>MaxPooling2D<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token comment">#卷积层 64个3*3的卷积核 激活函数relu</span>
+model<span class="token punctuation">.</span>add<span class="token punctuation">(</span>tf<span class="token punctuation">.</span>keras<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>Conv2D<span class="token punctuation">(</span><span class="token number">64</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">,</span> activation<span class="token operator">=</span><span class="token string">"relu"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+<span class="token comment">#展平</span>
+model<span class="token punctuation">.</span>add<span class="token punctuation">(</span>tf<span class="token punctuation">.</span>keras<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>Flatten<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token comment">#全连接层 64个神经元 激活函数relu</span>
+model<span class="token punctuation">.</span>add<span class="token punctuation">(</span>tf<span class="token punctuation">.</span>keras<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>Dense<span class="token punctuation">(</span><span class="token number">64</span><span class="token punctuation">,</span> activation<span class="token operator">=</span><span class="token string">"relu"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token comment">#全连接层 10个神经元 激活函数softmax</span>
+model<span class="token punctuation">.</span>add<span class="token punctuation">(</span>tf<span class="token punctuation">.</span>keras<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>Dense<span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span> activation<span class="token operator">=</span><span class="token string">"softmax"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+model<span class="token punctuation">.</span>summary<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+model<span class="token punctuation">.</span><span class="token builtin">compile</span><span class="token punctuation">(</span>optimizer<span class="token operator">=</span><span class="token string">"adam"</span><span class="token punctuation">,</span>
+              loss<span class="token operator">=</span>tf<span class="token punctuation">.</span>keras<span class="token punctuation">.</span>losses<span class="token punctuation">.</span>SparseCategoricalCrossentropy<span class="token punctuation">(</span>from_logits<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+              metrics<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">"accuracy"</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+
+
+<span class="token comment">#===========================</span>
+<span class="token comment">#三.训练模型</span>
+<span class="token comment">#===========================</span>
+history <span class="token operator">=</span> model<span class="token punctuation">.</span>fit<span class="token punctuation">(</span>train_images<span class="token punctuation">,</span> train_labels<span class="token punctuation">,</span> epochs<span class="token operator">=</span><span class="token number">40</span><span class="token punctuation">,</span>
+                    validation_data<span class="token operator">=</span><span class="token punctuation">(</span>test_images<span class="token punctuation">,</span> test_labels<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+plt<span class="token punctuation">.</span>plot<span class="token punctuation">(</span>history<span class="token punctuation">.</span>history<span class="token punctuation">[</span><span class="token string">"accuracy"</span><span class="token punctuation">]</span><span class="token punctuation">,</span> label<span class="token operator">=</span><span class="token string">"accuracy"</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>plot<span class="token punctuation">(</span>history<span class="token punctuation">.</span>history<span class="token punctuation">[</span><span class="token string">"val_accuracy"</span><span class="token punctuation">]</span><span class="token punctuation">,</span> label<span class="token operator">=</span><span class="token string">"val_accuracy"</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>xlabel<span class="token punctuation">(</span><span class="token string">"Epoch"</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>ylabel<span class="token punctuation">(</span><span class="token string">"Accuracy"</span><span class="token punctuation">)</span>
+<span class="token comment"># plt.ylim([0.0, 1])</span>
+plt<span class="token punctuation">.</span>title<span class="token punctuation">(</span><span class="token string">'model accuracy'</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>legend<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+
+<span class="token comment">#===========================</span>
+<span class="token comment">#四.评估模型</span>
+<span class="token comment">#===========================</span>
+test_loss<span class="token punctuation">,</span> test_acc <span class="token operator">=</span> model<span class="token punctuation">.</span>evaluate<span class="token punctuation">(</span>test_images<span class="token punctuation">,</span> test_labels<span class="token punctuation">,</span> verbose<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'Test accuracy:'</span><span class="token punctuation">,</span> test_acc<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h3 id="循环神经网络"><a href="#循环神经网络" class="headerlink" title="循环神经网络"></a>循环神经网络</h3><h4 id="简介-2"><a href="#简介-2" class="headerlink" title="简介"></a>简介</h4><p>​	RNNs的目的使用来处理序列数据。在传统的神经网络模型中，是从输入层到隐含层再到输出层，层与层之间是全连接的，每层之间的节点是无连接的。但是这种普通的神经网络对于很多问题却无能无力。</p>
+<p>​	RNNs之所以称为循环神经网路，即一个序列当前的输出与前面的输出也有关。具体的表现形式为网络会对前面的信息进行记忆并应用于当前输出的计算中，即隐藏层之间的节点不再无连接而是有连接的，并且隐藏层的输入不仅包括输入层的输出还包括上一时刻隐藏层的输出。理论上，RNNs能够对任何长度的序列数据进行处理。但是在实践中，为了降低复杂性往往假设当前的状态只与前面的几个状态相关，下图便是一个典型的RNNs： </p>
+<p><img src="https://img-blog.csdn.net/20150921225357857" alt="img"></p>
+<h4 id="模型说明-2"><a href="#模型说明-2" class="headerlink" title="模型说明"></a>模型说明</h4><p>​	创建模型的代码如下：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">model <span class="token operator">=</span> keras<span class="token punctuation">.</span>Sequential<span class="token punctuation">(</span><span class="token punctuation">[</span>
+    tf<span class="token punctuation">.</span>keras<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>Bidirectional<span class="token punctuation">(</span>tf<span class="token punctuation">.</span>keras<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>LSTM<span class="token punctuation">(</span><span class="token number">32</span><span class="token punctuation">,</span> input_shape<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">1024</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">,</span> return_sequences<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    tf<span class="token punctuation">.</span>keras<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>Bidirectional<span class="token punctuation">(</span>tf<span class="token punctuation">.</span>keras<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>LSTM<span class="token punctuation">(</span><span class="token number">32</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    tf<span class="token punctuation">.</span>keras<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>Dropout<span class="token punctuation">(</span><span class="token number">0.25</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    tf<span class="token punctuation">.</span>keras<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>Flatten<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    tf<span class="token punctuation">.</span>keras<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>Dense<span class="token punctuation">(</span><span class="token number">128</span><span class="token punctuation">,</span> activation<span class="token operator">=</span><span class="token string">'relu'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    tf<span class="token punctuation">.</span>keras<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>Dropout<span class="token punctuation">(</span><span class="token number">0.25</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    tf<span class="token punctuation">.</span>keras<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>Dense<span class="token punctuation">(</span><span class="token number">64</span><span class="token punctuation">,</span> activation<span class="token operator">=</span><span class="token string">'relu'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    tf<span class="token punctuation">.</span>keras<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>Dense<span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span> activation<span class="token operator">=</span><span class="token string">'softmax'</span><span class="token punctuation">)</span>
+<span class="token punctuation">]</span><span class="token punctuation">)</span>
+
+
+model<span class="token punctuation">.</span><span class="token builtin">compile</span><span class="token punctuation">(</span>optimizer<span class="token operator">=</span><span class="token string">"adam"</span><span class="token punctuation">,</span>
+              loss<span class="token operator">=</span><span class="token string">"sparse_categorical_crossentropy"</span><span class="token punctuation">,</span>
+              metrics<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">'sparse_categorical_accuracy'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>​	我创建了一个 Keras中的Sequential 模型，包含了多个网络层：</p>
+<ul>
+<li>模型的第一层是一个双向 LSTM 层，它具有 32 个神经元，并返回序列。</li>
+<li>模型的第二层是一个双向 LSTM 层，它也具有 32 个神经元。</li>
+<li>第三层是一个池化层，它可以防止过拟合。</li>
+<li>第四层是一个 Flatten 层，它把输入展平。</li>
+<li>第五层是一个全连接层，它具有 128 个神经元和 ReLU 激活函数。</li>
+<li>第六层是一个池化层，防止过拟合。</li>
+<li>第七层是一个全连接层，它具有 64 个神经元和 ReLU 激活函数。</li>
+<li>最后一层是一个全连接层，它具有 10 个神经元，激活函数为 softmax 。</li>
+</ul>
+<h4 id="训练模型-2"><a href="#训练模型-2" class="headerlink" title="训练模型"></a>训练模型</h4><p>​	将epochs设置为10，在 50000 个样本上进行训练，在 10000 个样本上进行验证，代码如下：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">history <span class="token operator">=</span> model<span class="token punctuation">.</span>fit<span class="token punctuation">(</span>train_images<span class="token punctuation">,</span> train_labels<span class="token punctuation">,</span> batch<span class="token operator">=</span><span class="token number">32</span><span class="token punctuation">,</span>epochs<span class="token operator">=</span><span class="token number">10</span><span class="token punctuation">,</span>
+                    validation_data<span class="token operator">=</span><span class="token punctuation">(</span>test_images<span class="token punctuation">,</span> test_labels<span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>![img_v2_eaf8d3c3-da3d-424e-a759-5b43f838492g](/Users/zhangxiaoni/Library/Containers/com.bytedance.macos.feishu/Data/Library/Application Support/LarkShell/sdk_storage/407120424b82e9e84d5a9fe5984b53e7/resources/images/img_v2_eaf8d3c3-da3d-424e-a759-5b43f838492g.jpg)</p>
+<p>​	绘制出的图像如下；</p>
+<img src="/Users/zhangxiaoni/Library/Containers/com.bytedance.macos.feishu/Data/Library/Application Support/LarkShell/sdk_storage/407120424b82e9e84d5a9fe5984b53e7/resources/images/img_v2_80be0f27-a53b-45a9-9658-d9b2eb8f6abg.jpg" alt="img_v2_80be0f27-a53b-45a9-9658-d9b2eb8f6abg" style="zoom:33%;">
+
+
+
+<h4 id="模型评估-2"><a href="#模型评估-2" class="headerlink" title="模型评估"></a>模型评估</h4><p>​	模型在测试集上的准确率如下：</p>
+<p>![img_v2_6d331709-f95a-4fd1-8010-865f4940bbeg](/Users/zhangxiaoni/Library/Containers/com.bytedance.macos.feishu/Data/Library/Application Support/LarkShell/sdk_storage/407120424b82e9e84d5a9fe5984b53e7/resources/images/img_v2_6d331709-f95a-4fd1-8010-865f4940bbeg.jpg)	</p>
+<h4 id="完整代码-2"><a href="#完整代码-2" class="headerlink" title="完整代码"></a>完整代码</h4><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> tensorflow <span class="token keyword">as</span> tf
+<span class="token keyword">import</span> matplotlib<span class="token punctuation">.</span>pyplot <span class="token keyword">as</span> plt
+
+
+<span class="token comment">#===========================</span>
+<span class="token comment">#一.加载和标准化数据</span>
+<span class="token comment">#===========================</span>
+<span class="token punctuation">(</span>train_images<span class="token punctuation">,</span> train_labels<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>test_images<span class="token punctuation">,</span> test_labels<span class="token punctuation">)</span> <span class="token operator">=</span> tf<span class="token punctuation">.</span>keras<span class="token punctuation">.</span>datasets<span class="token punctuation">.</span>cifar10<span class="token punctuation">.</span>load_data<span class="token punctuation">(</span><span class="token punctuation">)</span>
+train_images<span class="token punctuation">,</span> test_images <span class="token operator">=</span> train_images <span class="token operator">/</span> <span class="token number">255.0</span><span class="token punctuation">,</span> test_images <span class="token operator">/</span> <span class="token number">255.0</span>
+
+
+<span class="token comment">#===========================</span>
+<span class="token comment">#二.构建、编译模型</span>
+<span class="token comment">#===========================</span>
+model <span class="token operator">=</span> keras<span class="token punctuation">.</span>Sequential<span class="token punctuation">(</span><span class="token punctuation">[</span>
+    tf<span class="token punctuation">.</span>keras<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>Bidirectional<span class="token punctuation">(</span>tf<span class="token punctuation">.</span>keras<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>LSTM<span class="token punctuation">(</span><span class="token number">32</span><span class="token punctuation">,</span> input_shape<span class="token operator">=</span><span class="token punctuation">(</span><span class="token number">1024</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">,</span> return_sequences<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    tf<span class="token punctuation">.</span>keras<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>Bidirectional<span class="token punctuation">(</span>tf<span class="token punctuation">.</span>keras<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>LSTM<span class="token punctuation">(</span><span class="token number">32</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    tf<span class="token punctuation">.</span>keras<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>Dropout<span class="token punctuation">(</span><span class="token number">0.25</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    tf<span class="token punctuation">.</span>keras<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>Flatten<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    tf<span class="token punctuation">.</span>keras<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>Dense<span class="token punctuation">(</span><span class="token number">128</span><span class="token punctuation">,</span> activation<span class="token operator">=</span><span class="token string">'relu'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    tf<span class="token punctuation">.</span>keras<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>Dropout<span class="token punctuation">(</span><span class="token number">0.25</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    tf<span class="token punctuation">.</span>keras<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>Dense<span class="token punctuation">(</span><span class="token number">64</span><span class="token punctuation">,</span> activation<span class="token operator">=</span><span class="token string">'relu'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    tf<span class="token punctuation">.</span>keras<span class="token punctuation">.</span>layers<span class="token punctuation">.</span>Dense<span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span> activation<span class="token operator">=</span><span class="token string">'softmax'</span><span class="token punctuation">)</span>
+<span class="token punctuation">]</span><span class="token punctuation">)</span>
+
+
+model<span class="token punctuation">.</span><span class="token builtin">compile</span><span class="token punctuation">(</span>optimizer<span class="token operator">=</span><span class="token string">"adam"</span><span class="token punctuation">,</span>
+              loss<span class="token operator">=</span><span class="token string">"sparse_categorical_crossentropy"</span><span class="token punctuation">,</span>
+              metrics<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">'sparse_categorical_accuracy'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+
+
+<span class="token comment">#===========================</span>
+<span class="token comment">#三.训练模型</span>
+<span class="token comment">#===========================</span>
+history <span class="token operator">=</span> model<span class="token punctuation">.</span>fit<span class="token punctuation">(</span>train_images<span class="token punctuation">,</span> train_labels<span class="token punctuation">,</span> batch<span class="token operator">=</span><span class="token number">32</span><span class="token punctuation">,</span>epochs<span class="token operator">=</span><span class="token number">10</span><span class="token punctuation">,</span>
+                    validation_data<span class="token operator">=</span><span class="token punctuation">(</span>test_images<span class="token punctuation">,</span> test_labels<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+plt<span class="token punctuation">.</span>plot<span class="token punctuation">(</span>history<span class="token punctuation">.</span>history<span class="token punctuation">[</span><span class="token string">"accuracy"</span><span class="token punctuation">]</span><span class="token punctuation">,</span> label<span class="token operator">=</span><span class="token string">"accuracy"</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>plot<span class="token punctuation">(</span>history<span class="token punctuation">.</span>history<span class="token punctuation">[</span><span class="token string">"val_accuracy"</span><span class="token punctuation">]</span><span class="token punctuation">,</span> label<span class="token operator">=</span><span class="token string">"val_accuracy"</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>xlabel<span class="token punctuation">(</span><span class="token string">"Epoch"</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>ylabel<span class="token punctuation">(</span><span class="token string">"Accuracy"</span><span class="token punctuation">)</span>
+<span class="token comment"># plt.ylim([0.0, 1])</span>
+plt<span class="token punctuation">.</span>title<span class="token punctuation">(</span><span class="token string">'model accuracy'</span><span class="token punctuation">)</span>
+plt<span class="token punctuation">.</span>legend<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+
+<span class="token comment">#===========================</span>
+<span class="token comment">#四.评估模型</span>
+<span class="token comment">#===========================</span>
+test_loss<span class="token punctuation">,</span> test_acc <span class="token operator">=</span> model<span class="token punctuation">.</span>evaluate<span class="token punctuation">(</span>test_images<span class="token punctuation">,</span> test_labels<span class="token punctuation">,</span> verbose<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'Test accuracy:'</span><span class="token punctuation">,</span> test_acc<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h2 id="机器学习算法"><a href="#机器学习算法" class="headerlink" title="机器学习算法"></a>机器学习算法</h2><h3 id="SVM算法"><a href="#SVM算法" class="headerlink" title="SVM算法"></a>SVM算法</h3><h4 id="简介-3"><a href="#简介-3" class="headerlink" title="简介"></a>简介</h4><p>​	支持向量机（SVM）是一种广泛使用的监督学习算法，可用于分类和回归。它的工作原理是找到一条决策边界，将不同类别的数据尽可能分开。</p>
+<p>​	使用 SVM 分类 CIFAR-10 数据集的一般步骤如下：</p>
+<ul>
+<li>准备数据：将 CIFAR-10 数据集加载到 Python 中，并将其转换为适合模型使用的格式。可能需要对图像进行预处理，例如缩放或归一化。</li>
+<li>选择 SVM 模型：选择要使用的 SVM 模型（例如线性 SVM 或非线性 SVM）和决策函数。</li>
+<li>训练模型：使用训练数据训练 SVM 模型。</li>
+<li>评估模型：使用测试数据评估SVM模型</li>
+</ul>
+<h4 id="模型构建"><a href="#模型构建" class="headerlink" title="模型构建"></a>模型构建</h4><p>​	我构建的svm模型如下：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">svm</span><span class="token punctuation">(</span>c<span class="token punctuation">,</span> kernel<span class="token operator">=</span><span class="token string">'poly'</span><span class="token punctuation">,</span> degree<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">if</span> kernel <span class="token operator">==</span> <span class="token string">'poly'</span><span class="token punctuation">:</span>
+        svm_model <span class="token operator">=</span> SVC<span class="token punctuation">(</span>kernel<span class="token operator">=</span>kernel<span class="token punctuation">,</span> degree<span class="token operator">=</span>degree<span class="token punctuation">,</span> C<span class="token operator">=</span>c<span class="token punctuation">)</span>
+    <span class="token keyword">else</span><span class="token punctuation">:</span>
+        svm_model <span class="token operator">=</span> SVC<span class="token punctuation">(</span>kernel<span class="token operator">=</span>kernel<span class="token punctuation">,</span> C<span class="token operator">=</span>c<span class="token punctuation">)</span>
+    svm_model<span class="token punctuation">.</span>fit<span class="token punctuation">(</span>X_train<span class="token punctuation">,</span> y_train<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> svm_model<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>​	我使用 sklearn 中的 SVC，构建 SVM 分类模型，令核函数的默认参数为 poly 多项式核函数。</p>
+<h4 id="模型训练"><a href="#模型训练" class="headerlink" title="模型训练"></a>模型训练</h4><p>当惩罚参数C为5时，模型的训练结果如下：</p>
+<p>![img_v2_20b0e3f9-349d-4fb8-aa81-24387d864bfg](/Users/zhangxiaoni/Library/Containers/com.bytedance.macos.feishu/Data/Library/Application Support/LarkShell/sdk_storage/407120424b82e9e84d5a9fe5984b53e7/resources/images/img_v2_20b0e3f9-349d-4fb8-aa81-24387d864bfg.jpg)</p>
+<p>此时模型在测试集上的正确率为0.47</p>
+<p>手动调节惩罚参数C，模型在测试集上的正确率也在不断变化如下：</p>
+<table>
+<thead>
+<tr>
+<th>C</th>
+<th>1</th>
+<th>3</th>
+<th>5</th>
+<th>7</th>
+<th>10</th>
+<th>50</th>
+<th>100</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>acc</td>
+<td>0.42</td>
+<td>0.45</td>
+<td>0.47</td>
+<td>0.38</td>
+<td>0.43</td>
+<td>0.41</td>
+<td>0.41</td>
+</tr>
+</tbody></table>
+<p>从上表可知，当C=5时正确率最高。</p>
+<h4 id="模型评估-3"><a href="#模型评估-3" class="headerlink" title="模型评估"></a>模型评估</h4><p>模型在训练集和测试集上的准确率如下：</p>
+<p>![img_v2_b2e15a6d-7ab1-4d11-b9fb-a207b972160g](/Users/zhangxiaoni/Library/Containers/com.bytedance.macos.feishu/Data/Library/Application Support/LarkShell/sdk_storage/407120424b82e9e84d5a9fe5984b53e7/resources/images/img_v2_b2e15a6d-7ab1-4d11-b9fb-a207b972160g.jpg)</p>
+<p>模型在测试集上的表现如下：</p>
+<p>![img_v2_20b0e3f9-349d-4fb8-aa81-24387d864bfg](/Users/zhangxiaoni/Library/Containers/com.bytedance.macos.feishu/Data/Library/Application Support/LarkShell/sdk_storage/407120424b82e9e84d5a9fe5984b53e7/resources/images/img_v2_20b0e3f9-349d-4fb8-aa81-24387d864bfg.jpg)</p>
+<h4 id="完整代码-3"><a href="#完整代码-3" class="headerlink" title="完整代码"></a>完整代码</h4><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> sklearn<span class="token punctuation">.</span>pipeline <span class="token keyword">import</span> make_pipeline
+<span class="token keyword">from</span> sklearn<span class="token punctuation">.</span>preprocessing <span class="token keyword">import</span> StandardScaler<span class="token punctuation">,</span> MinMaxScaler
+<span class="token keyword">import</span> numpy <span class="token keyword">as</span> np
+<span class="token keyword">from</span> sklearn<span class="token punctuation">.</span>svm <span class="token keyword">import</span> SVC
+<span class="token keyword">from</span> sklearn<span class="token punctuation">.</span>model_selection <span class="token keyword">import</span> train_test_split
+<span class="token keyword">from</span> sklearn<span class="token punctuation">.</span>model_selection <span class="token keyword">import</span> GridSearchCV
+<span class="token keyword">from</span> sklearn<span class="token punctuation">.</span>metrics <span class="token keyword">import</span> classification_report
+<span class="token keyword">from</span> time <span class="token keyword">import</span> time
+<span class="token keyword">import</span> tensorflow <span class="token keyword">as</span> tf
+<span class="token keyword">from</span> tensorflow <span class="token keyword">import</span> keras
+
+
+<span class="token comment">#===========================</span>
+<span class="token comment">#加载和标准化数据</span>
+<span class="token comment">#===========================</span>
+<span class="token punctuation">(</span>X_train<span class="token punctuation">,</span> y_train<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>X_test<span class="token punctuation">,</span> y_test<span class="token punctuation">)</span> <span class="token operator">=</span> tf<span class="token punctuation">.</span>keras<span class="token punctuation">.</span>datasets<span class="token punctuation">.</span>cifar10<span class="token punctuation">.</span>load_data<span class="token punctuation">(</span><span class="token punctuation">)</span>
+X_train <span class="token operator">=</span> X_train<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token number">10000</span><span class="token punctuation">]</span>
+y_train <span class="token operator">=</span> y_train<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token number">10000</span><span class="token punctuation">]</span>
+X_test <span class="token operator">=</span> X_test<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token number">2000</span><span class="token punctuation">]</span>
+y_test <span class="token operator">=</span> y_test<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token number">2000</span><span class="token punctuation">]</span>
+
+<span class="token keyword">print</span><span class="token punctuation">(</span>X_train<span class="token punctuation">.</span>shape<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>X_test<span class="token punctuation">.</span>shape<span class="token punctuation">)</span>
+
+X_train_length <span class="token operator">=</span> X_train<span class="token punctuation">.</span>shape<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">*</span> X_train<span class="token punctuation">.</span>shape<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span> <span class="token operator">*</span> X_train<span class="token punctuation">.</span>shape<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span>
+X_train <span class="token operator">=</span> np<span class="token punctuation">.</span>array<span class="token punctuation">(</span>X_train<span class="token punctuation">)</span><span class="token punctuation">.</span>reshape<span class="token punctuation">(</span>X_train<span class="token punctuation">.</span>shape<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span> X_train_length<span class="token punctuation">)</span>
+X_test <span class="token operator">=</span> np<span class="token punctuation">.</span>array<span class="token punctuation">(</span>X_test<span class="token punctuation">)</span><span class="token punctuation">.</span>reshape<span class="token punctuation">(</span>X_test<span class="token punctuation">.</span>shape<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span> X_train_length<span class="token punctuation">)</span>
+
+<span class="token keyword">print</span><span class="token punctuation">(</span>X_train<span class="token punctuation">.</span>shape<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>X_test<span class="token punctuation">.</span>shape<span class="token punctuation">)</span>
+
+
+<span class="token comment">#===========================</span>
+<span class="token comment">#构建、编译模型</span>
+<span class="token comment">#===========================</span>
+<span class="token keyword">def</span> <span class="token function">svm</span><span class="token punctuation">(</span>c<span class="token punctuation">,</span> kernel<span class="token operator">=</span><span class="token string">'poly'</span><span class="token punctuation">,</span> degree<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">if</span> kernel <span class="token operator">==</span> <span class="token string">'poly'</span><span class="token punctuation">:</span>
+        svm_model <span class="token operator">=</span> SVC<span class="token punctuation">(</span>kernel<span class="token operator">=</span>kernel<span class="token punctuation">,</span> degree<span class="token operator">=</span>degree<span class="token punctuation">,</span> C<span class="token operator">=</span>c<span class="token punctuation">)</span>
+    <span class="token keyword">else</span><span class="token punctuation">:</span>
+        svm_model <span class="token operator">=</span> SVC<span class="token punctuation">(</span>kernel<span class="token operator">=</span>kernel<span class="token punctuation">,</span> C<span class="token operator">=</span>c<span class="token punctuation">)</span>
+    svm_model<span class="token punctuation">.</span>fit<span class="token punctuation">(</span>X_train<span class="token punctuation">,</span> y_train<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> svm_model
+
+
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">"__main__"</span><span class="token punctuation">:</span>
+    kernel <span class="token operator">=</span> <span class="token string">'rbf'</span>
+    c <span class="token operator">=</span> <span class="token number">5.0</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'%s(C=%.1f):'</span> <span class="token operator">%</span> <span class="token punctuation">(</span>kernel<span class="token punctuation">,</span> c<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+    <span class="token comment">#===========================</span>
+    <span class="token comment">#训练模型</span>
+    <span class="token comment">#===========================</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'正在训练...'</span><span class="token punctuation">)</span>
+    start <span class="token operator">=</span> time<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    model <span class="token operator">=</span> svm<span class="token punctuation">(</span>c<span class="token punctuation">,</span> kernel<span class="token operator">=</span>kernel<span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'训练完成所需时间： %.2fs'</span> <span class="token operator">%</span> <span class="token punctuation">(</span>time<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span> start<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+    <span class="token comment">#===========================</span>
+    <span class="token comment">#评估模型</span>
+    <span class="token comment">#===========================</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'Train accuracy: %.2f'</span> <span class="token operator">%</span> model<span class="token punctuation">.</span>score<span class="token punctuation">(</span>X_train<span class="token punctuation">,</span> y_train<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'Test accuracy: %.2f'</span> <span class="token operator">%</span> model<span class="token punctuation">.</span>score<span class="token punctuation">(</span>X_test<span class="token punctuation">,</span> y_test<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+    <span class="token comment"># 测试集</span>
+    y_pred <span class="token operator">=</span> model<span class="token punctuation">.</span>predict<span class="token punctuation">(</span>X_test<span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>classification_report<span class="token punctuation">(</span>y_test<span class="token punctuation">,</span> y_pred<span class="token punctuation">,</span> digits<span class="token operator">=</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h3 id="KNN算法"><a href="#KNN算法" class="headerlink" title="KNN算法"></a>KNN算法</h3><h4 id="简介-4"><a href="#简介-4" class="headerlink" title="简介"></a>简介</h4><p>​	KNN算法的实现步骤如下：</p>
+<ul>
+<li><p>计算待分类的测试数据的特征向量与已知类别的训练样本的特征向量的欧氏距离。距离公式为：</p>
+<img src="/Users/zhangxiaoni/Library/Application Support/typora-user-images/image-20230115011443638.png" alt="image-20230115011443638" style="zoom:50%;">
+</li>
+<li><p>将距离从小到大排序。</p>
+</li>
+<li><p>去前k个值并统计k个值中每个类别出现的频数。</p>
+</li>
+<li><p>频数最大的训练样本的类别即为测试样本的与预测类别。</p>
+</li>
+</ul>
+<h4 id="模型构建-1"><a href="#模型构建-1" class="headerlink" title="模型构建"></a>模型构建</h4><p>​	调用 sklearn 中的 KNeighborsClassifier，设置 n_neighbors=10，即临近的节点数量 为 10。构建模型的代码如下：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">knn <span class="token operator">=</span> KNeighborsClassifier<span class="token punctuation">(</span>n_neighbors<span class="token operator">=</span><span class="token number">10</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h4 id="模型训练-1"><a href="#模型训练-1" class="headerlink" title="模型训练"></a>模型训练</h4><p>模型训练过程如下：</p>
+<p>![img_v2_aa0a16c1-2447-4fb2-8528-fbfffd3a832g](/Users/zhangxiaoni/Library/Containers/com.bytedance.macos.feishu/Data/Library/Application Support/LarkShell/sdk_storage/407120424b82e9e84d5a9fe5984b53e7/resources/images/img_v2_aa0a16c1-2447-4fb2-8528-fbfffd3a832g.jpg)</p>
+<h4 id="模型评估-4"><a href="#模型评估-4" class="headerlink" title="模型评估"></a>模型评估</h4><p>模型在训练集和测试集上的准确率如下：</p>
+<img src="/Users/zhangxiaoni/Library/Containers/com.bytedance.macos.feishu/Data/Library/Application Support/LarkShell/sdk_storage/407120424b82e9e84d5a9fe5984b53e7/resources/images/img_v2_789e6f0a-9b73-4e15-849a-abca1faabf4g.jpg" alt="img_v2_789e6f0a-9b73-4e15-849a-abca1faabf4g" style="zoom: 67%;">
+
+
+
+<h4 id="完整代码-4"><a href="#完整代码-4" class="headerlink" title="完整代码"></a>完整代码</h4><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> sklearn<span class="token punctuation">.</span>neighbors <span class="token keyword">import</span> KNeighborsClassifier
+<span class="token keyword">import</span> numpy <span class="token keyword">as</span> np
+<span class="token keyword">from</span> time <span class="token keyword">import</span> time
+<span class="token keyword">import</span> tensorflow <span class="token keyword">as</span> tf
+
+
+<span class="token comment">#===========================</span>
+<span class="token comment">#加载和标准化数据</span>
+<span class="token comment">#===========================</span>
+<span class="token punctuation">(</span>X_train<span class="token punctuation">,</span> y_train<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>X_test<span class="token punctuation">,</span> y_test<span class="token punctuation">)</span> <span class="token operator">=</span>tf<span class="token punctuation">.</span>keras<span class="token punctuation">.</span>datasets<span class="token punctuation">.</span>cifar10<span class="token punctuation">.</span>load_data<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token keyword">print</span><span class="token punctuation">(</span>X_train<span class="token punctuation">.</span>shape<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>X_test<span class="token punctuation">.</span>shape<span class="token punctuation">)</span>
+
+X_train_length <span class="token operator">=</span> X_train<span class="token punctuation">.</span>shape<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">*</span> X_train<span class="token punctuation">.</span>shape<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span> <span class="token operator">*</span> X_train<span class="token punctuation">.</span>shape<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span>
+X_train <span class="token operator">=</span> np<span class="token punctuation">.</span>array<span class="token punctuation">(</span>X_train<span class="token punctuation">)</span><span class="token punctuation">.</span>reshape<span class="token punctuation">(</span>X_train<span class="token punctuation">.</span>shape<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span> X_train_length<span class="token punctuation">)</span>
+X_test <span class="token operator">=</span> np<span class="token punctuation">.</span>array<span class="token punctuation">(</span>X_test<span class="token punctuation">)</span><span class="token punctuation">.</span>reshape<span class="token punctuation">(</span>X_test<span class="token punctuation">.</span>shape<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span> X_train_length<span class="token punctuation">)</span>
+
+<span class="token keyword">print</span><span class="token punctuation">(</span>X_train<span class="token punctuation">.</span>shape<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>X_test<span class="token punctuation">.</span>shape<span class="token punctuation">)</span>
+
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'training...'</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"neighbors_settings:"</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span>
+start <span class="token operator">=</span> time<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment">#===========================</span>
+<span class="token comment">#构建、编译模型</span>
+<span class="token comment">#===========================</span>
+knn <span class="token operator">=</span> KNeighborsClassifier<span class="token punctuation">(</span>n_neighbors<span class="token operator">=</span><span class="token number">10</span><span class="token punctuation">)</span>
+
+<span class="token comment">#===========================</span>
+<span class="token comment">#训练模型</span>
+<span class="token comment">#===========================</span>
+knn<span class="token punctuation">.</span>fit<span class="token punctuation">(</span>X_train<span class="token punctuation">,</span> y_train<span class="token punctuation">)</span>
+
+
+<span class="token comment">#===========================</span>
+<span class="token comment">#评估模型</span>
+<span class="token comment">#===========================</span>
+train_acc <span class="token operator">=</span> knn<span class="token punctuation">.</span>score<span class="token punctuation">(</span>X_train<span class="token punctuation">,</span> y_train<span class="token punctuation">)</span>
+test_acc <span class="token operator">=</span> knn<span class="token punctuation">.</span>score<span class="token punctuation">(</span>X_test<span class="token punctuation">,</span> y_test<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'training finished in %.2fs'</span> <span class="token operator">%</span> <span class="token punctuation">(</span>time<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span> start<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'train_accuracy:'</span><span class="token punctuation">,</span> train_acc<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'test_acccuacy:'</span><span class="token punctuation">,</span> test_acc<span class="token punctuation">)</span>
+
+y_pred <span class="token operator">=</span> knn<span class="token punctuation">.</span>predict<span class="token punctuation">(</span>X_test<span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>classification_report<span class="token punctuation">(</span>y_test<span class="token punctuation">,</span> y_pred<span class="token punctuation">,</span> digits<span class="token operator">=</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h2 id="结果对比分析"><a href="#结果对比分析" class="headerlink" title="结果对比分析"></a>结果对比分析</h2><h3 id="可视化图像对比"><a href="#可视化图像对比" class="headerlink" title="可视化图像对比"></a>可视化图像对比</h3><p>​	不同深度神经网络的表现对比如下：</p>
+<table>
+<thead>
+<tr>
+<th>深度神经网络</th>
+<th>acc</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>全连接网络</td>
+<td><img src="/Users/zhangxiaoni/Library/Containers/com.bytedance.macos.feishu/Data/Library/Application Support/LarkShell/sdk_storage/407120424b82e9e84d5a9fe5984b53e7/resources/images/img_v2_a4ac7ee4-f1da-47fa-b870-c0efba09a04g.jpg" alt="img_v2_a4ac7ee4-f1da-47fa-b870-c0efba09a04g" style="zoom:33%;"></td>
+</tr>
+<tr>
+<td>卷积神经网络</td>
+<td><img src="/Users/zhangxiaoni/Library/Containers/com.bytedance.macos.feishu/Data/Library/Application Support/LarkShell/sdk_storage/407120424b82e9e84d5a9fe5984b53e7/resources/images/img_v2_bed4c8ec-8e37-4ffd-8839-abcb5183df1g.jpg" alt="img_v2_bed4c8ec-8e37-4ffd-8839-abcb5183df1g" style="zoom:33%;"></td>
+</tr>
+<tr>
+<td>循环神经网络</td>
+<td><img src="/Users/zhangxiaoni/Library/Containers/com.bytedance.macos.feishu/Data/Library/Application Support/LarkShell/sdk_storage/407120424b82e9e84d5a9fe5984b53e7/resources/images/img_v2_80be0f27-a53b-45a9-9658-d9b2eb8f6abg.jpg" alt="img_v2_80be0f27-a53b-45a9-9658-d9b2eb8f6abg" style="zoom:33%;"></td>
+</tr>
+</tbody></table>
+<p>​	从以上结果可知，深度神经网络中，模型适配度：卷积神经网络&gt;全连接网络&gt;循环神经网络</p>
+<h3 id="acc对比"><a href="#acc对比" class="headerlink" title="acc对比"></a>acc对比</h3><p>​	不同算法在测试集上的准确率如下：</p>
+<table>
+<thead>
+<tr>
+<th>算法</th>
+<th>accuracy</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>全连接网络</td>
+<td>0.6424</td>
+</tr>
+<tr>
+<td>卷积神经网络</td>
+<td>0.6864</td>
+</tr>
+<tr>
+<td>循环神经网络</td>
+<td>0.4893</td>
+</tr>
+<tr>
+<td>SVM算法</td>
+<td>0.47</td>
+</tr>
+<tr>
+<td>KNN算法</td>
+<td>0.3386</td>
+</tr>
+</tbody></table>
+<p>​	从以上结果可知，本实验所选取的方案中，模型适配度：卷积神经网络&gt;全连接网络&gt;循环神经网络&gt;SVM算法&gt;KNN算法</p>
+<p>​	可以直观看出，本实验中深度学习模型效果好于机器学习模型。</p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">zxn</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://zxnstc.github.io/2022/09/13/shen-du-shen-jing-wang-luo-shi-yan-bao-gao/">http://zxnstc.github.io/2022/09/13/shen-du-shen-jing-wang-luo-shi-yan-bao-gao/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">zxn</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/S5%E8%AF%BE%E4%B8%8A/">
+                                    <span class="chip bg-color">S5课上</span>
+                                </a>
+                            
+                                <a href="/tags/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/">
+                                    <span class="chip bg-color">实验报告</span>
+                                </a>
+                            
+                                <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AF%BC%E8%AE%BA/">
+                                    <span class="chip bg-color">人工智能导论</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.png" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2022/09/13/sse-bian-cheng-lian-xi/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/%200.png" class="responsive-img" alt="并行程序设计-实验2.SSE编程练习">
+                        
+                        <span class="card-title">并行程序设计-实验2.SSE编程练习</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            并行 SSE编程
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-09-13
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%B9%B6%E8%A1%8C%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/" class="post-category">
+                                    并行程序设计
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E5%B9%B6%E8%A1%8C%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/">
+                        <span class="chip bg-color">并行程序设计</span>
+                    </a>
+                    
+                    <a href="/tags/S5%E8%AF%BE%E4%B8%8A/">
+                        <span class="chip bg-color">S5课上</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/">
+                        <span class="chip bg-color">实验报告</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2021/09/07/hello-world/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/%205.png" class="responsive-img" alt="blog 说明">
+                        
+                        <span class="card-title">blog 说明</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            💡这是我的博客的使用说明
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-09-07
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/blog%E8%AF%B4%E6%98%8E/" class="post-category">
+                                    blog说明
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/blog-%E8%AF%B4%E6%98%8E/">
+                        <span class="chip bg-color">blog 说明</span>
+                    </a>
+                    
+                    <a href="/tags/S6%E8%AF%BE%E4%B8%8A/">
+                        <span class="chip bg-color">S6课上</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8/">
+                        <span class="chip bg-color">工具使用</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2021-2023</span>
+            
+            <span id="year">2021</span>
+            <a href="/about" target="_blank">zxn</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">27k</span>&nbsp;字
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/zxnstc" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:xiaoni2001@163.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+	
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
