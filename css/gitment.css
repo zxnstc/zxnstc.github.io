@@ -106,7 +106,8 @@ a.gitment-header-issue-link:visited {
     box-shadow: 0 2px 2px 0 rgba(153, 153, 153, 0.14), 0 3px 1px -2px rgba(153, 153, 153, 0.2), 0 1px 5px 0 rgba(153, 153, 153, 0.12) !important;
 }
 
-.gitment-editor-footer .gitment-editor-submit, .gitment-comments-init-btn {
+.gitment-editor-footer .gitment-editor-submit,
+.gitment-comments-init-btn {
     color: #fff;
     background-color: #9c27b0;
     border-color: #9c27b0;
@@ -189,16 +190,21 @@ ol li {
     list-style-type: circle;
 }
 
-.gitment-markdown table, th, td {
+.gitment-markdown table,
+th,
+td {
     padding: 12px 13px;
     border: 1px solid #dfe2e5;
 }
 
-.gitment-markdown table, th, td {
+.gitment-markdown table,
+th,
+td {
     border: 0;
 }
 
-table tr:nth-child(2n), thead {
+table tr:nth-child(2n),
+thead {
     background-color: #fafafa;
 }
 
@@ -319,3 +325,55 @@ strong {
     background-color: #fcf8e3;
     padding: .2em;
 }
+
+/* 我加的 */
+.gitment-markdown h1 {
+    counter-reset: h2;
+}
+
+.gitment-markdown h2 {
+    counter-reset: h3;
+}
+
+.gitment-markdown h3 {
+    counter-reset: h4;
+}
+
+.gitment-markdown h4 {
+    counter-reset: h5;
+}
+
+.gitment-markdown h5 {
+    counter-reset: h6;
+}
+
+.gitment-markdown h2:before {
+    counter-increment: h2;
+    content: counter(h2);
+    margin-right: 2rem;
+}
+
+.gitment-markdown h3:before {
+    counter-increment: h3;
+    content: counter(h2) "."counter(h3);
+    margin-right: 2rem;
+}
+
+.gitment-markdown h4:before {
+    counter-increment: h4;
+    content: counter(h2) "."counter(h3) "."counter(h4);
+    margin-right: 2rem;
+}
+
+.gitment-markdown h5:before {
+    counter-increment: h5;
+    content: counter(h2) "."counter(h3) "."counter(h4) "."counter(h5);
+    margin-right: 2rem;
+}
+
+.gitment-markdown h6:before {
+    counter-increment: h6;
+    content: counter(h2) "."counter(h3) "."counter(h4) "."counter(h5) "."counter(h6);
+    margin-right: 2rem;
+}
+/* 我加的结束 */
