@@ -6,7 +6,7 @@
   <link href="http://zxnstc.github.io/atom.xml" rel="self"/>
   
   <link href="http://zxnstc.github.io/"/>
-  <updated>2023-03-22T09:04:55.901Z</updated>
+  <updated>2023-03-22T09:08:42.362Z</updated>
   <id>http://zxnstc.github.io/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="http://zxnstc.github.io/2023/03/22/qian-duan-wen-jian-lu-jing/"/>
     <id>http://zxnstc.github.io/2023/03/22/qian-duan-wen-jian-lu-jing/</id>
     <published>2023-03-22T01:25:00.000Z</published>
-    <updated>2023-03-22T09:04:55.901Z</updated>
+    <updated>2023-03-22T09:08:42.362Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="文件路径"><a href="#文件路径" class="headerlink" title="文件路径"></a>文件路径</h1><h2 id="相对路径"><a href="#相对路径" class="headerlink" title="相对路径"></a>相对路径</h2><p>在表示相对路径中，单点表示当前目录，双点表示上一级目录，反斜杠“/”表示分隔目录；</p><p>相对路径特殊符号有以下几种表示意义：</p><ul><li>以“./”开头，代表当前目录和文件目录在同一个目录里，“./”也可以省略不写！</li><li>以”../“开头：向上走一级，代表目标文件在当前文件所在的上一级目录；</li><li>以”../../“开头：向上走两级，代表父级的父级目录，也就是上上级目录，再说明白点，就是上一级目录的上一级目录</li><li>以”/”开头，代表根目录</li></ul><h2 id="vue路径别名"><a href="#vue路径别名" class="headerlink" title="vue路径别名"></a>vue路径别名</h2><p><img src="https://zxn-1313885264.cos.ap-beijing.myqcloud.com/images_typora//20230322170329_FfNiTe_image-20230322170328464.png" alt="image-20230322170328464"></p><p>效果：@直接到src文件夹</p><p><img src="https://zxn-1313885264.cos.ap-beijing.myqcloud.com/images_typora//20230322170421_jsP76k_image-20230322170420999.png" alt="image-20230322170420999"></p>]]></content>
+    <content type="html"><![CDATA[<h1 id="文件路径"><a href="#文件路径" class="headerlink" title="文件路径"></a>文件路径</h1><h2 id="相对路径"><a href="#相对路径" class="headerlink" title="相对路径"></a>相对路径</h2><p>在表示相对路径中，单点表示当前目录，双点表示上一级目录，反斜杠“/”表示分隔目录；</p><p>相对路径特殊符号有以下几种表示意义：</p><ul><li>以“./”开头，代表当前目录和文件目录在同一个目录里，“./”也可以省略不写！</li><li>以”../“开头：向上走一级，代表目标文件在当前文件所在的上一级目录；</li><li>以”../../“开头：向上走两级，代表父级的父级目录，也就是上上级目录，再说明白点，就是上一级目录的上一级目录</li><li>以”/”开头，代表根目录</li></ul><h2 id="vue路径别名"><a href="#vue路径别名" class="headerlink" title="vue路径别名"></a>vue路径别名</h2><p><img src="https://zxn-1313885264.cos.ap-beijing.myqcloud.com/images_typora//20230322170329_FfNiTe_image-20230322170328464.png" alt="配置"></p><p>效果：@直接到src文件夹</p><p><img src="https://zxn-1313885264.cos.ap-beijing.myqcloud.com/images_typora//20230322170421_jsP76k_image-20230322170420999.png" alt="使用"></p>]]></content>
     
     
       
