@@ -6,7 +6,7 @@
   <link href="http://zxnstc.github.io/atom.xml" rel="self"/>
   
   <link href="http://zxnstc.github.io/"/>
-  <updated>2023-03-25T03:06:25.310Z</updated>
+  <updated>2023-03-26T07:48:45.398Z</updated>
   <id>http://zxnstc.github.io/</id>
   
   <author>
@@ -15,6 +15,62 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>research-colab使用</title>
+    <link href="http://zxnstc.github.io/2023/03/26/2023-03-26-research-colab-shi-yong/"/>
+    <id>http://zxnstc.github.io/2023/03/26/2023-03-26-research-colab-shi-yong/</id>
+    <published>2023-03-26T04:26:00.000Z</published>
+    <updated>2023-03-26T07:48:45.398Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="colab使用"><a href="#colab使用" class="headerlink" title="colab使用"></a>colab使用</h1><h2 id="导入数据"><a href="#导入数据" class="headerlink" title="导入数据"></a>导入数据</h2><pre class="line-numbers language-text" data-language="text"><code class="language-text">import glob# Importing drive method from colab for accessing google drivefrom google.colab import drive<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre><pre class="line-numbers language-text" data-language="text"><code class="language-text"># Mounting drive# This will require authentication : Follow the steps as guideddrive.mount('/Data')<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre><p>最后查看一下导入成功了没。</p><pre class="line-numbers language-text" data-language="text"><code class="language-text">!ls /Data/'My Drive'<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>之后文件地址</p><pre class="line-numbers language-none"><code class="language-none">'/Data/My Drive/graph_code/data/node.csv'<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;colab使用&quot;&gt;&lt;a href=&quot;#colab使用&quot; class=&quot;headerlink&quot; title=&quot;colab使用&quot;&gt;&lt;/a&gt;colab使用&lt;/h1&gt;&lt;h2 id=&quot;导入数据&quot;&gt;&lt;a href=&quot;#导入数据&quot; class=&quot;headerlink&quot; titl</summary>
+      
+    
+    
+    
+    <category term="research" scheme="http://zxnstc.github.io/categories/research/"/>
+    
+    
+    <category term="S6课上" scheme="http://zxnstc.github.io/tags/S6%E8%AF%BE%E4%B8%8A/"/>
+    
+    <category term="research" scheme="http://zxnstc.github.io/tags/research/"/>
+    
+    <category term="工具总结" scheme="http://zxnstc.github.io/tags/%E5%B7%A5%E5%85%B7%E6%80%BB%E7%BB%93/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>research-图机器学习NetworkX包工具使用</title>
+    <link href="http://zxnstc.github.io/2023/03/26/2023-03-26-research-tu-ji-qi-xue-xi-networkx-bao-gong-ju-shi-yong/"/>
+    <id>http://zxnstc.github.io/2023/03/26/2023-03-26-research-tu-ji-qi-xue-xi-networkx-bao-gong-ju-shi-yong/</id>
+    <published>2023-03-26T01:26:00.000Z</published>
+    <updated>2023-03-26T07:42:55.139Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="图机器学习NetworkX包工具使用"><a href="#图机器学习NetworkX包工具使用" class="headerlink" title="图机器学习NetworkX包工具使用"></a>图机器学习NetworkX包工具使用</h1><h2 id="1-安装"><a href="#1-安装" class="headerlink" title="1 安装"></a>1 安装</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">pip install networkx<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><h2 id="2-创建图"><a href="#2-创建图" class="headerlink" title="2 创建图"></a>2 创建图</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> networkx <span class="token keyword">as</span> nxG<span class="token operator">=</span>nx<span class="token punctuation">.</span>Graph<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">#无向图</span><span class="token comment">#G=nx.DiGraph() #有向图</span><span class="token comment">#G=nx.MultiGraph() #多边无向图</span><span class="token comment">#G=nx.MultiDiGraph() #多边有向图</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><h2 id="3-点node"><a href="#3-点node" class="headerlink" title="3 点node"></a>3 点node</h2><p>可以每次添加一个节点：</p><pre class="line-numbers language-text" data-language="text"><code class="language-text">G.add_node(1)<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>或者从可迭代容器(<a href="https://link.zhihu.com/?target=https://docs.python.org/3/glossary.html%23term-iterable">iterable</a>)（如列表）中添加多个节点</p><pre class="line-numbers language-python" data-language="python"><code class="language-python">G<span class="token punctuation">.</span>add_nodes_from<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>也可以同时添加包含节点属性的节点，如果容器以<code>(node, node_attribute_dict)</code>2元组的形式</p><pre class="line-numbers language-python" data-language="python"><code class="language-python">G<span class="token punctuation">.</span>add_nodes_from<span class="token punctuation">(</span><span class="token punctuation">[</span>    <span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token string">"color"</span><span class="token punctuation">:</span> <span class="token string">"red"</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>    <span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token string">"color"</span><span class="token punctuation">:</span> <span class="token string">"green"</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre><p>一个图中的节点可以合并到另一个图</p><pre class="line-numbers language-python" data-language="python"><code class="language-python">H <span class="token operator">=</span> nx<span class="token punctuation">.</span>path_graph<span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span>G<span class="token punctuation">.</span>add_nodes_from<span class="token punctuation">(</span>H<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><p>现在图<code>G</code>中节点包括原<code>H</code>中的节点。相反，也可以将整个图<code>H</code>作为图<code>G</code>中的一个节点</p><pre class="line-numbers language-python" data-language="python"><code class="language-python">G<span class="token punctuation">.</span>add_node<span class="token punctuation">(</span>H<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><h2 id="4-边edge"><a href="#4-边edge" class="headerlink" title="4 边edge"></a>4 边edge</h2><p>图也可以以添加一条边的形式增长</p><pre class="line-numbers language-python" data-language="python"><code class="language-python">G<span class="token punctuation">.</span>add_edge<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span>e <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span>G<span class="token punctuation">.</span>add_edge<span class="token punctuation">(</span><span class="token operator">*</span>e<span class="token punctuation">)</span>  <span class="token comment"># unpack edge tuple*</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre><p>通过接入边的列表增长</p><pre class="line-numbers language-python" data-language="python"><code class="language-python">G<span class="token punctuation">.</span>add_edges_from<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>或者通过添加任何边的ebunch。</p><p>ebunch是边的元组的任何可迭代容器。边的元组可以是 2 元组节点，也可以是 3 元组：在 2 个节点后跟边的属性字典，如 <code>(2, 3,{'weight':3.1415})</code>。</p><pre class="line-numbers language-text" data-language="text"><code class="language-text">G.add_edges_from(H.edges)<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>添加现有节点或边时没有冲突。 例如，在删除所有节点和边之后，</p><pre class="line-numbers language-text" data-language="text"><code class="language-text">G.clear()<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>添加新的节点/边时，NetworkX 悄悄地忽略任何已经存在的。</p><pre class="line-numbers language-text" data-language="text"><code class="language-text">G.add_edges_from([(1, 2), (1, 3)])G.add_node(1)G.add_edge(1, 2)G.add_node("spam")        # adds node "spam"G.add_nodes_from("spam")  # adds 4 nodes: 's', 'p', 'a', 'm'G.add_edge(3, 'm')<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>此时，图<code>G</code> 包含 8 个节点和 3 条边</p><pre class="line-numbers language-text" data-language="text"><code class="language-text">&gt;&gt;&gt; G.number_of_nodes()8&gt;&gt;&gt; G.number_of_edges()3<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre><h2 id="5-检查图的元素"><a href="#5-检查图的元素" class="headerlink" title="5 检查图的元素"></a>5 检查图的元素</h2><p>四个基本图形属性：<code>G.nodes</code>、<code>G.edges</code>、<code>G.adj</code> 和 <code>G.degree</code></p><pre class="line-numbers language-text" data-language="text"><code class="language-text">&gt;&gt;&gt; list(G.nodes)[1, 2, 3, 'spam', 's', 'p', 'a', 'm']&gt;&gt;&gt; list(G.edges)[(1, 2), (1, 3), (3, 'm')]&gt;&gt;&gt; list(G.adj[1])  # or list(G.neighbors(1))[2, 3]&gt;&gt;&gt; G.degree[1]  # the number of edges incident to 12<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><h2 id="6-从图中删除元素"><a href="#6-从图中删除元素" class="headerlink" title="6 从图中删除元素"></a>6 从图中删除元素</h2><pre class="line-numbers language-text" data-language="text"><code class="language-text">&gt;&gt;&gt; G.remove_node(2)&gt;&gt;&gt; G.remove_nodes_from("spam")&gt;&gt;&gt; list(G.nodes)[1, 3, 'spam']&gt;&gt;&gt; G.remove_edge(1, 3)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre><h2 id="绘制图"><a href="#绘制图" class="headerlink" title="绘制图"></a>绘制图</h2><p>首先导入 Matplotlib 的绘图接口（pylab 也可以）</p><pre class="line-numbers language-text" data-language="text"><code class="language-text">import matplotlib.pyplot as plt<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>要测试 <code>nx_pylab</code> 是否成功导入，请使用以下方法之一绘制图<code>G</code></p><pre class="line-numbers language-text" data-language="text"><code class="language-text">G = nx.petersen_graph()subax1 = plt.subplot(121)nx.draw(G, with_labels=True, font_weight='bold')subax2 = plt.subplot(122)nx.draw_shell(G, nlist=[range(5, 10), range(5)], with_labels=True, font_weight='bold')<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>交互式操作时上述图像会自动展示。 注意如果没有在交互模式下使用 matplotlib，可能需要下面命令展示图形</p><pre class="line-numbers language-text" data-language="text"><code class="language-text">plt.show()  options = {    'node_color': 'black',    'node_size': 100,    'width': 3,}subax1 = plt.subplot(221)nx.draw_random(G, **options)subax2 = plt.subplot(222)nx.draw_circular(G, **options)subax3 = plt.subplot(223)nx.draw_spectral(G, **options)subax4 = plt.subplot(224)nx.draw_shell(G, nlist=[range(5,10), range(5)], **options)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;图机器学习NetworkX包工具使用&quot;&gt;&lt;a href=&quot;#图机器学习NetworkX包工具使用&quot; class=&quot;headerlink&quot; title=&quot;图机器学习NetworkX包工具使用&quot;&gt;&lt;/a&gt;图机器学习NetworkX包工具使用&lt;/h1&gt;&lt;h2 id=&quot;1</summary>
+      
+    
+    
+    
+    <category term="research" scheme="http://zxnstc.github.io/categories/research/"/>
+    
+    
+    <category term="S6课上" scheme="http://zxnstc.github.io/tags/S6%E8%AF%BE%E4%B8%8A/"/>
+    
+    <category term="research" scheme="http://zxnstc.github.io/tags/research/"/>
+    
+    <category term="工具总结" scheme="http://zxnstc.github.io/tags/%E5%B7%A5%E5%85%B7%E6%80%BB%E7%BB%93/"/>
+    
+  </entry>
   
   <entry>
     <title>计算机网络-面试常见问题2</title>
@@ -433,6 +489,34 @@
     <category term="实验报告" scheme="http://zxnstc.github.io/tags/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/"/>
     
     <category term="人工智能导论" scheme="http://zxnstc.github.io/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AF%BC%E8%AE%BA/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>操作系统-第一章.计算机系统概述</title>
+    <link href="http://zxnstc.github.io/2022/09/10/2022-09-10-cao-zuo-xi-tong-di-yi-zhang.ji-suan-ji-xi-tong-gai-shu/"/>
+    <id>http://zxnstc.github.io/2022/09/10/2022-09-10-cao-zuo-xi-tong-di-yi-zhang.ji-suan-ji-xi-tong-gai-shu/</id>
+    <published>2022-09-10T01:26:00.000Z</published>
+    <updated>2023-03-26T07:43:22.705Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="第一章-计算机系统概述"><a href="#第一章-计算机系统概述" class="headerlink" title="第一章.计算机系统概述"></a>第一章.计算机系统概述</h1><h2 id="1-操作系统的概念、功能"><a href="#1-操作系统的概念、功能" class="headerlink" title="1 操作系统的概念、功能"></a>1 操作系统的概念、功能</h2><h3 id="1-1-概念（定义）"><a href="#1-1-概念（定义）" class="headerlink" title="1.1 概念（定义）"></a>1.1 概念（定义）</h3><p>操作系统是指：</p><ul><li>控制和<strong>管理</strong>整个计算机系统的<strong>硬件和软件</strong>资源，并合理的组织调度计算机的工作和资源的分配；  —-操作系统是系统资源的管理者</li><li>以<strong>提供给用户和其他软件方便的接口和环境；</strong>——向上提供方便易用的服务</li><li>它是计算机系统中最基本的<strong>系统软件</strong>——是最接近硬件的一层软件</li></ul><p>![2表示用户通过命令可直接使用操作系统的服务（联机命令借口：说一句做一句+脱机命令借口：说一句做一堆）](/Users/zhangxiaoni/Library/Application Support/typora-user-images/image-20230325152653264.png)</p><h3 id="1-2功能"><a href="#1-2功能" class="headerlink" title="1.2功能"></a>1.2功能</h3><p><img src="https://zxn-1313885264.cos.ap-beijing.myqcloud.com/images_typora//20230325155245_kkNJOx_image-20230325155244885.png" alt="image-20230325155244885"></p><p>程序接口+命令接口=用户接口</p><h2 id="2操作系统的特征"><a href="#2操作系统的特征" class="headerlink" title="2操作系统的特征"></a>2操作系统的特征</h2><h3 id="2-1并发"><a href="#2-1并发" class="headerlink" title="2.1并发"></a>2.1并发</h3><p>并发：两个/多个事件在同一时间间隔内发生。宏观上同时发生，微观上交替发生</p><p>并行：两个/多个事件在同一时刻同时发生</p><blockquote><p><strong>单核</strong>CPU同一时刻只能执行一个程序，每个程序只能<strong>并发</strong>的执行</p><p><strong>多核</strong>CPU同一时刻可以同时执行多个程序，多个程序可以<strong>并行</strong>的执行</p><p>比如Intel 的第八代13 处理器就是4 核CPU，意味着可以并行地执行4个程序</p></blockquote><h3 id="2-2共享"><a href="#2-2共享" class="headerlink" title="2.2共享"></a>2.2共享</h3><p><img src="https://zxn-1313885264.cos.ap-beijing.myqcloud.com/images_typora//20230325162934_4jiL41_image-20230325162934407.png"></p><p> 所谓的<strong>“同时”往往是宏观</strong>上的，而在微观上，这些进程可能是交替地对该资源进行访问的（即分时共享）</p><p> 生活实例：</p><p>互斥共享方式：使用QQ和微信视频。同一时间段内摄像头只能分配给其中一个进程。</p><p>同时共享方式：使用QQ发送文件A，同时使用微信发送文件B。宏观上看，两边都在同时读取并发送文件，说明两个进程都在访问硬盘资源，从中读取数据。微观上看，两个进程是交替着访问硬盘的。</p><h3 id="2-3虚拟"><a href="#2-3虚拟" class="headerlink" title="2.3虚拟"></a>2.3虚拟</h3><p>虚拟技术 空分复用技术（虚拟存储器技术）  时分复用技术 （虚拟处理器技术）</p><h3 id="2-4异步"><a href="#2-4异步" class="headerlink" title="2.4异步"></a>2.4异步</h3><p><img src="https://zxn-1313885264.cos.ap-beijing.myqcloud.com/images_typora//20230325164032_xDBcPE_image-20230325164031717.png" alt="image-20230325164031717"></p><h2 id="3-操作系统发展和分类"><a href="#3-操作系统发展和分类" class="headerlink" title="3 操作系统发展和分类"></a>3 操作系统发展和分类</h2><h2 id="4-操作系统的运行机制"><a href="#4-操作系统的运行机制" class="headerlink" title="4 操作系统的运行机制"></a>4 操作系统的运行机制</h2>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;第一章-计算机系统概述&quot;&gt;&lt;a href=&quot;#第一章-计算机系统概述&quot; class=&quot;headerlink&quot; title=&quot;第一章.计算机系统概述&quot;&gt;&lt;/a&gt;第一章.计算机系统概述&lt;/h1&gt;&lt;h2 id=&quot;1-操作系统的概念、功能&quot;&gt;&lt;a href=&quot;#1-操作系</summary>
+      
+    
+    
+    
+    <category term="操作系统" scheme="http://zxnstc.github.io/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    
+    
+    <category term="S5课上" scheme="http://zxnstc.github.io/tags/S5%E8%AF%BE%E4%B8%8A/"/>
+    
+    <category term="知识总结" scheme="http://zxnstc.github.io/tags/%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/"/>
+    
+    <category term="操作系统" scheme="http://zxnstc.github.io/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
     
   </entry>
   
