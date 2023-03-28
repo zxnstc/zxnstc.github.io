@@ -391,7 +391,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    577
+                    771
                 </div>
                 
 
@@ -434,7 +434,22 @@
 <p>同时共享方式：使用QQ发送文件A，同时使用微信发送文件B。宏观上看，两边都在同时读取并发送文件，说明两个进程都在访问硬盘资源，从中读取数据。微观上看，两个进程是交替着访问硬盘的。</p>
 <h3 id="2-3虚拟"><a href="#2-3虚拟" class="headerlink" title="2.3虚拟"></a>2.3虚拟</h3><p>虚拟技术 空分复用技术（虚拟存储器技术）  时分复用技术 （虚拟处理器技术）</p>
 <h3 id="2-4异步"><a href="#2-4异步" class="headerlink" title="2.4异步"></a>2.4异步</h3><p><img src="https://zxn-1313885264.cos.ap-beijing.myqcloud.com/images_typora//20230325164032_xDBcPE_image-20230325164031717.png" alt="image-20230325164031717"></p>
-<h2 id="3-操作系统发展和分类"><a href="#3-操作系统发展和分类" class="headerlink" title="3 操作系统发展和分类"></a>3 操作系统发展和分类</h2><h2 id="4-操作系统的运行机制"><a href="#4-操作系统的运行机制" class="headerlink" title="4 操作系统的运行机制"></a>4 操作系统的运行机制</h2>
+<h2 id="3-操作系统发展和分类"><a href="#3-操作系统发展和分类" class="headerlink" title="3 操作系统发展和分类"></a>3 操作系统发展和分类</h2><h2 id="4-操作系统的运行机制"><a href="#4-操作系统的运行机制" class="headerlink" title="4 操作系统的运行机制"></a>4 操作系统的运行机制</h2><p>内核态  内核程序  执行特权指令  psw=1。内核态下既可以执行特权指令，也可以执行非特权指令</p>
+<p>用户态  应用程序  执行非特权指令。psw=0</p>
+<p>程序状态寄存器 psw</p>
+<p>内核态 -&gt;用户态。 一条修改psw的特权指令</p>
+<p>用户态 -&gt;内核态。 由中断引起，硬件自动完成</p>
+<h2 id="5-中断和异常"><a href="#5-中断和异常" class="headerlink" title="5 中断和异常"></a>5 中断和异常</h2><p>内中断 cpu内部。 也称<strong>异常</strong></p>
+<p>当前执行的指令是非法的</p>
+<p>陷入指令（不是特权指令，是在用户态下执行的。   系统调用</p>
+<p>外中断 cpu外部。 称为<strong>中断</strong></p>
+<p>时钟中断 </p>
+<p>来自io设备 输入输出任务完成</p>
+<p><img src="https://zxn-1313885264.cos.ap-beijing.myqcloud.com/images_typora//20230328105804_YvhrgX_image-20230328105738435.png"></p>
+<p><img src="https://zxn-1313885264.cos.ap-beijing.myqcloud.com/images_typora//20230328105923_WsTZK5_image-20230328105923208.png"></p>
+<h2 id="6-系统调用"><a href="#6-系统调用" class="headerlink" title="6 系统调用"></a>6 系统调用</h2><h2 id="7操作系统体系结构"><a href="#7操作系统体系结构" class="headerlink" title="7操作系统体系结构"></a>7操作系统体系结构</h2><p>大内核 微内核</p>
+<p><img src="https://zxn-1313885264.cos.ap-beijing.myqcloud.com/images_typora//20230328111046_HHR03S_image-20230328111046354.png"></p>
+
                 
             </div>
             <hr/>
@@ -984,7 +999,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">49.5k</span>&nbsp;字
+                class="white-color">49.7k</span>&nbsp;字
             
             
             
