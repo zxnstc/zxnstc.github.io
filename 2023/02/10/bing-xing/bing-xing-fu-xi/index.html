@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="并行程序设计-实验5.MPI编程练习, ZXN">
+    <meta name="keywords" content="并行程序设计-并行复习, ZXN">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>并行程序设计-实验5.MPI编程练习 | ZXN</title>
+    <title>并行程序设计-并行复习 | ZXN</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -228,12 +228,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/%201.png')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/%207.png')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">并行程序设计-实验5.MPI编程练习</h1>
+                    <h1 class="description center-align post-title">并行程序设计-并行复习</h1>
                 </div>
             </div>
         </div>
@@ -353,12 +353,12 @@
                                 <span class="chip bg-color">并行程序设计</span>
                             </a>
                         
-                            <a href="/tags/S5%E8%AF%BE%E4%B8%8A/">
-                                <span class="chip bg-color">S5课上</span>
+                            <a href="/tags/%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/">
+                                <span class="chip bg-color">知识总结</span>
                             </a>
                         
-                            <a href="/tags/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/">
-                                <span class="chip bg-color">实验报告</span>
+                            <a href="/tags/S5%E5%A4%8D%E4%B9%A0/">
+                                <span class="chip bg-color">S5复习</span>
                             </a>
                         
                     </div>
@@ -382,7 +382,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-11-28
+                    2023-02-10
                 </div>
                 
 
@@ -391,7 +391,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    3.5k
+                    3.1k
                 </div>
                 
 
@@ -411,435 +411,365 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="MPI-编程练习实验报告"><a href="#MPI-编程练习实验报告" class="headerlink" title="MPI 编程练习实验报告"></a>MPI 编程练习实验报告</h1><h2 id="实验内容"><a href="#实验内容" class="headerlink" title="实验内容"></a>实验内容</h2><ul>
-<li>实现第5章课件中的梯形积分法的MPI编程熟悉并掌握MPI编程方法，规模自行设定，可探讨不同规模对不同实现方式的影响。</li>
-<li>对于课件中“多个数组排序”的任务不均衡案例进行MPI编程实现，规模可自己设定、调整。</li>
-<li>附加：实现高斯消去法解线性方程组的MPI编程，与SSE（或AVX）编程结合，并与Pthread、OpenMP（结合SSE或AVX）版本对比，规模自己设定。</li>
+                <h1 id="并行复习"><a href="#并行复习" class="headerlink" title="并行复习"></a>并行复习</h1><h2 id="并行硬件与并行软件"><a href="#并行硬件与并行软件" class="headerlink" title="并行硬件与并行软件"></a>并行硬件与并行软件</h2><h3 id="冯诺依曼瓶颈"><a href="#冯诺依曼瓶颈" class="headerlink" title="冯诺依曼瓶颈"></a>冯诺依曼瓶颈</h3><p>cpu去主存储器中去指令的过程比cpu执行指令要慢很多</p>
+<p>三方面改进：</p>
+<h4 id="缓存"><a href="#缓存" class="headerlink" title="缓存"></a>缓存</h4><p>CPU Cache是一组相比于 CPU 主存更能快速访问的内存区域</p>
+<h4 id="虚拟内存（了解）"><a href="#虚拟内存（了解）" class="headerlink" title="虚拟内存（了解）"></a>虚拟内存（了解）</h4><p>主存中放不下，把不常用的放到虚拟内存中</p>
+<h4 id="低层次并行"><a href="#低层次并行" class="headerlink" title="低层次并行"></a>低层次并行</h4><p>1）指令级并行 </p>
+<p>不是多核</p>
+<p>让多个处理器或者功能单元 同时执行指令</p>
+<p>两种实现方式</p>
+<ul>
+<li><p>流水线</p>
+<ul>
+<li><p>![image-20230220164322035](/Users/zhangxiaoni/Library/Application Support/typora-user-images/image-20230220164322035.png)</p>
+<p>7000ns➡️1006ns</p>
+</li>
 </ul>
-<h2 id="实验一：梯形积分"><a href="#实验一：梯形积分" class="headerlink" title="实验一：梯形积分"></a>实验一：梯形积分</h2><h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><p>本实验分别使用MPI、Pthread和OpenMP三种方法，实现了梯形积分法。并通过调整梯形积分法划分成小梯形的个数规模，来比较不同编程方式的异同。</p>
-<p>具体案例为：对于下图中给出的梯形积分法，实现并行编程。每个线程或进程计算a到b区间中的某一段的梯形面积，最后求取全局和得到结果。</p>
-<p>![image-20230102165554905](/Users/zhangxiaoni/Library/Application Support/typora-user-images/image-20230102165554905.png)</p>
-<h3 id="程序设计与实现"><a href="#程序设计与实现" class="headerlink" title="程序设计与实现"></a>程序设计与实现</h3><h4 id="MPI实现"><a href="#MPI实现" class="headerlink" title="MPI实现"></a>MPI实现</h4><p>实验共用到了3台主机的进程进行计算。每个进程根据自己的my_rank进程号得到自身的计算任务，完成局部和的计算后，（除0号进程外）使用MPI_Send将结果发送至0号进程；0号进程使用MPI_Recv阻塞式地接受其他进程传回的结果，并计算全局和。同时，0号进程还完成计时、输出结果的任务。具体的实现代码如下：</p>
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;stdio.h&gt;
-#include &lt;algorithm&gt;
-#include&lt;cstdlib&gt;
-#include&lt;ctime&gt;
-#include&lt;mpi.h&gt;
-
-//待积分的f(x)
-double f(double x) {
-    return 1;
-}
-
-//计算局部和
-double Trap(double a, double b, int count, double h) {
-    double my_result, x;
-    int i;
-    my_result = (f(a) + f(b)) / 2.0;
-    //局部求和，避免过多通信
-    for (i = 1; i &lt; count; i++) {
-        x = a + i * h;
-        my_result += f(x);
-    }
-    my_result *= h;
-    return my_result;
-}
-
-//主函数
-int main()
-{
-    int my_rank, comm_sz, n = 1000;
-    double a = 0, b = 5000;
-    double h = (b - a) / n;
-    double global_result;
-    clock_t start, end;
-    double time;
-
-    MPI_Init(NULL, NULL);
-    MPI_Comm_rank(MPI_COMM_WORLD, &amp;my_rank);
-    MPI_Comm_size(MPI_COMM_WORLD, &amp;comm_sz);
-
-    //0号进程开始计时
-    if (my_rank == 0) {
-        start = clock();
-    }
-    int local_n = n / comm_sz;
-    int local_a = a + my_rank * local_n * h;
-    int local_b = local_a + local_n * h;
-    //将未除尽的任务数分配给最后一个进程
-    if (my_rank == comm_sz - 1) {
-        local_n = n - (comm_sz - 1) * local_n;
-        local_b = b;
-    }
-    //每个进程计算自身分配的任务的局部和
-    double local_result = Trap(local_a, local_b, local_n, h);
-    //其他进程将局部和发送给0号进程
-    if (my_rank != 0) {
-        MPI_Send(&amp;local_result, 1, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD);
-    }
-    //0号进程收集局部和并求全局和
-    else {
-        global_result = local_result;
-        for (int source = 1; source &lt; comm_sz; source++)
-        {
-            MPI_Recv(&amp;local_result, 1, MPI_DOUBLE, source, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
-            global_result += local_result;
-        }
-        //完成计算，0号进程停止计时
-        end = clock();
-        time = (end - start) / CLOCKS_PER_SEC;
-    }
-    //0号进程打印出结果
-    if (my_rank == 0) {
-        printf("划分成小梯形的块数: %d\n", n);
-        printf("计算结果是: %.15e\n", global_result);
-        printf("总共耗时: %f\n\nms", time);
-    }
-
-    MPI_Finalize();
-    return 0;
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h4 id="Pthread实现"><a href="#Pthread实现" class="headerlink" title="Pthread实现"></a>Pthread实现</h4><p>对于每个线程，先求局部和最后全局求和，避免过多通信。同时注意给全局和加锁保证结果的正确性。代码实现如下：</p>
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">void pthread_trap(double a,double b,int n,double*global_result_p,int thread_count){
-    pthread_param params[thread_count];
-    pthread_t threads[thread_count];
-    pthread_mutex_t amutex;
-    pthread_mutex_init(&amp;amutex,NULL);
-    for(int i=0;i&lt;thread_count;i++){
-        //为每个线程参数赋值
-        params[i].a=a;
-        params[i].b=b;
-        params[i].n=n;
-        params[i].global_result_p=global_result_p;
-        params[i].thread_count=thread_count;
-        params[i].my_rank=i;
-        params[i].amutex=&amp;amutex;
-        //创建线程
-        pthread_create(&amp;threads[i],NULL,pthread_trap,(void*)&amp;params[i]);
-    }
-    //销毁线程
-    for(int i=0;i&lt;thread_count;i++){
-        pthread_join(threads[i],NULL);
-    }
-    //销毁互斥量锁
-    pthread_mutex_destroy(&amp;amutex);
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>其中每个线程执行的函数如下：</p>
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">void* pthread_trap(void* p){
-    //恢复获取参数
-    pthread_param* params=(pthread_param*) p;
-    double h,x,my_result;
-    double local_a,local_b;
-    int local_n;
-    int my_rank=params-&gt;my_rank;
-    int thread_count=params-&gt;thread_count;
-    h=(params-&gt;b-params-&gt;a)/params-&gt;n;
-    local_n=params-&gt;n/thread_count;
-    local_a=params-&gt;a+my_rank*local_n*h;
-    local_b=local_a+local_n*h;
-    my_result=(f(local_a)+f(local_b))/2.0;
-    //先局部求和，避免过多通信
-    for(int i=1;i&lt;=local_n-1;i++){
-        x=local_a+i*h;
-        my_result+=f(x);
-    }
-    my_result=my_result*h;
-    //使用互斥量 amutex 上锁保证全局求和正确性
-    pthread_mutex_lock(params-&gt;amutex);
-    *params-&gt;global_result_p+=my_result;
-    pthread_mutex_unlock(params-&gt;amutex);
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h4 id="OpenMP实现"><a href="#OpenMP实现" class="headerlink" title="OpenMP实现"></a>OpenMP实现</h4><p>利用OpenMP的相关方法实现多线程并行编程，对于每个线程，先求局部和最后全局求和，避免过多通信。同时注意给全局和加锁保证结果的正确性。代码实现如下：</p>
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#pragma omp parallel num_threads(thread_count)
-trap(a,b,n,&amp;global_result);
-
-void trap(double a,double b,int n,double*global_result_p){
-    double h,x,my_result;
-    double local_a,local_b;
-    int local_n;
-    int my_rank=omp_get_thread_num();
-    int thread_count=omp_get_num_threads();
-    h=(b-a)/n;
-    local_n=n/thread_count;
-    local_a=a+my_rank*local_n*h;
-    local_b=local_a+local_n*h;
-    my_result=(f(local_a)+f(local_b))/2.0;
-    //先局部求和，避免过多通信
-    for(int i=1;i&lt;=local_n-1;i++){
-        x=local_a+i*h;
-        my_result+=f(x);
-    }
-    my_result=my_result*h;
-    //用临界区保证全局求和正确性
-    #pragma omp critical
-        *global_result_p+=my_result;
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h3 id="实验设计"><a href="#实验设计" class="headerlink" title="实验设计"></a>实验设计</h3><h4 id="不同任务规模下三种方法执行时间对比"><a href="#不同任务规模下三种方法执行时间对比" class="headerlink" title="不同任务规模下三种方法执行时间对比"></a>不同任务规模下三种方法执行时间对比</h4><p>待计算函数为 f(x) = 1；待计算区间为0到5000。将积分区域分别划分为100，1000，10000，100000个小梯形，比较3种方法在这些不同的任务规模下执行效率的差异。</p>
-<h4 id="计时方法"><a href="#计时方法" class="headerlink" title="计时方法"></a>计时方法</h4><ul>
-<li><p>MPI版本使用的计时方法如下：</p>
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">start = clock();
-end = clock();
-time = (end - start) / CLOCKS_PER_SEC;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 </li>
-<li><p>Pthread和OpenMP版本继续沿用之前实验中用到的计时方法</p>
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">QueryPerformanceFrequency((LARGE_INTEGER *)&amp;freq);
-QueryPerformanceCounter((LARGE_INTEGER *)&amp;head);          QueryPerformanceCounter((LARGE_INTEGER *)&amp;tail);  <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></li>
+<li><p>多发射</p>
+<ul>
+<li>复制功能单元来同时执行程序中的不同指令</li>
+<li>静态多发射：功能单元在<strong>编译</strong>时调度</li>
+<li>动态多发射：功能单元在运行时间调度。  <strong>超标量</strong></li>
 </ul>
-<h3 id="不同规模下3种方法的结果展示与对比"><a href="#不同规模下3种方法的结果展示与对比" class="headerlink" title="不同规模下3种方法的结果展示与对比"></a>不同规模下3种方法的结果展示与对比</h3><h4 id="程序输出结果"><a href="#程序输出结果" class="headerlink" title="程序输出结果"></a>程序输出结果</h4><p>待计算函数为 f(x) = 1；待计算区间为0到5000</p>
-<ol>
-<li><p>将MPI的运行环境及程序部署到华为鲲鹏云服务器上，得到示例输出如下：</p>
-<p>![image-20230102211323833](/Users/zhangxiaoni/Library/Application Support/typora-user-images/image-20230102211323833.png)</p>
 </li>
-<li><p>编辑器为codeblocks，编译器为mingw64，得到Pthread版本和OpenMP版本的示例输出如下：</p>
-<p>![image-20230102193907704](/Users/zhangxiaoni/Library/Application Support/typora-user-images/image-20230102193907704.png)</p>
-<p>从上述截图中看出，三种实现方式均按照预期效果输出，程序正确。</p>
+</ul>
+<p>超标量</p>
+<p>必须找出能同时执行的指令</p>
+<p>猜测</p>
+<p>![image-20230220170043087](/Users/zhangxiaoni/Library/Application Support/typora-user-images/image-20230220170043087.png)</p>
+<p>2）硬件多线程</p>
+<p>分为3种</p>
+<ul>
+<li>细粒度 每条指令完成后都切换</li>
+<li>粗粒度 只切换那些需要等待较长时间而阻塞的线程</li>
+<li>同步多线程/超线程 真正意义上的同时 一个核上多个线程</li>
+</ul>
+<h3 id="Cache相关概念"><a href="#Cache相关概念" class="headerlink" title="Cache相关概念"></a>Cache相关概念</h3><p>局部性原理</p>
+<p>程序访问完一个存储区域往往会访问接下来的区域</p>
+<ul>
+<li>空间的局部性</li>
+<li>时间的局部性</li>
+</ul>
+<p>cache命中</p>
+<p>cache缺失 </p>
+<p>cache的问题</p>
+<ul>
+<li>写直达：当CPU向Cache中写数据时，高速缓存行会立即写入主存中</li>
+<li>写回：数据不是立即更新到主存中，而是将发生数据更新的高速缓存行标记为脏。当发生高速缓存行替换时，标记为脏的高速缓存行被写入主存中</li>
+</ul>
+<p>Cache一致性</p>
+<p>![image-20230220203121263](/Users/zhangxiaoni/Library/Application Support/typora-user-images/image-20230220203121263.png)</p>
+<p>z1的值取决于什么时候更新x</p>
+<p>解决</p>
+<ul>
+<li>监听Cache一致性协议</li>
+<li>基于目录的Cache一致性协议</li>
+</ul>
+<p>![image-20230221163041208](/Users/zhangxiaoni/Library/Application Support/typora-user-images/image-20230221163041208.png)</p>
+<h3 id="并行、多线程相关概念"><a href="#并行、多线程相关概念" class="headerlink" title="并行、多线程相关概念"></a>并行、多线程相关概念</h3><p>1.1.3</p>
+<h3 id="SIMD-MIMD（共享内存、分布式内存、网络连接等）"><a href="#SIMD-MIMD（共享内存、分布式内存、网络连接等）" class="headerlink" title="SIMD MIMD（共享内存、分布式内存、网络连接等）"></a>SIMD MIMD（共享内存、分布式内存、网络连接等）</h3><p>Flynn‘s分类法</p>
+<p> ![image-20230220171506418](/Users/zhangxiaoni/Library/Application Support/typora-user-images/image-20230220171506418.png)</p>
+<h4 id="SIMD"><a href="#SIMD" class="headerlink" title="SIMD"></a>SIMD</h4><p>数据并行</p>
+<p>将数据分配给多个处理器实现并行</p>
+<p>相同指令来操作数据子集</p>
+<p>缺点</p>
+<ul>
+<li>所有ALU要么执行相同的指令，要么同时处于空闲状态</li>
+<li>ALU同步操作</li>
+<li>ALU没有指令存储器 一次只能执行一条指令</li>
+<li>SIMD并行在大型数据并行问题上有用，但是处理其他并行问题并不优秀</li>
+</ul>
+<p>向量处理器</p>
+<p>对数组或者数据向量进行操作</p>
+<p>向量寄存器 能够存储多个数组成的向量并操作</p>
+<p>向量指令 在向量上操作</p>
+<p>向量化和流水化的功能单元 对向量中每个元素做同样的操作</p>
+<p>优点</p>
+<ul>
+<li>速度快 容易使用 向量编译器擅长识别向量化的代码</li>
+<li>编译器能够提供代码为什么不能向量化的原因</li>
+<li>内存带宽高 每个加载的数据都会使用</li>
+</ul>
+<p>缺点</p>
+<ul>
+<li>不能处理不规则数据结构和其他的并行结构</li>
+<li>可扩展性受限   可扩展性：处理更大问题的能力</li>
+</ul>
+<p>GPU</p>
+<p><strong>使用SIMD并行</strong></p>
+<p>并不是纯粹的SIMD系统</p>
+<h4 id="MIMD"><a href="#MIMD" class="headerlink" title="MIMD"></a>MIMD</h4><p>多指令流多数据流</p>
+<p>完全独立的处理单元或者核</p>
+<p>每个处理单元或者核都有自己的控制单元和ALU</p>
+<p>分为：</p>
+<p>1）共享内存系统</p>
+<p>内存共享</p>
+<p>处理器通过访问共享的内存来隐式通信</p>
+<p>一个/多个多核处理器 一块芯片上有多个CPU或者核</p>
+<p>![image-20230220175039016](/Users/zhangxiaoni/Library/Application Support/typora-user-images/image-20230220175039016.png)</p>
+<p>分为两类</p>
+<ul>
+<li><p>一致内存访问系统</p>
+<p>![image-20230220190140406](/Users/zhangxiaoni/Library/Application Support/typora-user-images/image-20230220190140406.png)</p>
 </li>
-</ol>
-<h4 id="结果分析"><a href="#结果分析" class="headerlink" title="结果分析"></a>结果分析</h4><p>按照上述的实验设计执行程序，得到经过分析处理后的图表如下：</p>
+<li><p>非一致内存访问系统</p>
+<p>![image-20230220190203183](/Users/zhangxiaoni/Library/Application Support/typora-user-images/image-20230220190203183.png)</p>
+</li>
+</ul>
+<p>2）分布式内存系统</p>
+<p>集群</p>
+<p>大多数混合系统</p>
+<p>![image-20230220190316207](/Users/zhangxiaoni/Library/Application Support/typora-user-images/image-20230220190316207.png)</p>
+<h4 id="互连网络"><a href="#互连网络" class="headerlink" title="互连网络"></a>互连网络</h4><p>分为两类</p>
+<ul>
+<li>共享内存互连网络</li>
+<li>分布式内存互连网络</li>
+</ul>
+<h5 id="共享内存互连网络"><a href="#共享内存互连网络" class="headerlink" title="共享内存互连网络"></a>共享内存互连网络</h5><p>1）总线互连</p>
+<p>随着连接到总线的设备数量增加，竞争增加，性能会下降</p>
+<p>2）交换互连网络</p>
+<p>交换器</p>
+<p>交叉开关矩阵  </p>
+<p>![image-20230220191320436](/Users/zhangxiaoni/Library/Application Support/typora-user-images/image-20230220191320436.png)</p>
+<h5 id="分布式内存互连网络"><a href="#分布式内存互连网络" class="headerlink" title="分布式内存互连网络"></a>分布式内存互连网络</h5><p>分为两种</p>
+<ul>
+<li>直接互连 </li>
+<li>间接互连</li>
+</ul>
+<p>1）直接互连</p>
+<p>每个交换器都与一个处理器-内存对直接相连，交换器之间也互相连接</p>
+<p>![image-20230220191821362](/Users/zhangxiaoni/Library/Application Support/typora-user-images/image-20230220191821362.png)</p>
+<p>和总线互连不同：P1，P2，P3可以同时信息交换，因为有交换器控制</p>
+<p>2）间接互连（了解）</p>
+<p>交换器不一定与处理器直接相连</p>
+<p>例子</p>
+<ul>
+<li>交叉开关矩阵  和共享内存网络中的交叉矩阵不同   </li>
+<li>Omega网络</li>
+</ul>
+<h5 id="评价网络好坏-（掌握）"><a href="#评价网络好坏-（掌握）" class="headerlink" title="评价网络好坏 （掌握）"></a>评价网络好坏 （掌握）</h5><p>等分<strong>宽度</strong>  针对分布式内存网络 中的 直接互连网络</p>
+<p>衡量同时通信的链路数目 连接性</p>
+<p>计算方法：计数去除最少的链路数从而将节点分为两份</p>
+<p>环 等分宽度=2</p>
+<p>![image-20230220194912747](/Users/zhangxiaoni/Library/Application Support/typora-user-images/image-20230220194912747.png)</p>
+<p>二维网格结构 p为处理器数目 </p>
+<p>![image-20230220194747171](/Users/zhangxiaoni/Library/Application Support/typora-user-images/image-20230220194747171.png)</p>
+<p>带宽：传输数据的速度</p>
+<p>等分带宽=带宽✖️等分宽度</p>
+<p>如果在环中，链路的带宽是10亿位每秒，等分带 宽就是20亿位每秒</p>
+<p>全相连网络 </p>
+<p>![image-20230220195555960](/Users/zhangxiaoni/Library/Application Support/typora-user-images/image-20230220195555960.png)</p>
+<p>超立方体</p>
+<p>递归构造</p>
+<p>维度 d。</p>
+<p>节点数<br>$$<br>p=2^d<br>$$<br>等分宽度<br>$$<br>p/2<br>$$</p>
+<p>总结</p>
 <table>
 <thead>
 <tr>
+<th align="center">结构</th>
+<th>环</th>
+<th>二维环面</th>
 <th></th>
-<th>100</th>
-<th>1000</th>
-<th>10000</th>
-<th>100000</th>
+<th>超立方体</th>
+<th>全相连</th>
 </tr>
 </thead>
 <tbody><tr>
-<td>MPI</td>
-<td>4ms</td>
-<td>5ms</td>
-<td>11ms</td>
-<td>13ms</td>
-</tr>
-<tr>
-<td>Pthread</td>
-<td>13ms</td>
-<td>15ms</td>
-<td>16ms</td>
-<td>19ms</td>
-</tr>
-<tr>
-<td>OpenMP</td>
-<td>7ms</td>
-<td>9ms</td>
-<td>12ms</td>
-<td>14ms</td>
+<td align="center">等分宽度</td>
+<td>2</td>
+<td>![image-20230220200426667](/Users/zhangxiaoni/Library/Application Support/typora-user-images/image-20230220200426667.png)</td>
+<td></td>
+<td>p/2</td>
+<td>![image-20230220200530472](/Users/zhangxiaoni/Library/Application Support/typora-user-images/image-20230220200530472.png)</td>
 </tr>
 </tbody></table>
-<p>![image-20230102211927911](/Users/zhangxiaoni/Library/Application Support/typora-user-images/image-20230102211927911.png)</p>
-<p>根据上述图表可以看出，几种实现方式的性能差异并不明显，可能是因为该计算任务本身复杂度较低，三种方式均能快速完成，故无法很好地展现出不同方法的性能差异。单从本实验的表现来看，MPI的执行效率相对来说更高一点，可能是因为多台主机多个进程多个CPU确实会更快一些。当然，这种性能上的优秀表现仅在平均值中体现（上述图表中的数据是多次实验取平均后得到的结果），在某些情况下，MPI方法的执行时间也会出现较长的现象，猜想可能是因为使用云服务器传输数据的过程耗时较长导致。</p>
-<h3 id="实验总结"><a href="#实验总结" class="headerlink" title="实验总结"></a>实验总结</h3><p>通过本实验，我熟悉并掌握MPI编程方法，在探讨不同规模对不同实现方式的影响，我了解到了多台主机共同完成同一计算任务的思想以及在本实验中的优秀表现。不过本实验中MPI、Pthread、OpenMP三种方法的性能差异并不是特别明显，这也是本实验可以继续改进优化的一个方向。</p>
-<h2 id="实验二：数组排序的任务分配不均衡案例复现"><a href="#实验二：数组排序的任务分配不均衡案例复现" class="headerlink" title="实验二：数组排序的任务分配不均衡案例复现"></a>实验二：数组排序的任务分配不均衡案例复现</h2><h3 id="问题描述-1"><a href="#问题描述-1" class="headerlink" title="问题描述"></a>问题描述</h3><p>对ARR_NUM个长度为ARR_LEN的一维数组进行排序，使用MPI编程，每个进程处理一部分数组排序的任务。若数组分布不均衡，如前二分之一的数组全部升序，后二分之一的数组全部逆序，则每个进程分得的任务负载可能也会不均衡。</p>
-<h3 id="程序设计与实现-1"><a href="#程序设计与实现-1" class="headerlink" title="程序设计与实现"></a>程序设计与实现</h3><p>实验共用到了3台主机的进程完成数组排序。根据进程号连续划分任务，每个进程完成排序之后，将自己执行任务的耗时传送给0号进程，最终0号进程接受各个进程完成排序任务的时间并输出。具体的实现代码如下：</p>
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;iostream&gt;
-#include &lt;stdio.h&gt;
-#include &lt;stdlib.h&gt;
-#include &lt;time.h&gt;
-#include &lt;vector&gt;
-#include &lt;algorithm&gt;
-#include &lt;mpi.h&gt;
-using namespace std;
-
-//数组数量
-const int ARR_NUM = 3000;
-//每个数组的长度
-const int ARR_LEN = 300;
-//进程数量/主机数量
-const int PROCESS_NUM = 3;
-//每个进程处理的数组数量
-const int seg = ARR_NUM / PROCESS_NUM;
-vector&lt;int&gt; arr[ARR_NUM];
-
-// 初始化待排序数组，使得
-// 第一段：完全逆序
-// 第二段：1/2逆序，1/2升序
-// 第三段：1/4逆序，3/4升序
-// 第四段：完全升序
-void init(void) {
-    int ratio;
-    srand(unsigned(time(nullptr)));
-    for (int i = 0; i &lt; ARR_NUM; i++) {
-        arr[i].resize(ARR_LEN);
-        if (i &lt; seg)ratio = 0;
-        else if (i &lt; seg * 2)ratio = 32;
-        else ratio = 128;
-        if ((rand() &amp; 127) &lt; ratio) {
-            for (int j = 0; j &lt; ARR_LEN; j++) {
-                arr[i][j] = ARR_LEN - j;
-            }
-        }
-        else {
-            for (int j = 0; j &lt; ARR_LEN; j++) {
-                arr[i][j] = j;
-            }
-        }
-    }
-}
-
-//主函数
-int main() {
-    int my_rank, comm_sz;
-    clock_t start, end;
-    double time;
-    //初始化数组
-    init();
-
-    MPI_Init(NULL, NULL);
-    MPI_Comm_rank(MPI_COMM_WORLD, &amp;my_rank);
-    MPI_Comm_size(MPI_COMM_WORLD, &amp;comm_sz);
-    //根据进程号分配任务
-    int startTask = my_rank * seg;
-    int endTask = startTask + seg;
-    //排序
-    start = clock();
-    for (int i = startTask; i &lt; endTask; i++) {
-        sort(arr[i].begin(), arr[i].end());
-    }
-    end = clock();
-    time = (end - start);
-    //其他进程将本进程的运行时间发送给0号进程
-    if (my_rank != 0) {
-        MPI_Send(&amp;time, 1, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD);
-    }
-    //0号进程打印各个进程的运行时间
-    else if (my_rank == 0) {
-        printf("各进程运行时间如下:\n");
-        printf("0号进程: %fms\n", time);
-        for (int source = 1; source &lt; comm_sz; source++) {
-            MPI_Recv(&amp;time, 1, MPI_DOUBLE, source, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
-            printf("%d号进程: %fms\n", source, time);
-        }
-    }
-    MPI_Finalize();
-    return 0;
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h3 id="实验设计-1"><a href="#实验设计-1" class="headerlink" title="实验设计"></a>实验设计</h3><ul>
-<li>使用init函数生成分布不均的数组；</li>
-<li>使用与实验一（梯形积分法）中相同的计时方法。</li>
-<li>改变数组规模，分别处理500，1000，1500，2000，2500，3000个长度为300的数组，比较在不同规模下各个进程的时间差异，从而理解任务负载不均衡对效率的影响。</li>
+<h3 id="并行程序设计的复杂性"><a href="#并行程序设计的复杂性" class="headerlink" title="并行程序设计的复杂性"></a>并行程序设计的复杂性</h3><ul>
+<li>足够的并发度</li>
+<li>并发粒度<ul>
+<li>独立的计算任务的大小</li>
 </ul>
-<h3 id="结果展示与对比分析"><a href="#结果展示与对比分析" class="headerlink" title="结果展示与对比分析"></a>结果展示与对比分析</h3><h4 id="程序输出结果-1"><a href="#程序输出结果-1" class="headerlink" title="程序输出结果"></a>程序输出结果</h4><p>将MPI的运行环境及程序部署到华为鲲鹏云服务器上，得到示例输出如下：</p>
-<p>注：本实验给每台主机分配了1个进程（在config文件中设置），总共有3个进程共同执行排序任务，故执行命令时为“3”</p>
-<p>![截屏2023-01-02 21.32.52](/Users/zhangxiaoni/Desktop/截屏2023-01-02 21.32.52.png)</p>
-<h4 id="图表结果分析"><a href="#图表结果分析" class="headerlink" title="图表结果分析"></a>图表结果分析</h4><p>经过分析处理后得到的图表结果展示如下：</p>
+</li>
+<li>局部性<ul>
+<li>临近数据</li>
+</ul>
+</li>
+<li>负载均衡<ul>
+<li>处理器任务量相近</li>
+</ul>
+</li>
+<li>协调和同步</li>
+</ul>
+<h3 id="并行算法设计（竞争条件-数据依赖-同步等概念）"><a href="#并行算法设计（竞争条件-数据依赖-同步等概念）" class="headerlink" title="并行算法设计（竞争条件 数据依赖 同步等概念）"></a>并行算法设计（竞争条件 数据依赖 同步等概念）</h3><p>额外开销</p>
+<ul>
+<li>进程间通信 最大开销</li>
+<li>进程空闲 负载不均、同步操作、不能并行化的部分</li>
+<li>额外计算</li>
+</ul>
+<p>W8L1里面</p>
+<p>看书</p>
+<p>或者W4L1乱七八糟</p>
+<p>飞书共享空间ppt上没有</p>
+<p>原子性:一组操作要么全部执行，要么全不执行。</p>
+<p>临界区:一个更新共享资源的<strong>代码段</strong>，一次只能允许一个线程执行该代码段</p>
+<p>竞争条件:多个进程/线程尝试<strong>更新同一个共享资源</strong>时，结果可能是无法预测的，则存在竞争条件。</p>
+<p>数据依赖(data dependence):两个<strong>内存操作的序</strong>，为了保证结果的正确性，必须保持这个序。</p>
+<p>同步(synchronization) :在时间上强制使执各行进程/线程在某一点等待，确保各进程/线程的正常顺 序和对共享可写数据的正确访问。</p>
+<p>互斥:任何时刻都只有一个线程在执行<br>互斥量:互斥锁的简称，用来限制每次只有一个线程能进入临界区。保证了一个线程独享临界区。<br>障碍:阻碍线程继续执行，在此程序点等待，直到所有参与线程都达到障碍点才能继续执行</p>
+<h3 id="并行算法性能分析（加速比-效率-可扩展性-阿姆达尔定律）"><a href="#并行算法性能分析（加速比-效率-可扩展性-阿姆达尔定律）" class="headerlink" title="并行算法性能分析（加速比 效率 可扩展性 阿姆达尔定律）"></a>并行算法性能分析（加速比 效率 可扩展性 阿姆达尔定律）</h3><p>串行：时间复杂度</p>
+<h4 id="加速比。"><a href="#加速比。" class="headerlink" title="加速比。"></a>加速比。</h4><p>谁比谁‼️ 串行比并行</p>
+<p>![image-20230220215838708](/Users/zhangxiaoni/Library/Application Support/typora-user-images/image-20230220215838708.png)</p>
+<p>选最优（没有最优的话选择普遍使用的）</p>
+<p>例子：n个数相加</p>
+<p>串行 O（n）</p>
+<p>并行 树形结构 深度为logn 包括加法时间   数据传输时间=启动传输时间+传输过程时间 Tp=O（3logn）</p>
+<p>![image-20230220220921233](/Users/zhangxiaoni/Library/Application Support/typora-user-images/image-20230220220921233.png)</p>
+<p>例子</p>
+<p>串行起泡排序150s 串行快速排序30s 并行起泡排序40</p>
+<p>S=<strong>30</strong>/40=0.75</p>
+<p>p为核数</p>
+<ul>
+<li>一般S&lt;=p</li>
+<li>S=p 称该并行算法有<strong>线性加速比</strong></li>
+<li>S&gt;p 超线性加速比 （了解即可</li>
+</ul>
+<h4 id="阿姆达尔定律"><a href="#阿姆达尔定律" class="headerlink" title="阿姆达尔定律"></a>阿姆达尔定律</h4><p>可并行化比例有限</p>
+<p>![image-20230220223405214](/Users/zhangxiaoni/Library/Application Support/typora-user-images/image-20230220223405214.png)</p>
+<p>只和a和p有关系，和时间没关系</p>
+<p>例子</p>
+<p>![image-20230220223151683](/Users/zhangxiaoni/Library/Application Support/typora-user-images/image-20230220223151683.png)</p>
+<p>S&lt;10</p>
+<p>阿姆达尔定律：通过并行化产生的加速比受限</p>
+<h4 id="效率"><a href="#效率" class="headerlink" title="效率"></a>效率</h4><p>![image-20230220223729564](/Users/zhangxiaoni/Library/Application Support/typora-user-images/image-20230220223729564.png)</p>
+<p> 例子</p>
+<p>串行排序算法例子🌟</p>
+<h4 id="可扩展性"><a href="#可扩展性" class="headerlink" title="可扩展性"></a>可扩展性</h4><p>强可扩展。  问题规模不变。 很难达到</p>
+<p>弱可扩展   问题规模增大</p>
+<h2 id="SIMD-1"><a href="#SIMD-1" class="headerlink" title="SIMD"></a>SIMD</h2><p>适合应用的特点</p>
+<ul>
+<li>连续存储的</li>
+<li>短数据类型 8、16、32位</li>
+<li>流式数据处理 时间局部性 数据流重用</li>
+</ul>
+<h3 id="选择"><a href="#选择" class="headerlink" title="选择"></a>选择</h3><p>应用 </p>
+<p>SSE AVX CUDA GPU 协处理器Xeon Phi 没有占压倒优势 科学计算</p>
+<p>向量长度=寄存器宽度/类型大小</p>
+<p>C/C++：内置函数、 intrinsics</p>
+<h3 id="SIMD编程的问题（打包解包、对其开销、控制流开销）"><a href="#SIMD编程的问题（打包解包、对其开销、控制流开销）" class="headerlink" title="SIMD编程的问题（打包解包、对其开销、控制流开销）"></a>SIMD编程的问题（打包解包、对其开销、控制流开销）</h3><p>打包解包开销</p>
+<p>打包 拷贝到连续内存区域</p>
+<p>解包 拷贝回内存</p>
+<p>对齐开销</p>
+<p>未对齐的数据可能产生不正确的结果a</p>
+<p>控制流 所有语句必须执行</p>
+<p>分支语句</p>
+<p>存在控制流问题时，SIMD不是一个好的编程模型</p>
+<h3 id="SIMD编程-W6L1"><a href="#SIMD编程-W6L1" class="headerlink" title="SIMD编程  W6L1"></a>SIMD编程  W6L1</h3><p>X86 32位</p>
+<p>X64 64位 </p>
+<p>SSE <strong>8个128位</strong>的向量寄存器</p>
+<p>AVX <strong>16个256位</strong>的向量寄存器</p>
+<p>MMX 8个64位</p>
+<p>支持数据类型 128位=16字节</p>
+<p>整数 16字节、8short</p>
 <table>
 <thead>
 <tr>
-<th></th>
-<th>500</th>
-<th>1000</th>
-<th>1500</th>
-<th>2000</th>
-<th>2500</th>
-<th>3000</th>
+<th>数据类型</th>
+<th>名字</th>
+<th>字节</th>
+<th>能放几个</th>
 </tr>
 </thead>
 <tbody><tr>
-<td>0号进程</td>
-<td>5240ms</td>
-<td>10564ms</td>
-<td>15789ms</td>
-<td>21170ms</td>
-<td>26619ms</td>
-<td>31875ms</td>
+<td>dqword</td>
+<td></td>
+<td>16</td>
+<td>1</td>
 </tr>
 <tr>
-<td>1号进程</td>
-<td>5095ms</td>
-<td>10224ms</td>
-<td>15539ms</td>
-<td>20340ms</td>
-<td>25586ms</td>
-<td>30774ms</td>
+<td>short</td>
+<td></td>
+<td>2</td>
+<td>8</td>
 </tr>
 <tr>
-<td>2号进程</td>
-<td>4712ms</td>
-<td>9346ms</td>
-<td>13974ms</td>
-<td>18574ms</td>
-<td>23425ms</td>
-<td>28067ms</td>
+<td>int</td>
+<td></td>
+<td>4</td>
+<td>4</td>
+</tr>
+<tr>
+<td>long</td>
+<td></td>
+<td>8</td>
+<td>2</td>
+</tr>
+<tr>
+<td>float</td>
+<td>单精度浮点数</td>
+<td>4</td>
+<td>4</td>
+</tr>
+<tr>
+<td>double</td>
+<td>双精度浮点数</td>
+<td>8</td>
+<td>2</td>
+</tr>
+<tr>
+<td>char</td>
+<td></td>
+<td>2</td>
+<td></td>
 </tr>
 </tbody></table>
-<p> ![image-20230102214239527](/Users/zhangxiaoni/Library/Application Support/typora-user-images/image-20230102214239527.png)</p>
-<p>从上述图表中，我们大致可以看出，由于数据分布不均衡，各个进程的执行时间存在差异，具体表现为：0号、1号、2号进程的执行效率依次增大，这与他们各自的任务负载是保持一致的。在实际情况中，这些负载任务复杂度较高、执行时间较长的进程，会拖慢任务解决的整体时长，这是我们不希望看到的。</p>
-<h3 id="实验总结-1"><a href="#实验总结-1" class="headerlink" title="实验总结"></a>实验总结</h3><p>​	通过本实验，我了解到数据分布均衡对于多进程、多线程程序的重要性。如果任务分布不均，将会出现执行效率较低的进程拖慢任务解决的整体效率的情况。因此，并行编程时控制任务规模、控制任务分配的粗细粒度、控制进程或线程的数量，使得程序在数据分布不均衡的情况下也能有较为优秀的表现就显得很重要。当然，也可以在程序执行任务之前，对数据进行处理，达到各个进程分配的数据分布都较为均衡的效果。</p>
-<h2 id="附加实验：高斯消去法解线性方程组"><a href="#附加实验：高斯消去法解线性方程组" class="headerlink" title="附加实验：高斯消去法解线性方程组"></a>附加实验：高斯消去法解线性方程组</h2><h3 id="问题描述-2"><a href="#问题描述-2" class="headerlink" title="问题描述"></a>问题描述</h3><p>对于给定的线性方程组Ax=b，使用MPI编程，完成对于线性方程组的高斯消元。</p>
-<h3 id="程序设计与实现-2"><a href="#程序设计与实现-2" class="headerlink" title="程序设计与实现"></a>程序设计与实现</h3><p>每个进程完成部分行的消元计算任务，然后使用barrier功能，使得所有进程均完成第k行的消元后再计算下一行的消元。程序实现的具体代码如下：</p>
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;stdio.h&gt;
-#include&lt;iostream&gt;
-#include &lt;algorithm&gt;
-#include&lt;cstdlib&gt;
-#include&lt;ctime&gt;
-#include&lt;mpi.h&gt;
-using namespace std;
-
-const int n = 900;
-const int NUM_PROC = 3;
-float a[n][n], b[n], c[n];
-
-void init() {
-    for (int i = 0; i &lt; n; i++) {
-        for (int j = 0; j &lt; n; j++) {
-            a[i][j] = rand() % (1000 - 1) + 1;
-        }
-        b[i] = rand() % (1000 - 1) + 1;
-    }
-}
-
-int main() {
-    int my_rank, comm_sz, left, right;
-    int source;
-    clock_t start, finish;
-    double sec;
-    init();
-
-    MPI_Init(NULL, NULL);
-    MPI_Comm_rank(MPI_COMM_WORLD, &amp;my_rank);
-    MPI_Comm_size(MPI_COMM_WORLD, &amp;comm_sz);
-
-    start = clock();
-    for (int k = 0; k &lt; n - 1; k++) {
-        int seg = (n - (k + 1)) / NUM_PROC;
-        left = my_rank * seg;
-        right = (my_rank + 1) * seg;
-        for (int i = left; i &lt; right; i++) {
-            c[i] = a[i][k] / a[k][k];
-        }
-        for (int i = left; i &lt; right; i++) {
-            for (int j = 0; j &lt; n; j++) {
-                a[i][j] = a[i][j] - c[i] * a[k][j];
-            }
-            b[i] = b[i] - c[i] * b[k];
-        }
-        MPI_Barrier(MPI_COMM_WORLD);
-    }
-    finish = clock();
-    sec = finish - start;
-
-    if (my_rank != 0) {
-        MPI_Send(&amp;sec, 1, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD);
-    }
-    else {
-        printf("0号进程: %f\n", sec);
-        for (source = 1; source &lt; comm_sz; source++) {
-            MPI_Recv(&amp;sec, 1, MPI_DOUBLE, source, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
-            printf("%d号进程: %f\n", source, sec);
-        }
-    }
-    MPI_Finalize();
-    return 0;
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h3 id="实验总结-2"><a href="#实验总结-2" class="headerlink" title="实验总结"></a>实验总结</h3><p>该部分尝试对高斯消元法进行了的MPI的编程实现，其中也遇到了很多困难，比如数据依赖等问题。经过反复尝试，我实现了高斯消元MPI的解法，使得我对于MPI编程中需要注意的内存共享的问题有了更深刻的理解。</p>
+<p>SSE指令</p>
+<ul>
+<li>数据移动指令 将数据移入/出向量寄存器</li>
+<li>算术指令 多个数据（2doubles，4floats上的算术指令）</li>
+<li>逻辑指令 多个数据上的逻辑运算</li>
+<li>比较指令 多个数据上的比较运算</li>
+<li>洗牌指令 在SIMD寄存器内移动数据</li>
+</ul>
+<p>SSE版本向量乘法</p>
+<p>![image-20230221152105512](/Users/zhangxiaoni/Library/Application Support/typora-user-images/image-20230221152105512.png)</p>
+<p>![image-20230221152048150](/Users/zhangxiaoni/Library/Application Support/typora-user-images/image-20230221152048150.png)</p>
+<h2 id="Pthread"><a href="#Pthread" class="headerlink" title="Pthread"></a>Pthread</h2><p>并行程序设计的复杂性</p>
+<p>Pthread一些基础API</p>
+<p>同步相关概念</p>
+<p>![image-20230221200946496](/Users/zhangxiaoni/Library/Application Support/typora-user-images/image-20230221200946496.png)</p>
+<p>忙等待 互斥量 信号量 障碍 </p>
+<p>负载均衡 任务划分</p>
+<p>![image-20230224185347606](/Users/zhangxiaoni/Library/Application Support/typora-user-images/image-20230224185347606.png)</p>
+<h2 id="MPI"><a href="#MPI" class="headerlink" title="MPI"></a>MPI</h2><p>![image-20230224194958501](/Users/zhangxiaoni/Library/Application Support/typora-user-images/image-20230224194958501.png)</p>
+<p>隔离了独立地址空间</p>
+<p>不会有数据竞争 但是可能有通信错误</p>
+<p>暴露了执行模型，迫使程序员思考局部性，两点对性能都有好处</p>
+<p>代码复杂</p>
+<p>无共享变量 通信、同步都需要调用函数完成</p>
+<p>提供以下类别的函数</p>
+<p>通信</p>
+<p>点对点通信 消息从特定的发送进程到特定的接受进程</p>
+<p>多处理器参与的组通信</p>
+<p>同步</p>
+<p>障碍</p>
+<p>无锁 没有共享变量需要保护</p>
+<p>查询</p>
+<p>允许接受的量比指定少，接收到更多数据就是错误</p>
+<p>强数据类型传输</p>
+<p>消息中的数据用三元组（地址、个数、类型）描述</p>
+<p>send receive完成了数据传输 同步</p>
+<h3 id="编程模型"><a href="#编程模型" class="headerlink" title="编程模型"></a>编程模型</h3><p>![image-20230224215719598](/Users/zhangxiaoni/Library/Application Support/typora-user-images/image-20230224215719598.png)</p>
+<h3 id="混合编程"><a href="#混合编程" class="headerlink" title="混合编程"></a>混合编程</h3><p>![image-20230224221353584](/Users/zhangxiaoni/Library/Application Support/typora-user-images/image-20230224221353584.png)</p>
+<p>所有MPI实现均支持MPI_THREAD_SINGLE</p>
+<h2 id="绪论"><a href="#绪论" class="headerlink" title="绪论"></a>绪论</h2><h3 id="推动并行计算的原因"><a href="#推动并行计算的原因" class="headerlink" title="推动并行计算的原因"></a>推动并行计算的原因</h3><p>频率已经不是处理器发展的主角 </p>
+<p>功耗/散热的限制 </p>
+<p>性能上升放缓 </p>
+<p>多核、众核成为之后CPU的发展趋势</p>
+<h3 id="超算发展"><a href="#超算发展" class="headerlink" title="超算发展"></a>超算发展</h3><p>Top 1 Frontier：性能最强，能效最高</p>
+<p>我国Top1：神威·太湖之光 自研的 2016</p>
+<p>2020年，Summit，获得戈登贝尔奖的是中美合 作的团队 夺冠，“基于机器学习将分子动力学 计算精度极限推广到1亿个原子”</p>
 
                 
             </div>
@@ -866,7 +796,7 @@ int main() {
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://zxnstc.github.io/2022/11/28/mpi-bian-cheng-lian-xi-shi-yan-bao-gao/">http://zxnstc.github.io/2022/11/28/mpi-bian-cheng-lian-xi-shi-yan-bao-gao/</a>
+                    <a href="http://zxnstc.github.io/2023/02/10/bing-xing/bing-xing-fu-xi/">http://zxnstc.github.io/2023/02/10/bing-xing/bing-xing-fu-xi/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -908,12 +838,12 @@ int main() {
                                     <span class="chip bg-color">并行程序设计</span>
                                 </a>
                             
-                                <a href="/tags/S5%E8%AF%BE%E4%B8%8A/">
-                                    <span class="chip bg-color">S5课上</span>
+                                <a href="/tags/%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/">
+                                    <span class="chip bg-color">知识总结</span>
                                 </a>
                             
-                                <a href="/tags/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/">
-                                    <span class="chip bg-color">实验报告</span>
+                                <a href="/tags/S5%E5%A4%8D%E4%B9%A0/">
+                                    <span class="chip bg-color">S5复习</span>
                                 </a>
                             
                         </div>
@@ -1087,24 +1017,24 @@ int main() {
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2023/02/10/bing-xing-fu-xi/">
+                <a href="/2023/03/22/qian-duan-wen-jian-lu-jing/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/%207.png" class="responsive-img" alt="并行程序设计-并行复习">
+                        <img src="/medias/featureimages/%203.png" class="responsive-img" alt="前端-文件路径">
                         
-                        <span class="card-title">并行程序设计-并行复习</span>
+                        <span class="card-title">前端-文件路径</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            并行复习总结
+                            前端 相对路径 vue路径别名
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2023-02-10
+                            <i class="far fa-clock fa-fw icon-date"></i>2023-03-22
                         </span>
                         <span class="publish-author">
                             
@@ -1121,16 +1051,16 @@ int main() {
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E5%B9%B6%E8%A1%8C%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/">
-                        <span class="chip bg-color">并行程序设计</span>
-                    </a>
-                    
                     <a href="/tags/%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/">
                         <span class="chip bg-color">知识总结</span>
                     </a>
                     
-                    <a href="/tags/S5%E5%A4%8D%E4%B9%A0/">
-                        <span class="chip bg-color">S5复习</span>
+                    <a href="/tags/S6%E8%AF%BE%E4%B8%8A/">
+                        <span class="chip bg-color">S6课上</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%89%8D%E7%AB%AF/">
+                        <span class="chip bg-color">前端</span>
                     </a>
                     
                 </div>
@@ -1144,24 +1074,24 @@ int main() {
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/11/13/di-liu-jiang-mpi-bian-cheng/">
+                <a href="/2022/11/28/bing-xing/mpi-bian-cheng-lian-xi-shi-yan-bao-gao/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/%200.png" class="responsive-img" alt="并行程序设计-第六讲.MPI编程">
+                        <img src="/medias/featureimages/%201.png" class="responsive-img" alt="并行程序设计-实验5.MPI编程练习">
                         
-                        <span class="card-title">并行程序设计-第六讲.MPI编程</span>
+                        <span class="card-title">并行程序设计-实验5.MPI编程练习</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            并行 第五讲 笔记
+                            并行 MPI编程实验报告
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-11-13
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-11-28
                             </span>
                         <span class="publish-author">
                             
@@ -1186,8 +1116,8 @@ int main() {
                         <span class="chip bg-color">S5课上</span>
                     </a>
                     
-                    <a href="/tags/%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/">
-                        <span class="chip bg-color">知识总结</span>
+                    <a href="/tags/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/">
+                        <span class="chip bg-color">实验报告</span>
                     </a>
                     
                 </div>
@@ -1390,7 +1320,7 @@ int main() {
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">49.7k</span>&nbsp;字
+                class="white-color">57.9k</span>&nbsp;字
             
             
             
